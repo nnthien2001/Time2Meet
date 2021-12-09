@@ -13,20 +13,18 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 
-public class FragmentMeetingMenu extends Fragment implements View.OnClickListener {
+public class FragmentEditMeeting extends Fragment {
 
     private NavController navController;
     private MeetingViewModel meetingViewModel;
 
-    private EditText meeting_tv;
-
-    public FragmentMeetingMenu() {
+    public FragmentEditMeeting() {
         // Required empty public constructor
     }
 
@@ -39,7 +37,7 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meeting_menu, container, false);
+        return inflater.inflate(R.layout.fragment_edit_meeting, container, false);
     }
 
     @Override
@@ -50,17 +48,10 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
 
-        meeting_tv = (EditText) view.findViewById(R.id.meeting_edittext);
-        view.findViewById(R.id.edit_meeting_btn).setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.edit_meeting_btn){
-            Meeting meeting = new Meeting(meeting_tv.getText().toString());
-
-            meetingViewModel.setMeeting(meeting);
-            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
-        }
+        Meeting meeting = meetingViewModel.getMeeting();
+        String message = "This is " + meeting.getId() + " meeting!";
+        TextView tv = view.findViewById(R.id.meeting_welcome_textview);
+        tv.setText(message);
+        //tv.setText("Welcome");
     }
 }

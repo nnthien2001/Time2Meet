@@ -26,7 +26,7 @@
 
         <action
             android:id="@+id/action_fragmentMenu_to_fragmentMeetingMenu"
-            app:destination="@id/fragmentMeetingMenu" />
+            app:destination="@id/meeting_nav_graph" />
         <action
             android:id="@+id/action_fragmentMenu_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
@@ -38,9 +38,44 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/fragmentMeetingMenu"
-        android:name="com.example.time2meet.ui.FragmentMeetingMenu"
-        android:label="fragment_meeting_menu"
-        tools:layout="@layout/fragment_meeting_menu" />
+    <navigation android:id="@+id/meeting_nav_graph"
+        app:startDestination="@id/fragmentMeetingMenu">
+        <fragment
+            android:id="@+id/fragmentMeetingMenu"
+            android:name="com.example.time2meet.ui.FragmentMeetingMenu"
+            android:label="fragment_meeting_menu"
+            tools:layout="@layout/fragment_meeting_menu">
+            <action
+                android:id="@+id/action_fragmentMeetingMenu_to_fragmentViewAttendee"
+                app:destination="@id/fragmentViewAttendee" />
+            <action
+                android:id="@+id/action_fragmentMeetingMenu_to_fragmentEditMeeting"
+                app:destination="@id/fragmentEditMeeting" />
+            <action
+                android:id="@+id/action_fragmentMeetingMenu_to_fragmentAvailabilityBoard"
+                app:destination="@id/fragmentAvailabilityBoard" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/fragmentViewAttendee"
+            android:name="com.example.time2meet.ui.FragmentViewAttendee"
+            android:label="fragment_view_attendee"
+            tools:layout="@layout/fragment_view_attendee">
+            <action
+                android:id="@+id/action_fragmentViewAttendee_to_fragmentProfile"
+                app:destination="@id/fragmentProfile" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/fragmentEditMeeting"
+            android:name="com.example.time2meet.ui.FragmentEditMeeting"
+            android:label="fragment_edit_meeting"
+            tools:layout="@layout/fragment_edit_meeting" />
+
+        <fragment
+            android:id="@+id/fragmentAvailabilityBoard"
+            android:name="com.example.time2meet.ui.FragmentAvailabilityBoard"
+            android:label="fragment_availability_board"
+            tools:layout="@layout/fragment_availability_board" />
+    </navigation>
 </navigation>
