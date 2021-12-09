@@ -7,9 +7,10 @@
 
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.example.time2meet.FragmentLogin"
+        android:name="com.example.time2meet.ui.FragmentLogin"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
+
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentMenu"
             app:destination="@id/fragmentMenu"
@@ -19,7 +20,7 @@
 
     <fragment
         android:id="@+id/fragmentMenu"
-        android:name="com.example.time2meet.FragmentMenu"
+        android:name="com.example.time2meet.ui.FragmentMenu"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
 
@@ -33,13 +34,13 @@
 
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name="com.example.time2meet.FragmentProfile"
+        android:name="com.example.time2meet.ui.FragmentProfile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/fragmentMeetingMenu"
-        android:name="com.example.time2meet.FragmentMeetingMenu"
+        android:name="com.example.time2meet.ui.FragmentMeetingMenu"
         android:label="fragment_meeting_menu"
         tools:layout="@layout/fragment_meeting_menu" />
 </navigation>

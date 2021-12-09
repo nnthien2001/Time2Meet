@@ -1,4 +1,4 @@
-package com.example.time2meet;
+package com.example.time2meet.ui;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.time2meet.R;
+
 ///**
 // * A simple {@link Fragment} subclass.
-// * Use the {@link FragmentMeetingMenu#newInstance} factory method to
+// * Use the {@link FragmentProfile#newInstance} factory method to
 // * create an instance of this fragment.
 // */
-public class FragmentMeetingMenu extends Fragment {
+public class FragmentProfile extends Fragment {
 
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class FragmentMeetingMenu extends Fragment {
 //    private String mParam1;
 //    private String mParam2;
 
-    public FragmentMeetingMenu() {
+    public FragmentProfile() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class FragmentMeetingMenu extends Fragment {
 //     *
 //     * @param param1 Parameter 1.
 //     * @param param2 Parameter 2.
-//     * @return A new instance of fragment FragmentMeetingMenu.
+//     * @return A new instance of fragment FragmentProfile.
 //     */
 //    // TODO: Rename and change types and number of parameters
-//    public static FragmentMeetingMenu newInstance(String param1, String param2) {
-//        FragmentMeetingMenu fragment = new FragmentMeetingMenu();
+//    public static FragmentProfile newInstance(String param1, String param2) {
+//        FragmentProfile fragment = new FragmentProfile();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class FragmentMeetingMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meeting_menu, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

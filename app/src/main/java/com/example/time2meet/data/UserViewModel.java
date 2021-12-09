@@ -1,4 +1,4 @@
-package com.example.time2meet;
+package com.example.time2meet.data;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

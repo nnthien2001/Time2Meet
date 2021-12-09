@@ -1,4 +1,4 @@
-package com.example.time2meet;
+package com.example.time2meet.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -8,6 +8,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.widget.Toolbar;
+
+import com.example.time2meet.R;
 
 public class MainActivity extends AppCompatActivity {
 

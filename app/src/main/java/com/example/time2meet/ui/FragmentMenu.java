@@ -1,4 +1,4 @@
-package com.example.time2meet;
+package com.example.time2meet.ui;
 
 import android.os.Bundle;
 
@@ -10,12 +10,13 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.time2meet.R;
+import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
 
 public class FragmentMenu extends Fragment implements View.OnClickListener{
@@ -43,6 +44,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
