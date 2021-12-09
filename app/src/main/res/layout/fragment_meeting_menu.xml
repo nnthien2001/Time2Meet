@@ -23,6 +23,11 @@
             android:id="@+id/edit_meeting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:text="Straight to Edit Meeting"
+            android:id="@+id/st_edit_meeting_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </FrameLayout>

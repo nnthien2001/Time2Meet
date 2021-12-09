@@ -52,14 +52,19 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
 
         meeting_tv = (EditText) view.findViewById(R.id.meeting_edittext);
         view.findViewById(R.id.edit_meeting_btn).setOnClickListener(this);
+        view.findViewById(R.id.st_edit_meeting_btn).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.edit_meeting_btn){
+        if (v.getId() == R.id.edit_meeting_btn) {
             Meeting meeting = new Meeting(meeting_tv.getText().toString());
 
             meetingViewModel.setMeeting(meeting);
+            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+        }
+
+        if (v.getId() == R.id.st_edit_meeting_btn) {
             navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
         }
     }

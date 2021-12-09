@@ -48,8 +48,9 @@ public class FragmentEditMeeting extends Fragment {
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
 
+        String message;
         Meeting meeting = meetingViewModel.getMeeting();
-        String message = "This is " + meeting.getId() + " meeting!";
+        message = "This is " + meeting.getId() + " meeting!";
         TextView tv = view.findViewById(R.id.meeting_welcome_textview);
         tv.setText(message);
         //tv.setText("Welcome");
