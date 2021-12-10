@@ -58,10 +58,10 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit_meeting_btn) {
-            Meeting meeting = new Meeting(meeting_tv.getText().toString());
-
-            meetingViewModel.setMeeting(meeting);
-            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+//            Meeting meeting = new Meeting(meeting_tv.getText().toString());
+//
+//            meetingViewModel.setMeeting(meeting);
+//            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
         }
 
         if (v.getId() == R.id.st_edit_meeting_btn) {

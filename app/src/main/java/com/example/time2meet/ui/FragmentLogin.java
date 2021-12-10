@@ -57,7 +57,6 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     public void onClick(@NonNull View v) {
         if (v.getId() == R.id.login_btn) {
             User user = new User(username_tv.getText().toString());
-
             userViewModel.setUser(user);
             navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
         }

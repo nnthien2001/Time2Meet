@@ -50,7 +50,7 @@ public class FragmentEditMeeting extends Fragment {
 
         String message;
         Meeting meeting = meetingViewModel.getMeeting();
-        message = "This is " + meeting.getId() + " meeting!";
+        message = "This is " + meeting.getMeetingID() + " meeting!";
         TextView tv = view.findViewById(R.id.meeting_welcome_textview);
         tv.setText(message);
         //tv.setText("Welcome");
