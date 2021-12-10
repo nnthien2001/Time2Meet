@@ -42,11 +42,11 @@ public class AvailabilityBoard {
             availability.put(i, 0);
         }
 
-        for (Map.Entry<Integer, Attendee> entry : meeting.getAttendees().entrySet()){
+        for (Map.Entry<Integer, ArrayList<Integer>> entry : meeting.getAttendees().entrySet()){
             Integer key = entry.getKey();
-            ArrayList<Integer> available = entry.getValue().getAvailable();
+            ArrayList<Integer> available = entry.getValue();
             for (int i = 0; i < available.size(); ++i){
-                availability.put(available.get(i), availability.get(available.get(i)) + 1);
+                availability.replace(available.get(i), availability.get(available.get(i)) + 1);
             }
         }
     }

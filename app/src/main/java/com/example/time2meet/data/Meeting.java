@@ -1,5 +1,6 @@
 package com.example.time2meet.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class Meeting {
     private String startDate;
     private String endDate;
     private String date;
-    private Map<Integer, Attendee> attendees;
+    private Map<Integer, ArrayList<Integer>> attendees;
     private Boolean isPrivate;
     private Integer version = 1;
 
@@ -80,11 +81,11 @@ public class Meeting {
         this.date = date;
     }
 
-    public Map<Integer, Attendee> getAttendees() {
+    public Map<Integer, ArrayList<Integer>> getAttendees() {
         return attendees;
     }
 
-    public void setAttendees(Map<Integer, Attendee> attendees) {
+    public void setAttendees(Map<Integer, ArrayList<Integer>> attendees) {
         this.attendees = attendees;
     }
 
@@ -107,6 +108,6 @@ public class Meeting {
     public Meeting(Integer hostID, String username, String name) {
         this.hostID = hostID;
         attendees = new HashMap<>();
-        attendees.put(hostID, new Attendee(username, name));
+        attendees.put(hostID, new ArrayList<>());
     }
 }
