@@ -10,12 +10,14 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.UserRepository;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
 
@@ -57,7 +59,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     public void onClick(@NonNull View v) {
         if (v.getId() == R.id.login_btn) {
             User user = new User(username_tv.getText().toString());
-            userViewModel.setUser(user);
+//            userViewModel.setUser(user);
             navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
         }
     }
