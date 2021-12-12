@@ -3,6 +3,9 @@ package com.example.time2meet.data;
 import android.content.ContentResolver;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.time2meet.ApiService;
 
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ import retrofit2.Response;
 
 public class UserRepository {
     private static UserRepository instance;
-    private static User user;
+    private MutableLiveData<User> user = new MutableLiveData<User>();
 
     public static UserRepository getInstance(){
         if (instance == null) {
@@ -22,7 +25,15 @@ public class UserRepository {
         return instance;
     }
 
-    public User getUser() {
+    private UserRepository() {
+        if (user == null || user.getValue() == null) {
+            //user.setValue(...);
+            // có thể set user trong đây
+        }
+        //hoặc ngoài đây
+    }
+
+    public LiveData<User> getUser() {
         return user;
     }
 

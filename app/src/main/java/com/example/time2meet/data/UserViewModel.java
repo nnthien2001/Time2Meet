@@ -7,15 +7,16 @@ import androidx.lifecycle.ViewModel;
 import com.example.time2meet.data.User;
 
 public class UserViewModel extends ViewModel {
-    private MutableLiveData<User> user;
+    private LiveData<User> user;
     private final UserRepository userRepository;
 
     public UserViewModel() {
         this.userRepository = UserRepository.getInstance();
-        user.setValue(userRepository.getUser());
+        // nên set user dưới repo
+        // user.setValue(userRepository.getUser());
     }
 
-    public LiveData<User> getUser() {
-        return user;
+    public User getUser() {
+        return user.getValue();
     }
 }
