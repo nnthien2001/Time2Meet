@@ -49,13 +49,13 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
-        username_tv = (EditText) view.findViewById(R.id.username_edittext);
-        view.findViewById(R.id.login_btn).setOnClickListener(this);
+        username_tv = (EditText) view.findViewById(R.id.edt_username_login);
+        view.findViewById(R.id.btn_login).setOnClickListener(this);
     }
 
     @Override
     public void onClick(@NonNull View v) {
-        if (v.getId() == R.id.login_btn) {
+        if (v.getId() == R.id.btn_login) {
             User user = new User(username_tv.getText().toString());
             userViewModel.setUser(user);
             navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
