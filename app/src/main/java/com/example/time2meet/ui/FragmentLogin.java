@@ -16,10 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.time2meet.ApiService;
 import com.example.time2meet.R;
 import com.example.time2meet.data.UserRepository;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentLogin extends Fragment implements View.OnClickListener {
 
@@ -58,7 +66,10 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(@NonNull View v) {
         if (v.getId() == R.id.login_btn) {
-            User user = new User(username_tv.getText().toString());
+            Integer i = UserRepository.getInstance().signUp("username abc", "123456");
+//            Log.i("login", i.toString());
+
+//            User user = new User(username_tv.getText().toString());
 //            userViewModel.setUser(user);
             navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
         }

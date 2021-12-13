@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 public class User {
     private String username = "default";
-    private Integer userID = 2;
+    private Integer userID;
     private String name = "default";
     private String dob = "default";
     private String password = "default";
     private String phone = "default";
     private ArrayList<Integer> meetingList;
 
-    public User(String _username) {
-        username = _username;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
     public User(User _user) {username = _user.getUsername();}
 

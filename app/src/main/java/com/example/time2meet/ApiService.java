@@ -28,6 +28,9 @@ public interface ApiService {
     @GET("api/user")
     Call<ArrayList<User>> getUser(@Query("username") String username);
 
+    @GET("api/user")
+    Call<ArrayList<User>> getAllUsers();
+
     @POST("api/user")
     Call<User> createUser(@Body User user);
 
