@@ -1,7 +1,7 @@
 package com.example.time2meet.data;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,24 +9,15 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.time2meet.ApiService;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
-
-import retrofit2.Call;
 
 public class UserRepository {
     private static UserRepository instance;
-    private MutableLiveData<User> user = new MutableLiveData<User>();
+    private MutableLiveData<User> user = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Meeting>> meetingList = new MutableLiveData<>();
     public final Integer REQUEST_SUCCESS = 1;
     public final Integer REQUEST_ERROR = 2;
-    public final Integer RESPONSE_ERROR = 3;
-    protected final Integer RESPONSE_SUCCESS = 4;
 
     public Integer request_state;
 
@@ -42,34 +33,34 @@ public class UserRepository {
     public LiveData<User> getUser() {
         return user;
     }
+    public LiveData<ArrayList<Meeting>> getUserAllMeetings() { return meetingList; }
+    public void setUser(User _user) {
+        user.setValue(_user);
+    }
 
-    public Integer login(String username, String password){
+    public User getUser(String username){
         try {
-            User _user = new GetUserAsyncTask().execute(username).get();
-            if (request_state == REQUEST_ERROR) {
-                return request_state;
-            }
-
-            if (!_user.getPassword().equals(password)){
-                return RESPONSE_ERROR;
-            }
-            user.setValue(_user);
-            return RESPONSE_SUCCESS;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            return new GetUserAsyncTask().execute(username).get();
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        return REQUEST_ERROR;
+        return null;
+    }
+
+    public Boolean login(String username, String password){
+        User _user = getUser(username);
+        if (_user != null && _user.getPassword().equals(password)){
+            user.setValue(_user);
+            return true;
+        }
+        return false;
     }
 
     public Integer signUp(String username, String password){
         try {
             new signUpAsyncTask().execute(username, password).get();
             return request_state;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return REQUEST_ERROR;
@@ -77,19 +68,17 @@ public class UserRepository {
 
     public Integer updateProfile(String username, String name, String dob, String phone, String about) {
         User new_user = new User(user.getValue());
-        new_user.setUsername(username=="" ? new_user.getUsername() : username);
-        new_user.setName(name=="" ? new_user.getName() : name);
-        new_user.setDob(dob=="" ? new_user.getDob() : dob);
-        new_user.setPhone(phone=="" ? new_user.getPhone() : phone);
-        new_user.setAbout(about=="" ? new_user.getAbout() : about);
+        new_user.setUsername(username.equals("") ? new_user.getUsername() : username);
+        new_user.setName(name.equals("") ? new_user.getName() : name);
+        new_user.setDob(dob.equals("") ? new_user.getDob() : dob);
+        new_user.setPhone(phone.equals("") ? new_user.getPhone() : phone);
+        new_user.setAbout(about.equals("") ? new_user.getAbout() : about);
         try {
             new updateUserAsyncTask().execute(new_user).get();
-            if (request_state == REQUEST_SUCCESS)
+            if (request_state.equals(REQUEST_SUCCESS))
                 user.setValue(new_user);
             return request_state;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return REQUEST_ERROR;
@@ -100,12 +89,41 @@ public class UserRepository {
         new_user.setPassword(password);
         try{
             new updateUserAsyncTask().execute(new_user).get();
-            if (request_state == REQUEST_SUCCESS)
+            if (request_state.equals(REQUEST_SUCCESS))
                 user.setValue(new_user);
             return request_state;
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();;
-        } catch (InterruptedException e) {
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer updateMeetingList(String username, ArrayList<Integer> _meetingList) {
+
+        try {
+            User _user = new GetUserAsyncTask().execute(username).get();
+            if (_user == null) {
+                return null;
+            }
+            _user.setMeetingList(_meetingList);
+            new updateUserAsyncTask().execute(_user).get();
+            return request_state;
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer getAllMeetings() {
+        try {
+            ArrayList<Meeting> all_meetings = new getAllMeetingsAsyncTask()
+                                                    .execute(user.getValue().getUserID())
+                                                    .get();
+            if (all_meetings != null){
+                meetingList.setValue(all_meetings);
+            }
+            return request_state;
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return REQUEST_ERROR;
@@ -184,12 +202,29 @@ public class UserRepository {
         }
     }
 
+    private class getAllMeetingsAsyncTask extends AsyncTask<Integer, Void, ArrayList<Meeting>> {
+
+        @Override
+        protected ArrayList<Meeting> doInBackground(Integer... integers) {
+            try {
+                ArrayList<Meeting> all_meetings = ApiService.apiService.getMeetings(integers[0])
+                                                    .execute().body();
+                request_state = REQUEST_SUCCESS;
+                return all_meetings;
+            } catch (IOException e) {
+                request_state = REQUEST_ERROR;
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
     //================================================================================
-    //==================================Helper Functions==============================
+    //==================================Constraints====================================
     public Boolean isUsernameExist(String username){
         try {
             ArrayList<User> users = new getAllUsersAsyncTask().execute().get();
-            if (request_state == REQUEST_ERROR){
+            if (request_state.equals(REQUEST_ERROR)){
                 return false;
             }
             for (int i = 0; i < users.size(); ++i){
@@ -198,40 +233,9 @@ public class UserRepository {
                 }
             }
             return false;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        return false;
-    }
-
-    public Boolean isValidDate (String value){
-        LocalDateTime ldt = null;
-        String format = "dd/MM/yyyy";
-        Locale locale = Locale.ENGLISH;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format, locale);
-
-        try {
-            ldt = LocalDateTime.parse(value, formatter);
-            String result = ldt.format(formatter);
-            return result.equals(value);
-        } catch (DateTimeParseException e) {
-            try {
-                LocalDate ld = LocalDate.parse(value, formatter);
-                String result = ld.format(formatter);
-                return result.equals(value);
-            } catch (DateTimeParseException exp) {
-                try {
-                    LocalTime lt = LocalTime.parse(value, formatter);
-                    String result = lt.format(formatter);
-                    return result.equals(value);
-                } catch (DateTimeParseException e2) {
-                    e2.printStackTrace();
-                }
-            }
-        }
-
         return false;
     }
 }
