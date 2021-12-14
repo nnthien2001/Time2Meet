@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FragmentMenu">
+    tools:context=".ui.FragmentHome">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -19,13 +19,13 @@
             android:id="@+id/welcome_textview"/>
         <Button
             android:text="Profile"
-            android:id="@+id/profile_btn"
+            android:id="@+id/btn_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <Button
-            android:id="@+id/meeting_btn"
+            android:id="@+id/btn_meeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Meeting" />

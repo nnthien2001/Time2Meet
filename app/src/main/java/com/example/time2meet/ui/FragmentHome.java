@@ -19,12 +19,12 @@ import com.example.time2meet.R;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
 
-public class FragmentMenu extends Fragment implements View.OnClickListener{
+public class FragmentHome extends Fragment implements View.OnClickListener{
 
     private NavController navController;
     private UserViewModel userViewModel;
 
-    public FragmentMenu() {
+    public FragmentHome() {
         // Required empty public constructor
     }
 
@@ -37,7 +37,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
@@ -53,18 +53,18 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
         TextView tv = (TextView) view.findViewById(R.id.welcome_textview);
         tv.setText(message);
 
-        view.findViewById(R.id.profile_btn).setOnClickListener(this);
-        view.findViewById(R.id.meeting_btn).setOnClickListener(this);
+        view.findViewById(R.id.btn_profile).setOnClickListener(this);
+        view.findViewById(R.id.btn_meeting).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.profile_btn:
-                navController.navigate(R.id.action_fragmentMenu_to_fragmentProfile);
+            case R.id.btn_profile:
+                navController.navigate(R.id.action_fragmentHome_to_fragmentProfile);
                 break;
-            case R.id.meeting_btn:
-                navController.navigate(R.id.action_fragmentMenu_to_fragmentMeetingMenu);
+            case R.id.btn_meeting:
+                navController.navigate(R.id.action_fragmentHome_to_fragmentMeetingMenu);
                 break;
         }
     }

@@ -12,23 +12,23 @@
         tools:layout="@layout/fragment_login" >
 
         <action
-            android:id="@+id/action_fragmentLogin_to_fragmentMenu"
-            app:destination="@id/fragmentMenu"
+            android:id="@+id/action_fragmentLogin_to_fragmentHome"
+            app:destination="@id/fragmentHome"
             app:popUpTo="@id/fragmentLogin"
             app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentMenu"
-        android:name="com.example.time2meet.ui.FragmentMenu"
-        android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        android:id="@+id/fragmentHome"
+        android:name="com.example.time2meet.ui.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
 
         <action
-            android:id="@+id/action_fragmentMenu_to_fragmentMeetingMenu"
+            android:id="@+id/action_fragmentHome_to_fragmentMeetingMenu"
             app:destination="@id/meeting_nav_graph" />
         <action
-            android:id="@+id/action_fragmentMenu_to_fragmentProfile"
+            android:id="@+id/action_fragmentHome_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
     </fragment>
 
