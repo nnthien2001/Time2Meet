@@ -9,7 +9,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.time2meet.ApiService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
@@ -57,26 +63,6 @@ public class UserRepository {
         return REQUEST_ERROR;
     }
 
-    public Boolean isUsernameExist(String username){
-        try {
-            ArrayList<User> users = new getAllUsersAsyncTask().execute().get();
-            if (request_state == REQUEST_ERROR){
-                return false;
-            }
-            for (int i = 0; i < users.size(); ++i){
-                if (username.equals(users.get(i).getUsername())){
-                    return true;
-                }
-            }
-            return false;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public Integer signUp(String username, String password){
         try {
             new signUpAsyncTask().execute(username, password).get();
@@ -88,6 +74,45 @@ public class UserRepository {
         }
         return REQUEST_ERROR;
     }
+
+    public Integer updateProfile(String username, String name, String dob, String phone, String about) {
+        User new_user = new User(user.getValue());
+        new_user.setUsername(username=="" ? new_user.getUsername() : username);
+        new_user.setName(name=="" ? new_user.getName() : name);
+        new_user.setDob(dob=="" ? new_user.getDob() : dob);
+        new_user.setPhone(phone=="" ? new_user.getPhone() : phone);
+        new_user.setAbout(about=="" ? new_user.getAbout() : about);
+        try {
+            new updateUserAsyncTask().execute(new_user).get();
+            if (request_state == REQUEST_SUCCESS)
+                user.setValue(new_user);
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer changePassword(String password) {
+        User new_user = new User(user.getValue());
+        new_user.setPassword(password);
+        try{
+            new updateUserAsyncTask().execute(new_user).get();
+            if (request_state == REQUEST_SUCCESS)
+                user.setValue(new_user);
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    //================================================================================
+    //=================================AsyncTask======================================
 
     private class GetUserAsyncTask extends AsyncTask<String, Void, User> {
 
@@ -141,5 +166,72 @@ public class UserRepository {
             request_state = REQUEST_ERROR;
             return null;
         }
+    }
+
+    private class updateUserAsyncTask extends AsyncTask<User, Void, Void> {
+
+        @Override
+        protected Void doInBackground(User... users) {
+            try {
+                ApiService.apiService.updateUser(users[0].getUserID(), users[0]).execute();
+                request_state = REQUEST_SUCCESS;
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            request_state = REQUEST_ERROR;
+            return null;
+        }
+    }
+
+    //================================================================================
+    //==================================Helper Functions==============================
+    public Boolean isUsernameExist(String username){
+        try {
+            ArrayList<User> users = new getAllUsersAsyncTask().execute().get();
+            if (request_state == REQUEST_ERROR){
+                return false;
+            }
+            for (int i = 0; i < users.size(); ++i){
+                if (username.equals(users.get(i).getUsername())){
+                    return true;
+                }
+            }
+            return false;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Boolean isValidDate (String value){
+        LocalDateTime ldt = null;
+        String format = "dd/MM/yyyy";
+        Locale locale = Locale.ENGLISH;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format, locale);
+
+        try {
+            ldt = LocalDateTime.parse(value, formatter);
+            String result = ldt.format(formatter);
+            return result.equals(value);
+        } catch (DateTimeParseException e) {
+            try {
+                LocalDate ld = LocalDate.parse(value, formatter);
+                String result = ld.format(formatter);
+                return result.equals(value);
+            } catch (DateTimeParseException exp) {
+                try {
+                    LocalTime lt = LocalTime.parse(value, formatter);
+                    String result = lt.format(formatter);
+                    return result.equals(value);
+                } catch (DateTimeParseException e2) {
+                    e2.printStackTrace();
+                }
+            }
+        }
+
+        return false;
     }
 }
