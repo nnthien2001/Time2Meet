@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.UserViewModel;
@@ -51,6 +52,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
 
         username_tv = (EditText) view.findViewById(R.id.edt_username_login);
         view.findViewById(R.id.btn_login).setOnClickListener(this);
+        view.findViewById(R.id.btn_signup).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +61,9 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
             User user = new User(username_tv.getText().toString());
             userViewModel.setUser(user);
             navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
+        }
+        else if (v.getId() == R.id.btn_signup) {
+            // TO-DO: action move from FragmentLogin to FragmentSignUp
         }
     }
 }
