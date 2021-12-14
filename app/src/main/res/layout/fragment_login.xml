@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/username_icon"
-            android:drawablePadding="5dp"
+            android:drawablePadding="10dp"
             />
 
         <LinearLayout
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/password_icon"
                 android:drawableEnd="@drawable/unhide_icon"
-                android:drawablePadding="5dp"
+                android:drawablePadding="10dp"
                 android:inputType="textPassword"
                 />
 
