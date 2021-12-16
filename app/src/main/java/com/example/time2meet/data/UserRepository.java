@@ -2,6 +2,7 @@ package com.example.time2meet.data;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -41,6 +42,15 @@ public class UserRepository {
     public User getUser(String username){
         try {
             return new GetUserAsyncTask().execute(username).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User getUser(Integer userID){
+        try {
+            return new GetUserByIDAsyncTask().execute(userID).get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -129,6 +139,16 @@ public class UserRepository {
         return REQUEST_ERROR;
     }
 
+    public Integer updateUser(User _user) {
+        try {
+            new updateUserAsyncTask().execute(_user).get();
+            return request_state;
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
     //================================================================================
     //=================================AsyncTask======================================
 
@@ -138,6 +158,26 @@ public class UserRepository {
         protected User doInBackground(String... strings) {
             try {
                 ArrayList<User> response = ApiService.apiService.getUser(strings[0])
+                        .execute()
+                        .body();
+                request_state = REQUEST_SUCCESS;
+                if (response.size() > 0) {
+                    return response.get(0);
+                }
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                request_state = REQUEST_ERROR;
+            }
+            return null;
+        }
+    }
+
+    private class GetUserByIDAsyncTask extends AsyncTask<Integer, Void, User> {
+        @Override
+        protected User doInBackground(Integer... integers) {
+            try {
+                ArrayList<User> response = ApiService.apiService.getUser(integers[0])
                         .execute()
                         .body();
                 request_state = REQUEST_SUCCESS;

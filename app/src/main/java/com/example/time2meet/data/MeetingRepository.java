@@ -10,11 +10,13 @@ import com.example.time2meet.ApiService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class MeetingRepository {
     private static MeetingRepository instance;
     private MutableLiveData<Meeting> meeting = new MutableLiveData<Meeting>();
+    private MutableLiveData<ArrayList<User>> attendees = new MutableLiveData<>();
     public final Integer REQUEST_SUCCESS = 1;
     public final Integer REQUEST_ERROR = 2;
     public final Integer RESPONSE_ERROR = 3;
@@ -34,6 +36,8 @@ public class MeetingRepository {
     public LiveData<Meeting> getMeeting() {
         return meeting;
     }
+
+    public LiveData<ArrayList<User>> getAllAttendee() { return attendees; }
 
     public Integer createMeeting(Meeting new_meeting) {
         try {
@@ -61,6 +65,13 @@ public class MeetingRepository {
             Meeting _meeting = new getMeetingAsyncTask().execute(meetingID).get();
             if (_meeting != null){
                 meeting.setValue(_meeting);
+                Set<Integer> attendeesID = _meeting.getAttendees().keySet();
+                ArrayList<User> _attendees = new ArrayList<>();
+                for (Integer i: attendeesID) {
+                    User u = UserRepository.getInstance().getUser(i);
+                    _attendees.add(u);
+                }
+                attendees.setValue(_attendees);
                 return RESPONSE_SUCCESS;
             }
             return request_state;
@@ -87,7 +98,76 @@ public class MeetingRepository {
         meeting.setValue(_meeting);
         try {
             new updateMeetingAsyncTask().execute(_meeting).get();
-            return REQUEST_ERROR;
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer removeAttendee(Integer userID) {
+        Meeting _meeting = meeting.getValue();
+        Map<Integer, ArrayList<Integer>> _attendeesID = _meeting.getAttendees();
+        _attendeesID.remove(userID);
+        _meeting.setAttendees(_attendeesID);
+        try {
+            new updateMeetingAsyncTask().execute(_meeting).get();
+            User _user = null;
+            ArrayList<User> _attendees = attendees.getValue();
+            for (User u: _attendees) {
+                if (u.getUserID().equals(userID)) {
+                    _user = u;
+                    break;
+                }
+            }
+
+            ArrayList<Integer> meetingList = _user.getMeetingList();
+            meetingList.remove(_meeting.getMeetingID());
+            _user.setMeetingList(meetingList);
+            UserRepository.getInstance().updateUser(_user);
+            _attendees.remove(_user);
+            attendees.setValue(_attendees);
+            meeting.setValue(_meeting);
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer updateMeeting(String meetingName, String date, String location, String description) {
+        Meeting _meeting = meeting.getValue();
+        _meeting.setMeetingName(meetingName);
+        _meeting.setDate(date);
+        _meeting.setDescription(description);
+        _meeting.setLocation(location);
+        try {
+            new updateMeetingAsyncTask().execute(_meeting).get();
+            if (request_state == REQUEST_SUCCESS)
+                meeting.setValue(_meeting);
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Integer toggleTime(ArrayList<Integer> newInterval) {
+        Integer userID = UserRepository.getInstance().getUser().getValue().getUserID();
+        Meeting _meeting = meeting.getValue();
+        Map<Integer, ArrayList<Integer>> attendeeList = _meeting.getAttendees();
+        attendeeList.replace(userID, newInterval);
+        try {
+            new updateMeetingAsyncTask().execute(_meeting).get();
+            if (request_state == REQUEST_SUCCESS)
+                meeting.setValue(_meeting);
+            return request_state;
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

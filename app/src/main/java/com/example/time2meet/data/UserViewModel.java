@@ -12,8 +12,6 @@ public class UserViewModel extends ViewModel {
 
     public UserViewModel() {
         this.userRepository = UserRepository.getInstance();
-        // nên set user dưới repo
-        // user.setValue(userRepository.getUser());
     }
 
     public User getUser() {

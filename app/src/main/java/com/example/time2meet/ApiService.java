@@ -31,6 +31,9 @@ public interface ApiService {
     @GET("api/user")
     Call<ArrayList<User>> getAllUsers();
 
+    @GET("api/user")
+    Call<ArrayList<User>> getUser(@Query("userID") Integer userID);
+
     @POST("api/user")
     Call<User> createUser(@Body User user);
 
