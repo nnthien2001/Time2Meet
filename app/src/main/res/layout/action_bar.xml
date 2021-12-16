@@ -27,6 +27,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
+        android:textColor="@color/actionBarTitle"
+        android:textSize="@dimen/action_bar_title_text_size"
         />
 
     <FrameLayout

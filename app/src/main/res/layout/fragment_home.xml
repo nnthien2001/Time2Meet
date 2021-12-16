@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.FragmentHome">
 
-    <!-- TODO: Update blank fragment layout -->
+    <include layout="@layout/action_bar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
