@@ -11,7 +11,7 @@
         >
 
         <ImageButton
-            android:id="@+id/btn_leftmost"
+            android:id="@+id/btn_action_bar_leftmost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -37,7 +37,7 @@
         >
 
         <ImageButton
-            android:id="@+id/btn_rightmost"
+            android:id="@+id/btn_action_bar_rightmost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
