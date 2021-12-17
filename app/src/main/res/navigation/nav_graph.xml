@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.example.time2meet.ui.FragmentHome"
+        android:name="com.example.time2meet.ui.home.FragmentHome"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 

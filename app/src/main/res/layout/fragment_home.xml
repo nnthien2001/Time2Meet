@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.FragmentHome"
+    tools:context=".ui.home.FragmentHome"
     android:orientation="vertical">
 
     <include layout="@layout/action_bar" />
@@ -16,26 +16,26 @@
         android:background="@color/colorPrimary"
         app:tabTextColor="@color/actionBarTitle"
         app:tabIndicatorColor="@color/actionBarTitle"
-        />
+        >
 
-    <LinearLayout
+        <com.google.android.material.tabs.TabItem
+            android:text="All Meetings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Upcoming Meetings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_meetings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/welcome_textview"/>
-
-        <Button
-            android:id="@+id/btn_meeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Meeting" />
-    </LinearLayout>
+        />
 
 </LinearLayout>

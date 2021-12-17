@@ -1,4 +1,4 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.home;
 
 import android.os.Bundle;
 
@@ -9,16 +9,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 public class FragmentHome extends Fragment implements View.OnClickListener{
 
@@ -50,19 +55,20 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
         User user = userViewModel.getUser();
 
-        welcomeTextSetup(view, user);
+//        welcomeTextSetup(view, user);
         buttonsSetup(view);
-        tabLayoutSetup(view);
+        //tabLayoutSetup(view);
+        meetingListSetup(view);
     }
 
     private void welcomeTextSetup(@NonNull View view, User user) {
         String message = "Welcome " + user.getUsername();
-        TextView tv = (TextView) view.findViewById(R.id.welcome_textview);
-        tv.setText(message);
+//        TextView tv = (TextView) view.findViewById(R.id.welcome_textview);
+//        tv.setText(message);
     }
 
     private void buttonsSetup(@NonNull View view) {
-        view.findViewById(R.id.btn_meeting).setOnClickListener(this);
+//        view.findViewById(R.id.btn_meeting).setOnClickListener(this);
         view.findViewById(R.id.btn_action_bar_leftmost).setOnClickListener(this);
         view.findViewById(R.id.btn_action_bar_rightmost).setOnClickListener(this);
     }
@@ -73,12 +79,22 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         tabLayout.addTab(tabLayout.newTab().setText("Upcoming Meetings"));
     }
 
+    private void meetingListSetup(View view) {
+        RecyclerView rvMeetings = (RecyclerView) getView().findViewById(R.id.rv_meetings);
+
+        // TODO: Handle get meeting list logic
+        ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+
+        MeetingListAdapter adapter = new MeetingListAdapter(meetings);
+        rvMeetings.setAdapter(adapter);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_meeting:
-                navController.navigate(R.id.action_fragmentHome_to_fragmentMeetingMenu);
-                break;
+//            case R.id.btn_meeting:
+//                navController.navigate(R.id.action_fragmentHome_to_fragmentMeetingMenu);
+//                break;
             case R.id.btn_action_bar_leftmost:
                 break;
             case R.id.btn_action_bar_rightmost:

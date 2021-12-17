@@ -3,6 +3,10 @@
     <dimen name="fragment_horizontal_margin">16dp</dimen>
     <dimen name="fragment_vertical_margin">16dp</dimen>
 
-    <!-- Action bar sizes -->
+    <!-- Action bar -->
     <dimen name="action_bar_title_text_size">25sp</dimen>
+
+    <!-- Home screen -->
+    <dimen name="meeting_item_height">200dp</dimen>
+    <dimen name="meeting_item_text_size">15sp</dimen>
 </resources>

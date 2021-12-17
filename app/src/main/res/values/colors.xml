@@ -14,4 +14,7 @@
 
     <!--  Action bar  -->
     <color name="actionBarTitle">@color/white</color>
+
+    <!--  Home screen -->
+    <color name="meetingItemTextColor">@color/white</color>
 </resources>
