@@ -2,7 +2,18 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="fragment_horizontal_margin">16dp</dimen>
     <dimen name="fragment_vertical_margin">16dp</dimen>
-
+    
+    <!-- Text sizes-->
+    <!-- All current units are px, change to dp will be discussed later -->
+    <dimen name="login_title_textsize">48sp</dimen>
+    <dimen name="default_textsize">14sp</dimen>
+    <dimen name="hyperlink_textsize">18sp</dimen>
+    <dimen name="toolbar_textsize">24sp</dimen>
+    <dimen name="home_title_textsize">35sp</dimen>
+    <dimen name="list_title_textsize">20sp</dimen>
+    <dimen name="List_content_textsize">15sp</dimen>
+    <dimen name="display_info_textsize">20sp</dimen>
+    
     <!-- Action bar sizes -->
     <dimen name="action_bar_title_text_size">25sp</dimen>
 </resources>
