@@ -53,6 +53,7 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
         meeting_tv = (EditText) view.findViewById(R.id.meeting_edittext);
         view.findViewById(R.id.edit_meeting_btn).setOnClickListener(this);
         view.findViewById(R.id.st_edit_meeting_btn).setOnClickListener(this);
+        view.findViewById(R.id.view_attendee_btn).setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +67,10 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
 
         if (v.getId() == R.id.st_edit_meeting_btn) {
             navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+        }
+
+        if(v.getId() == R.id.view_attendee_btn) {
+            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentViewAttendee);
         }
     }
 }

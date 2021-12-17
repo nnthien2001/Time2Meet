@@ -28,6 +28,13 @@
             android:id="@+id/st_edit_meeting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:text="View Atendee"
+            android:id="@+id/view_attendee_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </FrameLayout>
