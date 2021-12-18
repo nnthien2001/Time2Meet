@@ -44,4 +44,14 @@ public class UserViewModel extends ViewModel {
     public ArrayList<Meeting> getUserMeetingList() {
         return userRepository.getUserAllMeetings().getValue();
     }
+
+    public ArrayList<Meeting> getUserUpComingMeeting() {
+        ArrayList<Meeting> meetingList = new ArrayList<>();
+        for (Meeting m: userRepository.getUserAllMeetings().getValue()) {
+            if (m.getDate().length() > 0) {
+                meetingList.add(m);
+            }
+        }
+        return meetingList;
+    }
 }
