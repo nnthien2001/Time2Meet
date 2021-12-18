@@ -24,7 +24,7 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:textColor="@color/colorOnSecondary"
-            android:textSize="50sp"
+            android:textSize="@dimen/login_title_text_size"
             />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             android:textStyle="bold"
             />
 
@@ -58,7 +58,7 @@
             android:drawableStart="@drawable/username_icon"
             android:drawablePadding="10dp"
             android:background="@drawable/input_textbox"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             />
 
         <LinearLayout
@@ -78,7 +78,7 @@
             android:drawablePadding="10dp"
             android:inputType="textPassword"
             android:background="@drawable/input_textbox"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             />
 
     </LinearLayout>
@@ -102,7 +102,7 @@
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             />
 
         <LinearLayout
@@ -119,10 +119,10 @@
             >
 
             <TextView
-                android:text="Don't have an account?"
+                android:text="Don't have an account yet?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="@dimen/default_text_size"
                 />
 
             <TextView
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
-                android:textSize="15sp"
+                android:textSize="@dimen/sign_up_hyperlink"
                 android:textStyle="bold"
                 android:clickable="true"
                 />
