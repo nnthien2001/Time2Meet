@@ -1,8 +1,8 @@
 # Time2Meet
 This is a SE project
 
-com.example.time2Meet
 ```
+com.example.time2Meet
 |-- data
     |-- DateHelper.java
     |-- AvailabilityBoard.java
