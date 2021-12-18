@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Meeting {
-    private String meetingID;
+    private Integer meetingID;
     private String meetingName;
     private Integer hostID;
     private String location;
@@ -17,11 +17,11 @@ public class Meeting {
     private Boolean isPrivate;
     private Integer version = 1;
 
-    public String getMeetingID() {
+    public Integer getMeetingID() {
         return meetingID;
     }
 
-    public void setMeetingID(String meetingID) {
+    public void setMeetingID(Integer meetingID) {
         this.meetingID = meetingID;
     }
 
@@ -105,9 +105,16 @@ public class Meeting {
         this.version = version;
     }
 
-    public Meeting(Integer hostID, String username, String name) {
+    public Meeting(Integer hostID, String meetingName, String startDate, String endDate, String date,
+                            String location, String description) {
         this.hostID = hostID;
         attendees = new HashMap<>();
         attendees.put(hostID, new ArrayList<>());
+        this.meetingName = meetingName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.date = date;
+        this.location = location;
+        this.description = description;
     }
 }

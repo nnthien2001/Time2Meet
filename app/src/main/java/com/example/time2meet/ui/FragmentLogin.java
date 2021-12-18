@@ -10,15 +10,24 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.time2meet.ApiService;
 import com.example.time2meet.R;
 import com.example.time2meet.data.Authenticator;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentLogin extends Fragment implements View.OnClickListener {
 

@@ -28,6 +28,12 @@ public interface ApiService {
     @GET("api/user")
     Call<ArrayList<User>> getUser(@Query("username") String username);
 
+    @GET("api/user")
+    Call<ArrayList<User>> getAllUsers();
+
+    @GET("api/user")
+    Call<ArrayList<User>> getUser(@Query("userID") Integer userID);
+
     @POST("api/user")
     Call<User> createUser(@Body User user);
 
@@ -38,7 +44,10 @@ public interface ApiService {
     Call<User> deleteUser(@Path("id") Integer userID);
 
     @GET("api/meeting")
-    Call<ArrayList<Meeting>> getMeeting(@Query("hostID") Integer hostID);
+    Call<ArrayList<Meeting>> getMeetings(@Query("hostID") Integer hostID);
+
+    @GET("api/meeting")
+    Call<ArrayList<Meeting>> getMeeting(@Query("meetingID") Integer meetingID);
 
     @POST("api/meeting")
     Call<Meeting> createMeeting(@Body Meeting meeting);

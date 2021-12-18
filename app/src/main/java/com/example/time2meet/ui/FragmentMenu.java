@@ -48,13 +48,13 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
-        User user = userViewModel.getUser();
-        String message = "Welcome " + user.getUsername();
-        TextView tv = (TextView) view.findViewById(R.id.welcome_textview);
-        tv.setText(message);
-
-        view.findViewById(R.id.profile_btn).setOnClickListener(this);
-        view.findViewById(R.id.meeting_btn).setOnClickListener(this);
+//        User user = userViewModel.getUser();
+//        String message = "Welcome " + user.getUsername();
+//        TextView tv = (TextView) view.findViewById(R.id.welcome_textview);
+//        tv.setText(message);
+//
+//        view.findViewById(R.id.profile_btn).setOnClickListener(this);
+//        view.findViewById(R.id.meeting_btn).setOnClickListener(this);
     }
 
     @Override
