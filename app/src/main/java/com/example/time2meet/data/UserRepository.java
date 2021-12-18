@@ -20,7 +20,7 @@ public class UserRepository {
     public final Integer REQUEST_SUCCESS = 1;
     public final Integer REQUEST_ERROR = 2;
 
-    public Integer request_state;
+    private Integer request_state;
 
     public static UserRepository getInstance(){
         if (instance == null) {
@@ -61,6 +61,7 @@ public class UserRepository {
         User _user = getUser(username);
         if (_user != null && _user.getPassword().equals(password)){
             user.setValue(_user);
+            getAllMeetings();
             return true;
         }
         return false;
@@ -76,13 +77,7 @@ public class UserRepository {
         return REQUEST_ERROR;
     }
 
-    public Integer updateProfile(String username, String name, String dob, String phone, String about) {
-        User new_user = new User(user.getValue());
-        new_user.setUsername(username.equals("") ? new_user.getUsername() : username);
-        new_user.setName(name.equals("") ? new_user.getName() : name);
-        new_user.setDob(dob.equals("") ? new_user.getDob() : dob);
-        new_user.setPhone(phone.equals("") ? new_user.getPhone() : phone);
-        new_user.setAbout(about.equals("") ? new_user.getAbout() : about);
+    public Integer updateProfile(User new_user) {
         try {
             new updateUserAsyncTask().execute(new_user).get();
             if (request_state.equals(REQUEST_SUCCESS))
