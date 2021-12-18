@@ -29,11 +29,11 @@ com.example.time2meet
     |-- meeting
 	|-- FragmentMeetingMenu.java
    	|-- FragmentAvailabilityBoard.java
-    |-- edit_meeting
-	|-- FragmentEditMeeting.java
-    |-- view_attendee
-	|-- FragmentViewAttendee.java
-	|-- AttendeeRecyclerViewAdapter.java
+    	|-- edit_meeting
+	    |-- FragmentEditMeeting.java
+    	|-- view_attendee
+	    |-- FragmentViewAttendee.java
+	    |-- AttendeeRecyclerViewAdapter.java
 |-- api_service
     |-- ApiService.java
 ```
