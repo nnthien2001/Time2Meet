@@ -13,27 +13,27 @@ com.example.time2meet
         |-- User.java
         |-- UserViewModel.java
         |-- UserRepository.java
-        |-- Authenticator.java 
-        |-- DateHelper.java   
+    |-- Authenticator.java 
+    |-- DateHelper.java   
 |-- ui
     |-- MainActivity.java
     |-- login
         |-- FragmentLogin.java
         |-- FragmentSignup.java
     |-- home
-	    |-- FragmentHome.java
-	    |-- MeetingListAdapter.java
+	|-- FragmentHome.java
+	|-- MeetingListAdapter.java
     |-- profile
         |-- FragmentEditProfile.java
         |-- FragmentShowProfile.java
     |-- meeting
-	    |-- FragmentMeetingMenu.java
-   	    |-- FragmentAvailabilityBoard.java
-   	|-- edit_meeting
-		|-- FragmentEditMeeting.java
+	|-- FragmentMeetingMenu.java
+   	|-- FragmentAvailabilityBoard.java
+    |-- edit_meeting
+	|-- FragmentEditMeeting.java
     |-- view_attendee
-		|-- FragmentViewAttendee.java
-		|-- AttendeeRecyclerViewAdapter.java
+	|-- FragmentViewAttendee.java
+	|-- AttendeeRecyclerViewAdapter.java
 |-- api_service
     |-- ApiService.java
 ```
