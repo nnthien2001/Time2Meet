@@ -2,24 +2,38 @@
 This is a SE project
 
 ```
-com.example.time2Meet
+com.example.time2meet
 |-- data
-    |-- DateHelper.java
-    |-- AvailabilityBoard.java
-    |-- Meeting.java
-    |-- MeetingViewModel.java
-    |-- MeetingRepository.java
-    |-- User.java
-    |-- UserViewModel.java
-    |-- UserRepository.java
+    |-- meeting
+        |-- AvailabilityBoard.java
+        |-- Meeting.java
+        |-- MeetingViewModel.java
+        |-- MeetingRepository.java
+    |-- user
+        |-- User.java
+        |-- UserViewModel.java
+        |-- UserRepository.java
+        |-- Authenticator.java 
+        |-- DateHelper.java   
 |-- ui
     |-- MainActivity.java
-    |-- FragmentAvailabilityBoard.java
-    |-- FragmentEditMeeting.java
-    |-- FragmentLogin.java
-    |-- FragmentMeetingMenu.java
-    |-- FragmentMenu.java
-    |-- FragmentProfile.java
-    |-- FragmentViewAttendee.java
-|-- ApiService.java
+    |-- login
+        |-- FragmentLogin.java
+        |-- FragmentSignup.java
+    |-- home
+	    |-- FragmentHome.java
+	    |-- MeetingListAdapter.java
+    |-- profile
+        |-- FragmentEditProfile.java
+        |-- FragmentShowProfile.java
+    |-- meeting
+	    |-- FragmentMeetingMenu.java
+   	    |-- FragmentAvailabilityBoard.java
+   	|-- edit_meeting
+		|-- FragmentEditMeeting.java
+    |-- view_attendee
+		|-- FragmentViewAttendee.java
+		|-- AttendeeRecyclerViewAdapter.java
+|-- api_service
+    |-- ApiService.java
 ```
