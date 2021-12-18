@@ -2,6 +2,7 @@
 This is a SE project
 
 com.example.time2Meet
+```
 |-- data
     |-- DateHelper.java
     |-- AvailabilityBoard.java
@@ -21,3 +22,4 @@ com.example.time2Meet
     |-- FragmentProfile.java
     |-- FragmentViewAttendee.java
 |-- ApiService.java
+```
