@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.time2meet.data.User;
 
+import java.util.ArrayList;
+
 public class UserViewModel extends ViewModel {
     private final UserRepository userRepository;
 
@@ -33,5 +35,13 @@ public class UserViewModel extends ViewModel {
 
     public Integer changePassword(String password) {
         return userRepository.changePassword(password);
+    }
+
+    public User getCurrentUser() {
+        return userRepository.getUser().getValue();
+    }
+
+    public ArrayList<Meeting> getUserMeetingList() {
+        return userRepository.getUserAllMeetings().getValue();
     }
 }
