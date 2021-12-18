@@ -18,8 +18,7 @@ import android.widget.EditText;
 
 import com.example.time2meet.ApiService;
 import com.example.time2meet.R;
-import com.example.time2meet.data.MeetingRepository;
-import com.example.time2meet.data.UserRepository;
+import com.example.time2meet.data.Authenticator;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
 
@@ -34,7 +33,8 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
 
     private NavController navController;
     private UserViewModel userViewModel;
-    private EditText username_tv;
+    private EditText edtUsername;
+    private EditText edtPassword;
 
     public FragmentLogin() {
         // Required empty public constructor
@@ -55,19 +55,48 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
 
+        navController = Navigation.findNavController(view);
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
-        username_tv = (EditText) view.findViewById(R.id.username_edittext);
-        view.findViewById(R.id.login_btn).setOnClickListener(this);
+        typeinInfoSetup(view);
+        buttonsSetup(view);
+    }
+
+    private void typeinInfoSetup(@NonNull View view) {
+        edtUsername = (EditText) view.findViewById(R.id.edt_username_login);
+        edtPassword = (EditText) view.findViewById(R.id.edt_password_login);
+    }
+
+    private void buttonsSetup(@NonNull View view) {
+        view.findViewById(R.id.btn_login).setOnClickListener(this);
+        view.findViewById(R.id.btn_signup).setOnClickListener(this);
     }
 
     @Override
     public void onClick(@NonNull View v) {
-        if (v.getId() == R.id.login_btn) {
-            navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
+        switch (v.getId()) {
+            case R.id.btn_login:
+                User user = new User(edtUsername.getText().toString());
+                user.setPassword(edtPassword.getText().toString());
+
+                Authenticator authenticator = new Authenticator();
+                switch (authenticator.authenticate(user)) {
+                    case Authenticator.ACCOUNT_SUCCESSFULLY_AUTHENTICATED:
+                        user.setPassword("");
+                        userViewModel.setUser(user);
+                        navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
+                        break;
+                    case Authenticator.NON_EXISTING_ACCOUNT_OR_WRONG_PASSWORD:
+                        // TODO: Handle error message
+                        break;
+                }
+
+                break;
+            case R.id.btn_signup:
+                // TODO: action move from FragmentLogin to FragmentSignUp
+                break;
         }
     }
 }
