@@ -10,8 +10,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- App palette -->
-    <color name="colorPrimary">@color/purple_1</color>
-    <color name="colorPrimaryVariant">@color/purple_2</color>
+    <color name="colorPrimary">@color/purple_500</color>
+    <color name="colorPrimaryVariant">@color/purple_700</color>
     <color name="colorOnPrimary">@color/white</color>
     <color name="colorOnSecondary">@color/black</color>
 
@@ -25,7 +25,7 @@
     <color name="avail_header">#FFB9B9B9</color>
 
     <color name="hint_textbox">#FFA6A0A0</color>
-    <color name="alarm_background">#FFFCFCFC</color>9E9898
+    <color name="alarm_background">#FFFCFCFC</color>
     <color name="alarm_textbox">#FFF7E5F0</color>
 
 
