@@ -54,4 +54,8 @@ public class UserViewModel extends ViewModel {
         }
         return meetingList;
     }
+
+    public Boolean isUsernameExist(String username) {
+        return userRepository.isUsernameExist(username);
+    }
 }
