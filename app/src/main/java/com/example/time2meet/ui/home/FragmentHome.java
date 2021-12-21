@@ -53,7 +53,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
-        User user = userViewModel.getUser();
 
 //        welcomeTextSetup(view, user);
         buttonsSetup(view);
