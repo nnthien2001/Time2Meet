@@ -24,7 +24,7 @@
     <color name="avail_border">#FFFF0000</color>
     <color name="avail_header">#FFB9B9B9</color>
 
-    <color name="hint_textbox">#FF</color>
+    <color name="hint_textbox">#FFA6A0A0</color>
     <color name="alarm_background">#FFFCFCFC</color>9E9898
     <color name="alarm_textbox">#FFF7E5F0</color>
 
