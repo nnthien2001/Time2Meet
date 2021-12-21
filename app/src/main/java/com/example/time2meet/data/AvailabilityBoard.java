@@ -1,5 +1,7 @@
 package com.example.time2meet.data;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class AvailabilityBoard {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Integer interval = Math.toIntExact((endDate.getTime() - startDate.getTime()) / 3600000);
+        Integer interval = Math.toIntExact((endDate.getTime() - startDate.getTime()) / 3600000) + 24;
         for (int i = 0; i<interval;++i){
             availability.put(i, 0);
         }
@@ -50,6 +52,10 @@ public class AvailabilityBoard {
             for (int i = 0; i < available.size(); ++i){
                 availability.replace(available.get(i), availability.get(available.get(i)) + 1);
             }
+        }
+
+        for (Map.Entry<Integer, Integer> entry: availability.entrySet()) {
+            Log.i("avai", entry.toString());
         }
     }
 

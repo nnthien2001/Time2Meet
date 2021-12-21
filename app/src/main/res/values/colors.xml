@@ -35,4 +35,9 @@
 
     <!--  Home screen -->
     <color name="meetingItemTextColor">@color/white</color>
+
+    <!--   Availability board    -->
+    <color name="less_than_3">#C1D5BA</color>
+    <color name="from_3_to_6">#A0BE95</color>
+    <color name="greater_than_6">#659653</color>
 </resources>
