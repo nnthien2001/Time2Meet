@@ -3,13 +3,13 @@ package com.example.time2meet.data;
 import androidx.lifecycle.ViewModel;
 
 public class MeetingViewModel extends ViewModel {
-    private Meeting meeting;
+    private final MeetingRepository meetingRepository;
 
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
+    public MeetingViewModel() {
+        this.meetingRepository = MeetingRepository.getInstance();
     }
 
-    public Meeting getMeeting() {
-        return meeting;
+    public Integer goMeeting(Integer meetingID) {
+        return meetingRepository.goMeeting(meetingID);
     }
 }

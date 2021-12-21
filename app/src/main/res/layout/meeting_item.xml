@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: Handle meeting item on click logic -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/meeting_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/meeting_item_height"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    >
+
+    <!--  TODO: Handle banner scale logic  -->
+    <ImageView
+        android:id="@+id/iv_meeting_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/meeting_banner"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:text="Meeting"
+            android:id="@+id/tv_meeting_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/meetingItemTextColor"
+            android:textSize="@dimen/meeting_item_text_size"
+            />
+
+        <TextView
+            android:text="dd/MM/yyyy"
+            android:id="@+id/tv_meeting_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/meetingItemTextColor"
+            android:textSize="@dimen/meeting_item_text_size"
+            />
+
+        <TextView
+            android:text="Location:"
+            android:id="@+id/tv_meeting_location"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/meetingItemTextColor"
+            android:textSize="@dimen/meeting_item_text_size"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

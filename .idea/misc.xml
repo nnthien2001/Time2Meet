@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.55" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_home.xml" value="0.55" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />
