@@ -11,6 +11,7 @@ public class AvailabilityBoard {
     private Date startDate;
     private Date endDate;
     private Map<Integer, Integer> availability;
+    private final SimpleDateFormat simpleDateFormat;
 
     public Map<Integer, Integer> getAvailability() {
         return availability;
@@ -30,6 +31,7 @@ public class AvailabilityBoard {
 
     public AvailabilityBoard(Meeting meeting){
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat = new SimpleDateFormat("MMM dd");
         availability = new HashMap<>();
         try {
             this.startDate = format.parse(meeting.getStartDate());
@@ -49,5 +51,9 @@ public class AvailabilityBoard {
                 availability.replace(available.get(i), availability.get(available.get(i)) + 1);
             }
         }
+    }
+
+    public String toDateLabel(Date date) {
+        return simpleDateFormat.format(date);
     }
 }

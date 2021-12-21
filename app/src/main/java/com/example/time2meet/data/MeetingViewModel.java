@@ -4,12 +4,17 @@ import androidx.lifecycle.ViewModel;
 
 public class MeetingViewModel extends ViewModel {
     private Meeting meeting;
+    private MeetingRepository meetingRepository;
 
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
+    public MeetingViewModel() {
+        meetingRepository = MeetingRepository.getInstance();
     }
 
     public Meeting getMeeting() {
-        return meeting;
+        return meetingRepository.getMeeting().getValue();
+    }
+
+    public Integer goMeeting(Integer meetingID) {
+        return meetingRepository.goMeeting(meetingID);
     }
 }

@@ -1,14 +1,459 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.FragmentAvailabilityBoard">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:layout_marginTop="80dp"
+            android:maxWidth="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scrollbars="vertical">
+            <HorizontalScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:isScrollContainer="true"
+                    android:id="@+id/availability_board">
+
+                    <TableRow
+                        android:id="@+id/time_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text=""
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="0am-1am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="1am-2am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="2am-3am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="3am-4am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="4am-5am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="5am-6am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="6am-7am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="7am-8am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="8am-9am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="9am-10am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="10am-11am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="11am-12pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="12pm-1pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="1pm-2pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="2pm-3pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="3pm-4pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="4pm-5pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="5pm-6pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="6pm-7pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="7pm-8pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="8pm-9pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="9pm-10pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="10pm-11pm"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/time_cell_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/cell_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:width="85dp"
+                            android:height="35dp"
+                            android:text="10pm-0am"
+                            android:textSize="@dimen/default_text_size"
+                            android:gravity="center"
+                            android:background="@drawable/cell_border"/>
+                    </TableRow>
+
+                </TableLayout>
+            </HorizontalScrollView>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
