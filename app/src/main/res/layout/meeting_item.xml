@@ -34,7 +34,7 @@
             android:layout_weight="1"
             android:gravity="center|left"
             android:textColor="@color/meetingItemTextColor"
-            android:textSize="@dimen/meeting_item_text_size"
+            android:textSize="@dimen/meeting_item_title_text_size"
             />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:gravity="center|left"
             android:textColor="@color/meetingItemTextColor"
-            android:textSize="@dimen/meeting_item_text_size"
+            android:textSize="@dimen/meeting_item_title_text_size"
             />
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_weight="1"
             android:gravity="center|left"
             android:textColor="@color/meetingItemTextColor"
-            android:textSize="@dimen/meeting_item_text_size"
+            android:textSize="@dimen/meeting_item_title_text_size"
             />
 
     </LinearLayout>
