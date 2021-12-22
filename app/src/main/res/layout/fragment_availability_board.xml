@@ -13,35 +13,38 @@
         android:background="@color/background">
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="wrap_content"
             android:layout_height="500dp"
             android:layout_marginTop="80dp"
             android:maxWidth="400dp"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scrollbars="vertical">
+            app:layout_constraintTop_toTopOf="parent">
+
             <HorizontalScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
                 <TableLayout
+                    android:id="@+id/availability_board"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:isScrollContainer="true"
-                    android:id="@+id/availability_board">
+                    android:isScrollContainer="true">
 
                     <TableRow
                         android:id="@+id/time_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <TextView
                             android:width="85dp"
                             android:height="35dp"
-                            android:text=""
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text=""
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -53,10 +56,10 @@
                         <TextView
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="0am-1am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="0am-1am"
+                            android:textSize="@dimen/default_text_size" />
 
                     </TableRow>
 
@@ -71,10 +74,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="1am-2am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="1am-2am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -88,10 +91,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="2am-3am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="2am-3am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -105,10 +108,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="3am-4am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="3am-4am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -122,10 +125,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="4am-5am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="4am-5am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -139,10 +142,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="5am-6am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="5am-6am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -156,10 +159,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="6am-7am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="6am-7am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -173,10 +176,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="7am-8am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="7am-8am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -190,10 +193,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="8am-9am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="8am-9am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -207,10 +210,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="9am-10am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="9am-10am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -224,10 +227,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="10am-11am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="10am-11am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -241,10 +244,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="11am-12pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="11am-12pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -258,10 +261,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="12pm-1pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="12pm-1pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -275,10 +278,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="1pm-2pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="1pm-2pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -292,10 +295,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="2pm-3pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="2pm-3pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -309,10 +312,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="3pm-4pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="3pm-4pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -326,10 +329,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="4pm-5pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="4pm-5pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -343,10 +346,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="5pm-6pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="5pm-6pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -360,10 +363,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="6pm-7pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="6pm-7pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -377,10 +380,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="7pm-8pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="7pm-8pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -394,10 +397,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="8pm-9pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="8pm-9pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -411,10 +414,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="9pm-10pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="9pm-10pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -428,10 +431,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="10pm-11pm"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="10pm-11pm"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                     <TableRow
@@ -445,10 +448,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:text="10pm-0am"
-                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:background="@drawable/cell_border"/>
+                            android:text="10pm-0am"
+                            android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
                 </TableLayout>
@@ -456,6 +459,42 @@
         </ScrollView>
         <include layout="@layout/action_bar"/>
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/availability_color_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Number of available participants"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:text="0"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:text="6"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

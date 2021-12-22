@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -65,6 +66,10 @@ public class FragmentAvailabilityBoard extends Fragment {
         initBoard(view);
         TextView tv_appbar = (TextView) view.findViewById(R.id.tv_action_bar_center);
         tv_appbar.setText("Availability Board");
+        ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
+        imgBtn_back.setImageResource(R.drawable.ic_back);
+        ImageButton imgBtn_edit = (ImageButton) view.findViewById(R.id.btn_action_bar_rightmost);
+        imgBtn_edit.setImageResource(R.drawable.ic_edit);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
