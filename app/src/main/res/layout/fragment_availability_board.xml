@@ -45,6 +45,7 @@
                             android:gravity="center"
                             android:text=""
                             android:textSize="@dimen/default_text_size" />
+
                     </TableRow>
 
                     <TableRow
@@ -60,7 +61,6 @@
                             android:gravity="center"
                             android:text="0am-1am"
                             android:textSize="@dimen/default_text_size" />
-
                     </TableRow>
 
                     <TableRow
@@ -74,10 +74,10 @@
                             android:layout_height="match_parent"
                             android:width="85dp"
                             android:height="35dp"
-                            android:background="@drawable/cell_border"
                             android:gravity="center"
                             android:text="1am-2am"
-                            android:textSize="@dimen/default_text_size" />
+                            android:textSize="@dimen/default_text_size"
+                            android:background="@drawable/cell_border"/>
                     </TableRow>
 
                     <TableRow
@@ -95,6 +95,7 @@
                             android:gravity="center"
                             android:text="2am-3am"
                             android:textSize="@dimen/default_text_size" />
+
                     </TableRow>
 
                     <TableRow
