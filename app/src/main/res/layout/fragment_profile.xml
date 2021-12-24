@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.FragmentProfile">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/user_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/meeting_banner"
+        app:layout_constraintTop_toBottomOf="@id/user_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:adjustViewBounds="true"
+        android:id="@+id/profile_banner"/>
+
+    <com.example.time2meet.ui.CircularImageView
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:src="@drawable/ducky"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_toolbar"
+        android:layout_marginTop="93dp"
+        android:id="@+id/user_avatar"/>
+    <TextView
+        android:id="@+id/profile_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/user_avatar"
+        android:text="<Username>"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/action_bar_text_size"
+        android:textSize="@dimen/action_bar_text_size"/>
+    <TextView
+        android:id="@+id/profile_desc_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fullname"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_username"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_fullname"
+        android:textSize="@dimen/display_info_text_size"
+        android:text="<Full name>"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_fullname"
+        android:layout_marginStart="@dimen/content_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_desc_dob"
+        android:text="DoB"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintTop_toBottomOf="@id/profile_fullname"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginTop="@dimen/action_bar_text_size"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_dob"
+        android:textSize="@dimen/display_info_text_size"
+        android:text="<DoB>"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_dob"
+        android:layout_marginStart="@dimen/content_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
