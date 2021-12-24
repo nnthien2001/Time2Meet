@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FragmentProfile">
-
+    tools:context=".ui.FragmentEditProfile">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/user_toolbar"
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/user_toolbar"
         android:layout_marginTop="93dp"
         android:id="@+id/user_avatar"/>
-    <TextView
+    <EditText
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,12 +52,14 @@
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/fragment_vertical_margin"
         />
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profile_fullname"
         android:textSize="@dimen/display_info_text_size"
         android:text="Full name"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
         app:layout_constraintTop_toBottomOf="@id/profile_desc_fullname"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,12 +74,14 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/action_bar_text_size"/>
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profile_dob"
         android:textSize="@dimen/display_info_text_size"
         android:text="DoB"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
         app:layout_constraintTop_toBottomOf="@id/profile_desc_dob"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,11 +97,13 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="75dp"
         android:layout_marginTop="@dimen/action_bar_text_size"/>
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profile_phone_num"
         android:textSize="@dimen/display_info_text_size"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
         android:text="Phone Number"
         app:layout_constraintTop_toBottomOf="@id/profile_desc_phone_num"
         app:layout_constraintStart_toStartOf="@id/profile_desc_phone_num"
@@ -113,25 +118,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/action_bar_text_size"/>
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profile_about_me"
         android:textSize="@dimen/display_info_text_size"
         android:text="About me"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
         app:layout_constraintTop_toBottomOf="@id/profile_desc_about_me"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/fragment_vertical_margin" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/login_title_text_size"
-        android:onClick="navigateEditProfile"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
