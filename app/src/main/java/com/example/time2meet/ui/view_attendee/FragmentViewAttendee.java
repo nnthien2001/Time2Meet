@@ -1,4 +1,4 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.view_attendee;
 
 import android.os.Bundle;
 
@@ -23,6 +23,7 @@ import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.UserViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentViewAttendee extends Fragment {
 
@@ -71,8 +72,25 @@ public class FragmentViewAttendee extends Fragment {
 
         getData(names, usernames);
         AttendeeRecyclerViewAdapter adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
-        recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //This is the code to provide a sectioned list
+        List<AttendeeSectionedRecyclerViewAdapter.Section> sections =
+                new ArrayList<AttendeeSectionedRecyclerViewAdapter.Section>();
+
+        //Sections
+        sections.add(new AttendeeSectionedRecyclerViewAdapter.Section(0,"host"));
+        sections.add(new AttendeeSectionedRecyclerViewAdapter.Section(1,"attendee"));
+
+        //Add your adapter to the sectionAdapter
+        AttendeeSectionedRecyclerViewAdapter.Section[] dummy = new AttendeeSectionedRecyclerViewAdapter.Section[sections.size()];
+        AttendeeSectionedRecyclerViewAdapter mSectionedAdapter = new
+                AttendeeSectionedRecyclerViewAdapter(getContext(),R.layout.section,R.id.section_text,adapter);
+        mSectionedAdapter.setSections(sections.toArray(dummy));
+
+        //Apply this adapter to the RecyclerView
+        recyclerView.setAdapter(mSectionedAdapter);
     }
 
     private void getData(ArrayList<String> names, ArrayList<String> usernames) {
@@ -85,7 +103,7 @@ public class FragmentViewAttendee extends Fragment {
 
     private void initAppBar() {
         TextView tv_appbar = (TextView) view.findViewById(R.id.tv_action_bar_center);
-        tv_appbar.setText("Availability Board");
+        tv_appbar.setText("Attendance List");
         ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
         imgBtn_back.setImageResource(R.drawable.ic_back);
     }
