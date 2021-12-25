@@ -66,7 +66,7 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
         }
 
         if (v.getId() == R.id.st_edit_meeting_btn) {
-            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentAvailabilityBoard);
         }
 
         if(v.getId() == R.id.view_attendee_btn) {

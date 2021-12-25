@@ -10,20 +10,31 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.time2meet.ApiService;
 import com.example.time2meet.R;
+import com.example.time2meet.data.Authenticator;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentLogin extends Fragment implements View.OnClickListener {
 
     private NavController navController;
     private UserViewModel userViewModel;
-    private EditText username_tv;
+    private EditText edtUsername;
+    private EditText edtPassword;
 
     public FragmentLogin() {
         // Required empty public constructor
@@ -44,21 +55,41 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
 
-        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
+        navController = Navigation.findNavController(view);
+        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph); //for debug
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
-        username_tv = (EditText) view.findViewById(R.id.username_edittext);
-        view.findViewById(R.id.login_btn).setOnClickListener(this);
+        typeinInfoSetup(view);
+        buttonsSetup(view);
+    }
+
+    private void typeinInfoSetup(@NonNull View view) {
+        edtUsername = (EditText) view.findViewById(R.id.edt_username_login);
+        edtPassword = (EditText) view.findViewById(R.id.edt_password_login);
+    }
+
+    private void buttonsSetup(@NonNull View view) {
+        view.findViewById(R.id.btn_login).setOnClickListener(this);
+        view.findViewById(R.id.btn_signup).setOnClickListener(this);
     }
 
     @Override
     public void onClick(@NonNull View v) {
-        if (v.getId() == R.id.login_btn) {
-            User user = new User(username_tv.getText().toString());
-            userViewModel.setUser(user);
-            navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
+        switch (v.getId()) {
+            case R.id.btn_login:
+                if (userViewModel.login(edtUsername.getText().toString()
+                        , edtPassword.getText().toString())) {
+                        navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
+                }
+                else {
+                        // TODO: Handle error message
+                        break;
+                }
+            case R.id.btn_signup:
+                // Check username exist: userViewModel.isUsernameExist(username)
+                // TODO: action move from FragmentLogin to FragmentSignUp
+                break;
         }
     }
 }

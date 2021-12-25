@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+
+    <!-- Action bar -->
+    <dimen name="action_bar_text_size">24sp</dimen>
+    <dimen name="action_bar_height">50dp</dimen>
+
+    <!-- Home screen -->
+    <dimen name="meeting_item_height">200dp</dimen>
+    <dimen name="meeting_item_content_text_size">15sp</dimen>
+    <dimen name="meeting_item_title_text_size">20sp</dimen>
+    <dimen name="home_title_textsize">35sp</dimen>
+
+    <!-- Input textbox -->
+    <dimen name="input_textbox_height">60dp</dimen>
+
+    <!-- Text in general -->
+    <dimen name="default_text_size">14sp</dimen>
+    <dimen name="display_info_text_size">20sp</dimen>
+
+    <!-- Login screen -->
+    <dimen name="login_title_text_size">48sp</dimen>
+    <dimen name="sign_up_hyperlink">18sp</dimen>
+    
+
+    <!--Margin sizes -->
+    <!--Minimum left-right spacing for content -->
+    <dimen name="content_margin">29dp</dimen>
+    <!-- Left right spacing for icons-->
+    <dimen name="icon_margin">15dp</dimen>
+</resources>
