@@ -83,6 +83,8 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
                         navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
                 }
                 else {
+                        // Testing purpose
+                        navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
                         // TODO: Handle error message
                         break;
                 }

@@ -16,13 +16,13 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AtendeeRecyclerViewAdapter extends RecyclerView.Adapter<AtendeeRecyclerViewAdapter.ViewHolder> {
-    private static final String TAG = "AtendeeRecyclerViewAdapter";
+public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRecyclerViewAdapter.ViewHolder> {
+    private static final String TAG = "AttendeeRecyclerViewAdapter";
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mUsernames = new ArrayList<>();
     private Context mContext;
 
-    public AtendeeRecyclerViewAdapter(Context mContext, ArrayList<String> mNames, ArrayList<String> mUsernames) {
+    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<String> mNames, ArrayList<String> mUsernames) {
         this.mNames = mNames;
         this.mUsernames = mUsernames;
         this.mContext = mContext;
@@ -38,8 +38,8 @@ public class AtendeeRecyclerViewAdapter extends RecyclerView.Adapter<AtendeeRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.atendeeName.setText(mNames.get(position));
-        holder.atendeeUsername.setText(mUsernames.get(position));
+        holder.attendeeName.setText(mNames.get(position));
+        holder.attendeeUsername.setText(mUsernames.get(position));
     }
 
     @Override
@@ -50,14 +50,14 @@ public class AtendeeRecyclerViewAdapter extends RecyclerView.Adapter<AtendeeRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView profilePicture;
-        TextView atendeeName;
-        TextView atendeeUsername;
+        TextView attendeeName;
+        TextView attendeeUsername;
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profilePicture = itemView.findViewById(R.id.profile_picture);
-            atendeeName = itemView.findViewById(R.id.atendee_name);
-            atendeeUsername = itemView.findViewById(R.id.atendee_username);
+            attendeeName = itemView.findViewById(R.id.attendee_name);
+            attendeeUsername = itemView.findViewById(R.id.attendee_username);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }

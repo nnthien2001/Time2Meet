@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.FragmentViewAttendee">
 
+    <include layout="@layout/action_bar"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/action_bar_height"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/attendee_recycler_view">
