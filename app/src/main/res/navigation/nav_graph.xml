@@ -39,7 +39,16 @@
         android:id="@+id/fragmentProfile"
         android:name="com.example.time2meet.ui.FragmentProfile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_fragmentEditProfile"
+            app:destination="@id/fragmentEditProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEditProfile"
+        android:name="com.example.time2meet.ui.FragmentEditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile"/>
 
     <navigation android:id="@+id/meeting_nav_graph"
         app:startDestination="@id/fragmentMeetingMenu">
