@@ -80,7 +80,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
             case R.id.btn_login:
                 if (userViewModel.login(edtUsername.getText().toString()
                         , edtPassword.getText().toString())) {
-                        navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
+                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
                 }
                 else {
                         // TODO: Handle error message

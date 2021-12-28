@@ -11,10 +11,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
@@ -29,6 +32,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
     private NavController navController;
     private UserViewModel userViewModel;
+    private LayoutInflater inflater;
 
     public FragmentHome() {
         // Required empty public constructor
@@ -43,6 +47,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.inflater = inflater;
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -70,6 +75,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 //        view.findViewById(R.id.btn_meeting).setOnClickListener(this);
         view.findViewById(R.id.btn_action_bar_leftmost).setOnClickListener(this);
         view.findViewById(R.id.btn_action_bar_rightmost).setOnClickListener(this);
+        view.findViewById(R.id.btn_create_meeting).setOnClickListener(this);
     }
 
     private void tabLayoutSetup(@NonNull View view) {
@@ -94,11 +100,24 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 //            case R.id.btn_meeting:
 //                navController.navigate(R.id.action_fragmentHome_to_fragmentMeetingMenu);
 //                break;
+            case R.id.btn_create_meeting:
+                createNewMeeting(v);
+                break;
             case R.id.btn_action_bar_leftmost:
                 break;
             case R.id.btn_action_bar_rightmost:
                 navController.navigate(R.id.action_fragmentHome_to_fragmentProfile);
                 break;
+
+
         }
+    }
+
+    void createNewMeeting(View view) {
+
+        View layout = inflater.inflate(R.layout.popup_create_meeting, null);
+        PopupWindow popupWindow = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT, true);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 }
