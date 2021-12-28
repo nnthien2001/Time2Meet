@@ -2,23 +2,29 @@ package com.example.time2meet.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.User;
+import com.example.time2meet.data.UserViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentEditProfile#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentEditProfile extends Fragment {
-    
+    private UserViewModel userViewModel;
+    private NavController navController;
+    private User current_user;
+    private EditText username,full_name,dob,phone,about_me;
+    private TextView desc_fullname,desc_phone,desc_dob,desc_about_me;
 
     public FragmentEditProfile() {
         // Required empty public constructor
@@ -50,6 +56,12 @@ public class FragmentEditProfile extends Fragment {
                 setEdited(view);
             }
         });
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     private void setEdited(View view) {
