@@ -19,7 +19,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
+import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class FragmentViewAttendee extends Fragment {
     private MeetingViewModel meetingViewModel;
     private UserViewModel userViewModel;
     private View view;
+    private User host;
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -58,10 +61,17 @@ public class FragmentViewAttendee extends Fragment {
         navController = Navigation.findNavController(view);
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+        meetingViewModel = new MeetingViewModel();
         userViewModel = new UserViewModel();
 
         this.view = view;
+        try {
+            this.host = meetingViewModel.getHost();
+        } catch (Exception e) {
+            host = new User();
+            host.setUserID(1);
+        }
+
         initAppBar();
     }
 
@@ -81,7 +91,9 @@ public class FragmentViewAttendee extends Fragment {
 
         //Sections
         sections.add(new AttendeeSectionedRecyclerViewAdapter.Section(0,"host"));
-        sections.add(new AttendeeSectionedRecyclerViewAdapter.Section(1,"attendee"));
+        if(names.size()>1) {
+            sections.add(new AttendeeSectionedRecyclerViewAdapter.Section(1, "attendee"));
+        }
 
         //Add your adapter to the sectionAdapter
         AttendeeSectionedRecyclerViewAdapter.Section[] dummy = new AttendeeSectionedRecyclerViewAdapter.Section[sections.size()];
@@ -95,10 +107,23 @@ public class FragmentViewAttendee extends Fragment {
 
     private void getData(ArrayList<String> names, ArrayList<String> usernames) {
         // TODO: Get the attendance list from the meeting view model
-        for(int i=0; i<10; i++) {
-            names.add("TADA" + String.valueOf(i));
-            usernames.add("tada" + String.valueOf(i));
+        try {
+            ArrayList<User> attendees = meetingViewModel.getAttendees();
+            attendees.remove(this.host);
+            names.add(this.host.getName());
+            usernames.add(this.host.getUsername());
+            for(User attendee : attendees) {
+                names.add(attendee.getName());
+                usernames.add(attendee.getUsername());
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            for(int i=0; i<10; i++) {
+                names.add("This is test name:" + Integer.toString(i));
+                usernames.add("This is test username" + Integer.toString(i));
+            }
         }
+
     }
 
     private void initAppBar() {
@@ -106,6 +131,10 @@ public class FragmentViewAttendee extends Fragment {
         tv_appbar.setText("Attendance List");
         ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
         imgBtn_back.setImageResource(R.drawable.ic_back);
+    }
+
+    private boolean isHostOfThisMeeting() {
+        return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
     }
 
 }

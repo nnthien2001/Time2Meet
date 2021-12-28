@@ -30,6 +30,7 @@ public class MeetingViewModel extends ViewModel {
     public User getHost() {
         ArrayList<User> _attendees = meetingRepository.getAllAttendee().getValue();
         Meeting meeting = meetingRepository.getMeeting().getValue();
+
         for (User u : _attendees) {
             if (u.getUserID().equals(meeting.getHostID()))
                 return u;
