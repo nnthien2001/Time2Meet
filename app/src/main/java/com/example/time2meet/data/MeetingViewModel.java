@@ -36,4 +36,8 @@ public class MeetingViewModel extends ViewModel {
         }
         return null;
     }
+
+    public Integer invite(String username) {
+        return meetingRepository.inviteAttendee(username);
+    }
 }
