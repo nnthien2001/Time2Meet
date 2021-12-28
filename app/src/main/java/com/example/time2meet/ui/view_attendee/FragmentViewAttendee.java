@@ -82,7 +82,7 @@ public class FragmentViewAttendee extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast toast = Toast.makeText(getContext(), "Hello man", 10);
+                    Toast toast = Toast.makeText(getContext(), "Hello man", Toast.LENGTH_LONG);
                     toast.show();
                     // TODO: implement add a new attendee to list
                 }
@@ -122,7 +122,6 @@ public class FragmentViewAttendee extends Fragment {
     }
 
     private void getData(ArrayList<String> names, ArrayList<String> usernames) {
-        // TODO: Get the attendance list from the meeting view model
         try {
             ArrayList<User> attendees = meetingViewModel.getAttendees();
             attendees.remove(this.host);
