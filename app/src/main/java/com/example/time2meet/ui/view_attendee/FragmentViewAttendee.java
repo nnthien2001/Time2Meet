@@ -17,12 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class FragmentViewAttendee extends Fragment {
     private UserViewModel userViewModel;
     private View view;
     private User host;
+    private FloatingActionButton fab;
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -73,6 +76,19 @@ public class FragmentViewAttendee extends Fragment {
         }
 
         initAppBar();
+        fab = view.findViewById(R.id.fab);
+        if(isHostOfThisMeeting()) {
+            fab.setVisibility(View.VISIBLE);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast toast = Toast.makeText(getContext(), "Hello man", 10);
+                    toast.show();
+                    // TODO: implement add a new attendee to list
+                }
+            });
+        }
+
     }
 
     private void initRecyclerView(View rootView) {
@@ -134,7 +150,12 @@ public class FragmentViewAttendee extends Fragment {
     }
 
     private boolean isHostOfThisMeeting() {
-        return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
+        try {
+            return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return true;
     }
 
 }

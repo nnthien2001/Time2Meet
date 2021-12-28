@@ -25,7 +25,8 @@
         android:src="@drawable/ic_add"
         android:layout_margin="16dp"
         android:backgroundTint="@color/colorPrimary"
-        app:tint="@color/white"/>
+        app:tint="@color/white"
+        android:visibility="gone"/>
 
 
 </FrameLayout>
