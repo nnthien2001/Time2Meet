@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,14 +59,47 @@ public class FragmentEditProfile extends Fragment {
                 setEdited(view);
             }
         });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: Add back functionality
+            }
+        });
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initAppBar();
+        navController= Navigation.findNavController(view);
 
+        NavBackStackEntry backStackEntry=navController.getBackStackEntry(R.id.nav_graph);
+        userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
+        current_user=userViewModel.getCurrentUser();
+
+        setUserInfo();
+    }
+    public void setUserInfo(){
+        username.setText(current_user.getUsername());
+        dob.setText(current_user.getDob());
+        phone.setText(current_user.getPhone());
+        about_me.setText(current_user.getAbout());
+        desc_fullname.setText(getResources().getString(R.string.fullname));
+        desc_dob.setText(getResources().getString(R.string.dob));
+        desc_phone.setText(getResources().getString(R.string.phone_num));
+        desc_about_me.setText(getResources().getString(R.string.about_me));
     }
 
     private void setEdited(View view) {
+        current_user.setUsername(username.getText().toString());
+        current_user.setAbout(about_me.getText().toString());
+        current_user.setDob(dob.getText().toString());
+        current_user.setName(full_name.getText().toString());
+        current_user.setPhone(phone.getText().toString());
+        userViewModel.updateProfile(current_user.getUsername(),
+                current_user.getName(),
+                current_user.getDob(),
+                current_user.getPhone(),
+                current_user.getAbout());
     }
 }

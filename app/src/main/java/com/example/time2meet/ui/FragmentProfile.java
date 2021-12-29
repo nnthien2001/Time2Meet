@@ -97,8 +97,4 @@ public class FragmentProfile extends Fragment {
         desc_phone.setText(getResources().getString(R.string.phone_num));
         desc_aboutme.setText(getResources().getString(R.string.about_me));
     }
-
-    private void setEdited(View view) {
-
-    }
 }
