@@ -14,6 +14,7 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,10 +121,12 @@ public class FragmentSignup extends Fragment {
 
     private void buttonsSetup(View view) {
         view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {
-            if (edt_password.getText() == edt_confirm_password.getText()) {
+            if (edt_password.getText().toString().equals(edt_confirm_password.getText().toString())) {
                 int rqstate = userViewModel.signUp(edt_username.getText().toString(),
                         Helper.hashPassword(edt_password.getText().toString()));
                 if (rqstate == UserRepository.getInstance().REQUEST_SUCCESS) {
+                    Log.d("Create account button set up", "Sign up successfully!");
+
                     rqstate = userViewModel.updateProfile(
                             edt_username.getText().toString(),
                             edt_name.getText().toString(),
@@ -132,11 +135,23 @@ public class FragmentSignup extends Fragment {
                             ""
                     );
 
+                    if (rqstate == UserRepository.getInstance().REQUEST_SUCCESS) {
+                        Log.d("Create account button set up", "Update profile of new account successfully!");
+                    }
+                    else {
+                        Log.d("Create account button set up", "Update profile of new account failed!");
+                    }
+
                     // TODO: Handle error mesage for updating profile
                 }
                 else {
+                    Log.d("Create account button set up", "Sign up failed!");
+
                     // TODO: Handle error message for signing up
                 }
+            }
+            else {
+                // TODO: Handle error message for confirming password
             }
         });
 

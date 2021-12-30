@@ -79,7 +79,6 @@ public class Helper {
             e.printStackTrace();
         }
         final byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-        System.out.println(bytesToHex(encodedHash));
         return bytesToHex(encodedHash);
     }
 }
