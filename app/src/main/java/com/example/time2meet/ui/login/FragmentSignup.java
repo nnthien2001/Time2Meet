@@ -122,27 +122,29 @@ public class FragmentSignup extends Fragment {
     private void buttonsSetup(View view) {
         view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {
             if (edt_password.getText().toString().equals(edt_confirm_password.getText().toString())) {
-                int rqstate = userViewModel.signUp(edt_username.getText().toString(),
-                        Helper.hashPassword(edt_password.getText().toString()));
+                int rqstate = userViewModel.signUp(
+                        edt_username.getText().toString(),
+                        Helper.hashPassword(edt_password.getText().toString()),
+                        edt_name.getText().toString(),
+                        edt_dob.getText().toString(),
+                        edt_phone_number.getText().toString());
+
                 if (rqstate == UserRepository.getInstance().REQUEST_SUCCESS) {
-                    Log.d("Create account button set up", "Sign up successfully!");
+                    Log.d("Create account button", "Sign up successfully!");
 
-                    rqstate = userViewModel.updateProfile(
+                    rqstate = userViewModel.login(
                             edt_username.getText().toString(),
-                            edt_name.getText().toString(),
-                            edt_dob.getText().toString(),
-                            edt_phone_number.getText().toString(),
-                            ""
-                    );
+                            Helper.hashPassword(edt_password.getText().toString())
+                    ) ? 1 : 0;
 
-                    if (rqstate == UserRepository.getInstance().REQUEST_SUCCESS) {
-                        Log.d("Create account button set up", "Update profile of new account successfully!");
+                    if (rqstate == 1) {
+                        Log.d("Create account button", "Login successfully!");
                     }
                     else {
-                        Log.d("Create account button set up", "Update profile of new account failed!");
+                        Log.d("Create account button", "Login failed!");
                     }
 
-                    // TODO: Handle error mesage for updating profile
+                    navController.navigate(R.id.action_fragmentSignup_to_fragmentHome);
                 }
                 else {
                     Log.d("Create account button set up", "Sign up failed!");

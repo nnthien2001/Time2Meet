@@ -23,6 +23,7 @@ public class FragmentLogin extends Fragment {
 
     private NavController navController;
     private UserViewModel userViewModel;
+
     private EditText edtUsername;
     private EditText edtPassword;
 

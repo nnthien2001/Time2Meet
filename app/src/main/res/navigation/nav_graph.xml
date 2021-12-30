@@ -3,7 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentLogin">
+    app:startDestination="@id/fragmentLanding">
+
+    <fragment
+        android:id="@+id/fragmentLanding"
+        android:name="com.example.time2meet.ui.FragmentLanding"
+        android:label="fragment_landing"
+        tools:layout="@layout/fragment_landing"
+        >
+        <action
+            android:id="@+id/action_fragmentLanding_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentLogin"
@@ -13,7 +24,7 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
             app:destination="@id/fragmentHome"
-            app:popUpTo="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentLanding"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentSignup"
@@ -32,6 +43,11 @@
         <action
             android:id="@+id/action_fragmentSignup_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:popUpTo="@id/fragmentLanding"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
