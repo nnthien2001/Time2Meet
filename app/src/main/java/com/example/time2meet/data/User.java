@@ -1,6 +1,7 @@
 package com.example.time2meet.data;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class User {
     private String username = "default";
@@ -11,11 +12,13 @@ public class User {
     private String phone = "default";
     private ArrayList<Integer> meetingList;
     private String about = "default";
-    private String image = "default";
+    private String image;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        Integer avatar = new Random().nextInt(11);
+        this.image = "avatar"+avatar.toString();
     }
     public User(User _user) {
         username = _user.getUsername();

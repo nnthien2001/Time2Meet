@@ -67,9 +67,9 @@ public class UserRepository {
         return false;
     }
 
-    public Integer signUp(String username, String password){
+    public Integer signUp(String username, String password, String name, String dob, String phone){
         try {
-            new signUpAsyncTask().execute(username, password).get();
+            new signUpAsyncTask().execute(username, password, name, dob, phone).get();
             return request_state;
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -209,6 +209,9 @@ public class UserRepository {
         @Override
         protected Void doInBackground(String... strings) {
             User new_user = new User(strings[0], strings[1]);
+            new_user.setName(strings[2]);
+            new_user.setDob(strings[3]);
+            new_user.setPhone(strings[4]);
             try {
                 ApiService.apiService.createUser(new_user).execute();
                 request_state = REQUEST_SUCCESS;
