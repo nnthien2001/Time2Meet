@@ -8,8 +8,12 @@ public class MeetingViewModel extends ViewModel {
     private MeetingRepository meetingRepository;
 
     public MeetingViewModel() {
-        meetingRepository = MeetingRepository.getInstance();
+        meetingRepository = new MeetingRepository();
     }
+
+//    public MeetingViewModel(Integer meetingID) {
+//        meetingRepository = new MeetingRepository(meetingID);
+//    }
 
     public Meeting getMeeting() {
         return meetingRepository.getMeeting().getValue();
@@ -19,7 +23,7 @@ public class MeetingViewModel extends ViewModel {
         return meetingRepository.goMeeting(meetingID);
     }
 
-    public Integer toggleTime(ArrayList<Integer> interval){
+    public  Integer toggleTime(ArrayList<Integer>interval){
         return meetingRepository.toggleTime(interval);
     }
 
