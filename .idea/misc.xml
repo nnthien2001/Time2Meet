@@ -10,13 +10,13 @@
         <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_home.xml" value="0.55" />
         <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/meeting_item.xml" value="0.18490374873353596" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_availability_board.xml" value="0.1796875" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_menu.xml" value="0.22" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_view_attendee.xml" value="0.1796875" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_view_meeting.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/action_bar.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/popup_create_meeting.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>

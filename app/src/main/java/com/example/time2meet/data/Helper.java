@@ -1,17 +1,20 @@
 package com.example.time2meet.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Locale;
 
 public class Helper {
-    private Helper instance;
+    private static Helper instance;
     private Helper(){}
 
-    public Helper getInstance() {
+    public static Helper getInstance() {
         if (instance == null) {
             instance = new Helper();
         }
@@ -45,5 +48,23 @@ public class Helper {
         }
 
         return false;
+    }
+
+    public Date stringToDate(String s) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date;
+        try {
+            date = format.parse(s);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Integer compareDate(String start, String end) {
+        Date startDate = stringToDate(start);
+        Date endDate = stringToDate(end);
+        return startDate.compareTo(endDate);
     }
 }
