@@ -45,9 +45,9 @@
         app:startDestination="@id/fragmentMeetingMenu">
         <fragment
             android:id="@+id/fragmentMeetingMenu"
-            android:name="com.example.time2meet.ui.FragmentMeetingMenu"
+            android:name="com.example.time2meet.ui.FragmentViewMeeting"
             android:label="fragment_meeting_menu"
-            tools:layout="@layout/fragment_meeting_menu">
+            tools:layout="@layout/fragment_view_meeting">
             <argument
                 android:name="meetingID"
                 app:argType="integer"/>
