@@ -47,7 +47,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
+        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph); //for debug
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
 
         typeinInfoSetup(view);
@@ -70,7 +70,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
             case R.id.btn_login:
                 if (userViewModel.login(edtUsername.getText().toString(),
                                         Helper.hashPassword(edtPassword.getText().toString(), "SHA-256"))) {
-                        navController.navigate(R.id.action_fragmentLogin_to_fragmentMenu);
+                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
                 }
                 else {
                         // TODO: Handle error message

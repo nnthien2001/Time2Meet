@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.FragmentHome"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="@color/actionBarTitle"
+        app:tabIndicatorColor="@color/actionBarTitle"
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:text="All Meetings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Upcoming Meetings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_meetings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>
