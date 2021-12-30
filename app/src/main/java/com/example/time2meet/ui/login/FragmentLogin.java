@@ -19,7 +19,7 @@ import com.example.time2meet.R;
 import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.UserViewModel;
 
-public class FragmentLogin extends Fragment implements View.OnClickListener {
+public class FragmentLogin extends Fragment {
 
     private NavController navController;
     private UserViewModel userViewModel;
@@ -55,32 +55,26 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     }
 
     private void typeinInfoSetup(@NonNull View view) {
-        edtUsername = (EditText) view.findViewById(R.id.edt_username_login);
-        edtPassword = (EditText) view.findViewById(R.id.edt_password_login);
+        edtUsername = view.findViewById(R.id.edt_username_login);
+        edtPassword = view.findViewById(R.id.edt_password_login);
     }
 
     private void buttonsSetup(@NonNull View view) {
-        view.findViewById(R.id.btn_login).setOnClickListener(this);
-        view.findViewById(R.id.btn_signup).setOnClickListener(this);
+        view.findViewById(R.id.btn_login).setOnClickListener(v -> {
+            if (userViewModel.login(edtUsername.getText().toString(),
+                    Helper.hashPassword(edtPassword.getText().toString()))) {
+                navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
+            }
+            else {
+                // TODO: Handle error message
+            }
+        });
+
+        view.findViewById(R.id.btn_to_signup).setOnClickListener(v -> {
+            // Check username exist: userViewModel.isUsernameExist(username)
+            // TODO: action move from FragmentLogin to FragmentSignUp
+            navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
+        });
     }
 
-    @Override
-    public void onClick(@NonNull View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-                if (userViewModel.login(edtUsername.getText().toString(),
-                                        Helper.hashPassword(edtPassword.getText().toString(), "SHA-256"))) {
-                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
-                }
-                else {
-                        // TODO: Handle error message
-                        break;
-                }
-            case R.id.btn_signup:
-                // Check username exist: userViewModel.isUsernameExist(username)
-                // TODO: action move from FragmentLogin to FragmentSignUp
-                navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
-                break;
-        }
-    }
 }

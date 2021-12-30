@@ -69,7 +69,9 @@ public class Helper {
         return hexString.toString();
     }
 
-    public static String hashPassword(String password, String algorithm) {
+    public static String hashPassword(String password) {
+        String algorithm = new String("SHA-256");
+
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance(algorithm);
