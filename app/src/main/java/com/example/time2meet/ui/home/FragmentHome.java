@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.PopupWindow;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
@@ -74,8 +75,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     private void buttonsSetup(@NonNull View view) {
 //        view.findViewById(R.id.btn_meeting).setOnClickListener(this);
         view.findViewById(R.id.btn_action_bar_leftmost).setOnClickListener(this);
-        view.findViewById(R.id.btn_action_bar_rightmost).setOnClickListener(this);
-        view.findViewById(R.id.btn_create_meeting).setOnClickListener(this);
+        ImageButton profile_btn = (ImageButton)view.findViewById(R.id.btn_action_bar_rightmost);
+        profile_btn.setOnClickListener(this);
+        profile_btn.setImageResource(this.getResources()
+                .getIdentifier(userViewModel.getCurrentUser().getImage(), "drawable", this.getContext().getPackageName()));
+
     }
 
     private void tabLayoutSetup(@NonNull View view) {
