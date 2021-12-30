@@ -1,5 +1,9 @@
 package com.example.time2meet.ui;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +17,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,6 +25,8 @@ import android.widget.TextView;
 import com.example.time2meet.R;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
+
+import java.util.Calendar;
 
 
 public class FragmentEditProfile extends Fragment {
@@ -63,6 +70,7 @@ public class FragmentEditProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO: Add back functionality
+                navController.navigateUp();
             }
         });
     }
@@ -78,6 +86,7 @@ public class FragmentEditProfile extends Fragment {
         current_user=userViewModel.getCurrentUser();
 
         setUserInfo();
+        dobPickerSetup(getContext(),view);
     }
     public void setUserInfo(){
         username.setText(current_user.getUsername());
@@ -101,5 +110,36 @@ public class FragmentEditProfile extends Fragment {
                 current_user.getDob(),
                 current_user.getPhone(),
                 current_user.getAbout());
+    }
+    private void dobPickerSetup(Context context, View view) {
+        TextView tv_dob = (TextView) view.findViewById(R.id.profile_dob);
+
+        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = day + "/" + month + "/" + year;
+                tv_dob.setText(date);
+            }
+        };
+
+        tv_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        context,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        onDateSetListener,
+                        year, month, day);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
     }
 }

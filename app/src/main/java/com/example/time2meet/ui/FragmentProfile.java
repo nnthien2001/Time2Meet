@@ -70,6 +70,7 @@ public class FragmentProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO: Pop the backstack after finish viewing?
+                navController.navigateUp();
             }
         });
     }
