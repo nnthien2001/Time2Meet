@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.FragmentSignup">
 
-    
+    <include layout="@layout/action_bar" />
 
 </LinearLayout>

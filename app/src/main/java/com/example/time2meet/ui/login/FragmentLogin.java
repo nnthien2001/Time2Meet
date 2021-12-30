@@ -79,6 +79,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
             case R.id.btn_signup:
                 // Check username exist: userViewModel.isUsernameExist(username)
                 // TODO: action move from FragmentLogin to FragmentSignUp
+                navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
                 break;
         }
     }
