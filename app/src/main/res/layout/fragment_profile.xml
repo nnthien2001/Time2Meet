@@ -22,7 +22,7 @@
     <com.example.time2meet.ui.CircularImageView
         android:layout_width="108dp"
         android:layout_height="108dp"
-        android:src="@drawable/ducky"
+        android:src="@drawable/avatar0"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

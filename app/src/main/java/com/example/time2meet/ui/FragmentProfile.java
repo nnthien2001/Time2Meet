@@ -11,6 +11,7 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,8 @@ public class FragmentProfile extends Fragment {
     }
 
     public void setUserInfo(){
+
+
         username.setText(current_user.getUsername());
         dob.setText(current_user.getDob());
         phone.setText(current_user.getPhone());
@@ -97,5 +100,8 @@ public class FragmentProfile extends Fragment {
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
         desc_aboutme.setText(getResources().getString(R.string.about_me));
+    }
+    public void initialize_elements(){
+        username=(TextView) getView().findViewById(R.id.edt_username_login);
     }
 }
