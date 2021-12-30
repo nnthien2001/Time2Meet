@@ -52,4 +52,8 @@
     <string name="join_meeting">Join meeting</string>
     <string name="my_profile">My Profile</string>
     <string name="edit_password">Edit Password</string>
+    <string name="meeting_start_date">Start Date</string>
+    <string name="meeting_end_date">End Date</string>
+    <string name="meeting_proposed_time">Proposed time</string>
+    <string name="meeting_location">Location</string>
 </resources>
