@@ -121,12 +121,12 @@ public class UserRepository {
 
     public Integer getAllMeetings() {
         try {
-            ArrayList<Meeting> all_meetings = new getAllMeetingsAsyncTask()
-                                                    .execute(user.getValue().getUserID())
-                                                    .get();
-            if (all_meetings != null){
-                meetingList.setValue(all_meetings);
+            ArrayList<Meeting> all_meetings = new ArrayList<>();
+            for (Integer i : user.getValue().getMeetingList()) {
+                Meeting meeting = new getMeetingAsyncTask().execute(i).get();
+                all_meetings.add(meeting);
             }
+            meetingList.setValue(all_meetings);
             return request_state;
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -142,6 +142,42 @@ public class UserRepository {
             e.printStackTrace();
         }
         return REQUEST_ERROR;
+    }
+
+    public Integer createMeeting(Meeting new_meeting) {
+        try {
+            Meeting result = new createMeetingAsyncTask().execute(new_meeting).get();
+            if (request_state == REQUEST_SUCCESS) {
+                UserRepository userRepository = UserRepository.getInstance();
+                User host = userRepository.getUser().getValue();
+                ArrayList<Integer> meetingList = host.getMeetingList();
+                meetingList.add(result.getMeetingID());
+                host.setMeetingList(meetingList);
+                userRepository.updateMeetingList(host.getUsername(), meetingList);
+                userRepository.setUser(host);
+            }
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
+    public Boolean isMeetingExist(Integer meetingID){
+        try {
+            Meeting result = new getMeetingAsyncTask().execute(meetingID).get();
+            if (result == null){
+                return false;
+            }
+            return true;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     //================================================================================
@@ -253,6 +289,43 @@ public class UserRepository {
                 request_state = REQUEST_ERROR;
                 e.printStackTrace();
             }
+            return null;
+        }
+    }
+
+    private class createMeetingAsyncTask extends AsyncTask<Meeting, Void, Meeting> {
+
+        @Override
+        protected Meeting doInBackground(Meeting... meetings) {
+            try {
+                Meeting response = ApiService.apiService.createMeeting(meetings[0])
+                        .execute().body();
+                request_state = REQUEST_SUCCESS;
+                return response;
+            } catch (IOException e) {
+                request_state=REQUEST_ERROR;
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    private class getMeetingAsyncTask extends AsyncTask<Integer, Void, Meeting> {
+
+        @Override
+        protected Meeting doInBackground(Integer... integers) {
+            try {
+                ArrayList<Meeting> response = ApiService.apiService.getMeeting(integers[0])
+                        .execute().body();
+                request_state = REQUEST_SUCCESS;
+                if (response.size() == 0) {
+                    return null;
+                }
+                return response.get(0);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            request_state = REQUEST_ERROR;
             return null;
         }
     }

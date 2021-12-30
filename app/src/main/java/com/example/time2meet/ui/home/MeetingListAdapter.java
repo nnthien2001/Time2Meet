@@ -1,5 +1,6 @@
 package com.example.time2meet.ui.home;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
     public MeetingListAdapter(ArrayList<Meeting> meetings) {
         displayMeetings = meetings;
+        Log.i("debug", String.valueOf(meetings.size()));
     }
 
     @NonNull

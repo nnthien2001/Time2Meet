@@ -54,9 +54,4 @@ public class MeetingViewModel extends ViewModel {
         return meetingRepository.inviteAttendee(username);
     }
 
-    public Integer createMeeting(Integer hostID, String name, String startDate, String endDate, String date,
-                                 String location, String description) {
-        return meetingRepository.createMeeting(new Meeting(hostID, name, startDate, endDate,
-                date, location, description));
-    }
 }

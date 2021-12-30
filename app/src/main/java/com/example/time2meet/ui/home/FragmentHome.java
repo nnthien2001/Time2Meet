@@ -37,11 +37,12 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
     private NavController navController;
     private UserViewModel userViewModel;
-    private MeetingViewModel meetingViewModel;
     private LayoutInflater inflater;
     private View createMeetingPopupView;
+    private View joinMeetingPopupView;
     private Helper helper;
     private PopupWindow createMeetingPopup;
+    private PopupWindow joinMeetingPopup;
     public FragmentHome() {
         // Required empty public constructor
     }
@@ -66,7 +67,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
-        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
 //        welcomeTextSetup(view, user);
         buttonsSetup(view);
         //tabLayoutSetup(view);
@@ -88,6 +88,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         profile_btn.setImageResource(this.getResources()
                 .getIdentifier(userViewModel.getCurrentUser().getImage(), "drawable", this.getContext().getPackageName()));
         view.findViewById(R.id.btn_create_meeting).setOnClickListener(this);
+        view.findViewById(R.id.btn_join_meeting).setOnClickListener(this);
     }
 
     private void tabLayoutSetup(@NonNull View view) {
@@ -100,8 +101,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         RecyclerView rvMeetings = (RecyclerView) getView().findViewById(R.id.rv_meetings);
 
         // TODO: Handle get meeting list logic
-        ArrayList<Meeting> meetings = new ArrayList<Meeting>();
-
+        ArrayList<Meeting> meetings = userViewModel.getUserMeetingList();
+        Log.i("debug", String.valueOf(meetings.size()));
+        for (Meeting m : meetings) {
+            Log.i("debug", m.getMeetingName());
+        }
         MeetingListAdapter adapter = new MeetingListAdapter(meetings);
         rvMeetings.setAdapter(adapter);
     }
@@ -123,7 +127,28 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             case R.id.btn_save_meeting:
                 createMeeting();
                 break;
+            case R.id.btn_join_meeting:
+                openJoinMeeting(v);
+                break;
+            case R.id.btn_cancel_join:
+                joinMeetingPopup.dismiss();
+                break;
+            case R.id.btn_join:
+                joinMeeting();
+                break;
+        }
+    }
 
+    private void joinMeeting() {
+        Integer meetingID = Integer.parseInt(String.valueOf(((EditText)joinMeetingPopupView
+                .findViewById(R.id.edit_meeting_ID))
+                .getText()));
+        if (!userViewModel.isMeetingExist(meetingID)) {
+            Toast.makeText(this.getContext(), "This meeting does not exist", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            joinMeetingPopup.dismiss();
+            // TODO: pass metingID to view meeting
         }
     }
 
@@ -166,9 +191,21 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                     "make sure that start date is smaller than end date", Toast.LENGTH_SHORT).show();
         }
         else {
-            meetingViewModel.createMeeting(userViewModel.getCurrentUser().getUserID(),
+            userViewModel.createMeeting(userViewModel.getCurrentUser().getUserID(),
                     meeting_name, meeting_start_date, meeting_end_date, meeting_date, location,description);
             createMeetingPopup.dismiss();
         }
+    }
+
+    void openJoinMeeting(View view) {
+        View layout = inflater.inflate(R.layout.popup_join_meeting, null);
+        PopupWindow popupWindow = new PopupWindow(layout, (int) (300 * this.getContext().getResources().getDisplayMetrics().density),
+                (int) (200 * this.getContext().getResources().getDisplayMetrics().density),
+                true);
+        joinMeetingPopup = popupWindow;
+        joinMeetingPopupView = popupWindow.getContentView();
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        joinMeetingPopupView.findViewById(R.id.btn_cancel_join).setOnClickListener(this);
+        joinMeetingPopupView.findViewById(R.id.btn_join).setOnClickListener(this);
     }
 }
