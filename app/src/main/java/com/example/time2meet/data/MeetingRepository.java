@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class MeetingRepository {
-    private static MeetingRepository instance;
+    //private static MeetingRepository instance;
     private MutableLiveData<Meeting> meeting = new MutableLiveData<Meeting>();
     private MutableLiveData<ArrayList<User>> attendees = new MutableLiveData<>();
     public final Integer REQUEST_SUCCESS = 1;
@@ -24,14 +24,20 @@ public class MeetingRepository {
 
     public Integer request_state;
 
-    public static MeetingRepository getInstance(){
-        if (instance == null) {
-            instance = new MeetingRepository();
-        }
-        return instance;
-    }
+//    public static MeetingRepository getInstance(){
+//        if (instance == null) {
+//            instance = new MeetingRepository();
+//        }
+//        return instance;
+//    }
 
-    private MeetingRepository() {}
+    public MeetingRepository() {}
+
+//    public MeetingRepository(Integer meetingID) {
+//        goMeeting(meetingID);
+//    }
+
+    //--------- Service ---------------
 
     public LiveData<Meeting> getMeeting() {
         return meeting;
@@ -92,10 +98,19 @@ public class MeetingRepository {
         userRepository.updateMeetingList(username, meetingList);
 
         Meeting _meeting = getMeeting().getValue();
-        Map<Integer, ArrayList<Integer>> attendees = _meeting.getAttendees();
-        attendees.put(_user.getUserID(), new ArrayList<>());
-        _meeting.setAttendees(attendees);
+        Map<Integer, ArrayList<Integer>> _attendees = _meeting.getAttendees();
+        _attendees.put(_user.getUserID(), new ArrayList<>());
+        _meeting.setAttendees(_attendees);
         meeting.setValue(_meeting);
+
+        Set<Integer> attendeesID = _attendees.keySet();
+        ArrayList<User> tmpAttendees = new ArrayList<>();
+        for (Integer i: attendeesID) {
+            User u = UserRepository.getInstance().getUser(i);
+            tmpAttendees.add(u);
+        }
+        attendees.setValue(tmpAttendees);
+
         try {
             new updateMeetingAsyncTask().execute(_meeting).get();
             return request_state;
