@@ -1,15 +1,11 @@
 package com.example.time2meet.ui.home;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
@@ -19,22 +15,17 @@ import java.util.ArrayList;
 
 public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.ViewHolder> {
     private ArrayList<Meeting> displayMeetings;
-    protected static NavController navController;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMeetingName;
         TextView tvMeetingDate;
         TextView tvMeetingLocation;
-        RelativeLayout item;
-        Integer meetingID;
 
         public ViewHolder(View view) {
             super(view);
             tvMeetingName = (TextView) view.findViewById(R.id.tv_meeting_name);
             tvMeetingDate = (TextView) view.findViewById(R.id.tv_meeting_date);
             tvMeetingLocation = (TextView) view.findViewById(R.id.tv_meeting_location);
-            item = view.findViewById(R.id.meeting_item);
-            item.setOnClickListener(this);
         }
 
         public TextView getTvMeetingName() {
@@ -48,23 +39,10 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
         public TextView getTvMeetingLocation() {
             return tvMeetingLocation;
         }
-
-        public void setMeetingID(Integer id) {
-            this.meetingID = id;
-        }
-
-        @Override
-        public void onClick(View view) {
-            Bundle bundle = new Bundle();
-            bundle.putInt("meetingID", meetingID);
-            Log.i("debug", meetingID.toString());
-            navController.navigate(R.id.action_fragmentHome_to_meeting_nav_graph, bundle);
-        }
     }
 
-    public MeetingListAdapter(ArrayList<Meeting> meetings, NavController navController) {
+    public MeetingListAdapter(ArrayList<Meeting> meetings) {
         displayMeetings = meetings;
-        this.navController = navController;
     }
 
     @NonNull
@@ -81,7 +59,6 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
         holder.getTvMeetingName().setText(currentMeeting.getMeetingName());
         holder.getTvMeetingDate().setText(currentMeeting.getDate());
         holder.getTvMeetingLocation().setText(currentMeeting.getLocation());
-        holder.setMeetingID(currentMeeting.getMeetingID());
     }
 
     @Override

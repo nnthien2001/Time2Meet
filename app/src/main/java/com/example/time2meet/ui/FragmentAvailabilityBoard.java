@@ -71,13 +71,10 @@ public class FragmentAvailabilityBoard extends Fragment {
         // xem onViewCreated() trong FragmentHome
         // NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
         // meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
-
-        // oke bro. sorry =(((((( didn't mean to
         userViewModel = new UserViewModel();
         meetingViewModel = new MeetingViewModel();
-        if (getArguments() != null) {
-            meetingViewModel.goMeeting(getArguments().getInt("meetingID"));
-        }
+
+        meetingViewModel.goMeeting(1);
         availabilityBoard = new AvailabilityBoard(meetingViewModel.getMeeting());
         isEdit = false;
         this.view = view;

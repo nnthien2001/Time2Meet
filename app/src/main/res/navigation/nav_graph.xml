@@ -14,7 +14,13 @@
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
             app:destination="@id/fragmentHome"
             app:popUpTo="@id/fragmentLogin"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentSignup"
+            app:destination="@id/fragmentSignup" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_meeting_nav_graph"
+            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
@@ -39,9 +45,6 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
-        <action
-            android:id="@+id/action_fragmentHome_to_meeting_nav_graph"
-            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
@@ -63,9 +66,9 @@
         app:startDestination="@id/fragmentMeetingMenu">
         <fragment
             android:id="@+id/fragmentMeetingMenu"
-            android:name="com.example.time2meet.ui.FragmentViewMeeting"
+            android:name="com.example.time2meet.ui.FragmentMeetingMenu"
             android:label="fragment_meeting_menu"
-            tools:layout="@layout/fragment_view_meeting">
+            tools:layout="@layout/fragment_meeting_menu">
             <argument
                 android:name="meetingID"
                 app:argType="integer"/>

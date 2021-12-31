@@ -1,7 +1,6 @@
 package com.example.time2meet.data;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -46,6 +45,27 @@ public class MeetingRepository {
 
     public LiveData<ArrayList<User>> getAllAttendee() { return attendees; }
 
+    public Integer createMeeting(Meeting new_meeting) {
+        try {
+            Meeting result = new createMeetingAsyncTask().execute(new_meeting).get();
+            if (request_state == REQUEST_SUCCESS) {
+                UserRepository userRepository = UserRepository.getInstance();
+                User host = userRepository.getUser().getValue();
+                ArrayList<Integer> meetingList = host.getMeetingList();
+                meetingList.add(result.getMeetingID());
+                host.setMeetingList(meetingList);
+                userRepository.updateMeetingList(host.getUsername(), meetingList);
+                userRepository.setUser(host);
+            }
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
     public Integer goMeeting(Integer meetingID) {
         try {
             Meeting _meeting = new getMeetingAsyncTask().execute(meetingID).get();
@@ -73,13 +93,11 @@ public class MeetingRepository {
         UserRepository userRepository = UserRepository.getInstance();
         User _user = userRepository.getUser(username);
         ArrayList<Integer> meetingList = _user.getMeetingList();
-        if (meetingList.contains(meeting.getValue().getMeetingID()))
-            return REQUEST_SUCCESS;
         meetingList.add(meeting.getValue().getMeetingID());
         _user.setMeetingList(meetingList);
         userRepository.updateMeetingList(username, meetingList);
 
-        Meeting _meeting = meeting.getValue();
+        Meeting _meeting = getMeeting().getValue();
         Map<Integer, ArrayList<Integer>> _attendees = _meeting.getAttendees();
         _attendees.put(_user.getUserID(), new ArrayList<>());
         _meeting.setAttendees(_attendees);
@@ -175,6 +193,23 @@ public class MeetingRepository {
 
     //================================================================================
     //=================================AsyncTask======================================
+
+    private class createMeetingAsyncTask extends AsyncTask<Meeting, Void, Meeting> {
+
+        @Override
+        protected Meeting doInBackground(Meeting... meetings) {
+            try {
+                Meeting response = ApiService.apiService.createMeeting(meetings[0])
+                                            .execute().body();
+                request_state = REQUEST_SUCCESS;
+                return response;
+            } catch (IOException e) {
+                request_state=REQUEST_ERROR;
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
     private class getMeetingAsyncTask extends AsyncTask<Integer, Void, Meeting> {
 

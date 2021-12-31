@@ -20,8 +20,6 @@
     <!-- Text in general -->
     <dimen name="default_text_size">14sp</dimen>
     <dimen name="display_info_text_size">20sp</dimen>
-    <dimen name="popup_info_text_size">18sp</dimen>
-    <dimen name="popup_button_text_size">16sp</dimen>
 
     <!-- Login screen -->
     <dimen name="login_title_text_size">48sp</dimen>
