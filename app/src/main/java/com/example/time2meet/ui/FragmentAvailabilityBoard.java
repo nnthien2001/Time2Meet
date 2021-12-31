@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavBackStackEntry;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -65,8 +66,14 @@ public class FragmentAvailabilityBoard extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Pls đừng gọi ViewModel ntn
+        // sai lắm luôn á vì nó tạo new instance của VM ko phải cái chung
+        // xem onViewCreated() trong FragmentHome
+        // NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
+        // meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
         userViewModel = new UserViewModel();
         meetingViewModel = new MeetingViewModel();
+
         meetingViewModel.goMeeting(1);
         availabilityBoard = new AvailabilityBoard(meetingViewModel.getMeeting());
         isEdit = false;

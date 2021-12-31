@@ -19,8 +19,8 @@ public class UserViewModel extends ViewModel {
         return userRepository.login(username, password);
     }
 
-    public Integer signUp(String username, String password) {
-        return userRepository.signUp(username, password);
+    public Integer signUp(String username, String password, String name, String dob, String phone) {
+        return userRepository.signUp(username, password, name, dob, phone);
     }
 
     public Integer updateProfile(String username, String name, String dob, String phone, String about) {

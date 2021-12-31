@@ -1,5 +1,6 @@
 package com.example.time2meet.data;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
@@ -8,18 +9,30 @@ public class MeetingViewModel extends ViewModel {
     private MeetingRepository meetingRepository;
 
     public MeetingViewModel() {
-        meetingRepository = MeetingRepository.getInstance();
+        meetingRepository = new MeetingRepository();
     }
+
+//    public MeetingViewModel(Integer meetingID) {
+//        meetingRepository = new MeetingRepository(meetingID);
+//    }
 
     public Meeting getMeeting() {
         return meetingRepository.getMeeting().getValue();
+    }
+
+    public LiveData<Meeting> getMeetingLiveDate() {
+        return meetingRepository.getMeeting();
     }
 
     public Integer goMeeting(Integer meetingID) {
         return meetingRepository.goMeeting(meetingID);
     }
 
-    public Integer toggleTime(ArrayList<Integer> interval){
+    public Integer updateMeeting(String meetingName, String date, String location, String description) {
+        return meetingRepository.updateMeeting(meetingName, date, location, description);
+    }
+
+    public  Integer toggleTime(ArrayList<Integer>interval){
         return meetingRepository.toggleTime(interval);
     }
 
@@ -36,5 +49,9 @@ public class MeetingViewModel extends ViewModel {
                 return u;
         }
         return null;
+    }
+
+    public Integer invite(String username) {
+        return meetingRepository.inviteAttendee(username);
     }
 }
