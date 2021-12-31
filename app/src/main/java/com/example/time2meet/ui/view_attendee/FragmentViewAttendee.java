@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentViewAttendee extends Fragment {
+public class FragmentViewAttendee extends Fragment implements View.OnClickListener{
 
     private NavController navController;
     private MeetingViewModel meetingViewModel;
@@ -41,6 +43,9 @@ public class FragmentViewAttendee extends Fragment {
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> usernames = new ArrayList<>();
     private AttendeeRecyclerViewAdapter adapter;
+    private LayoutInflater inflater;
+    private PopupWindow inviteNewAttendeePopup;
+    private View inviteNewAttendeePopupView;
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -56,6 +61,7 @@ public class FragmentViewAttendee extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_view_attendee, container, false);
+        this.inflater = inflater;
 
         initRecyclerView(rootView);
 
@@ -80,18 +86,23 @@ public class FragmentViewAttendee extends Fragment {
         }
 
         initAppBar();
-        fab = view.findViewById(R.id.fab);
+        fab = view.findViewById(R.id.fab_invite);
         if(isHostOfThisMeeting()) {
             fab.setVisibility(View.VISIBLE);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(), "Hello man", Toast.LENGTH_LONG).show();
-                    // TODO: implement add a new attendee to list
-                }
-            });
+            fab.setOnClickListener(this);
         }
+    }
 
+    private void openInviteNewAttendee() {
+        View layout = inflater.inflate(R.layout.popup_invite_attendee, null);
+        PopupWindow popupWindow = new PopupWindow(layout, (int) (300 * this.getContext().getResources().getDisplayMetrics().density),
+                (int) (200 * this.getContext().getResources().getDisplayMetrics().density),
+                true);
+        inviteNewAttendeePopup = popupWindow;
+        inviteNewAttendeePopupView = popupWindow.getContentView();
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
+        inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
     }
 
     private void initRecyclerView(View rootView) {
@@ -118,7 +129,9 @@ public class FragmentViewAttendee extends Fragment {
                 AttendeeSectionedRecyclerViewAdapter(getContext(),R.layout.section,R.id.section_text,adapter);
         mSectionedAdapter.setSections(sections.toArray(dummy));
         //Apply this adapter to the RecyclerView
-        new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
+        if(isHostOfThisMeeting()) {
+            new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
+        }
         recyclerView.setAdapter(mSectionedAdapter);
     }
 
@@ -134,7 +147,7 @@ public class FragmentViewAttendee extends Fragment {
             }
         } catch (Exception e) {
             System.out.println(e.toString());
-            for(int i=0; i<1; i++) {
+            for(int i=0; i<10; i++) {
                 names.add("This is test name:" + Integer.toString(i));
                 usernames.add("This is test username" + Integer.toString(i));
             }
@@ -154,7 +167,7 @@ public class FragmentViewAttendee extends Fragment {
             return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
         } catch (Exception e) {
             System.out.println(e.toString());
-    }
+        }
         return true;
     }
 
@@ -182,4 +195,16 @@ public class FragmentViewAttendee extends Fragment {
         }
     };
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_invite:
+                openInviteNewAttendee();
+                break;
+            case R.id.btn_cancel_invite:
+                break;
+            case R.id.btn_invite:
+                break;
+        }
+    }
 }
