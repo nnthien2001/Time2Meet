@@ -5,13 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
-import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
 
@@ -86,6 +83,7 @@ public class FragmentProfile extends Fragment {
         userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
         current_user=userViewModel.getCurrentUser();
 
+        initialize_elements();
         setUserInfo();
     }
 
@@ -102,6 +100,14 @@ public class FragmentProfile extends Fragment {
         desc_aboutme.setText(getResources().getString(R.string.about_me));
     }
     public void initialize_elements(){
-        username=(TextView) getView().findViewById(R.id.edt_username_login);
+        username=(TextView) getView().findViewById(R.id.profile_username);
+        dob=(TextView) getView().findViewById(R.id.profile_dob);
+        aboutme=(TextView) getView().findViewById(R.id.profile_about_me);
+        phone=(TextView) getView().findViewById(R.id.profile_phone_num);
+
+        desc_fullname=(TextView) getView().findViewById(R.id.profile_desc_fullname);
+        desc_dob=(TextView) getView().findViewById(R.id.profile_desc_dob);
+        desc_aboutme=(TextView) getView().findViewById(R.id.profile_desc_about_me);
+        desc_phone=(TextView) getView().findViewById(R.id.profile_desc_phone_num);
     }
 }

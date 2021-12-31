@@ -33,8 +33,8 @@ public class FragmentEditProfile extends Fragment {
     private UserViewModel userViewModel;
     private NavController navController;
     private User current_user;
-    private EditText username,full_name,dob,phone,about_me;
-    private TextView desc_fullname,desc_phone,desc_dob,desc_about_me;
+    private EditText username, fullname,dob,phone, aboutme;
+    private TextView desc_fullname,desc_phone,desc_dob,desc_aboutme;
 
     public FragmentEditProfile() {
         // Required empty public constructor
@@ -85,6 +85,7 @@ public class FragmentEditProfile extends Fragment {
         userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
         current_user=userViewModel.getCurrentUser();
 
+        initialize_elements();
         setUserInfo();
         dobPickerSetup(getContext(),view);
     }
@@ -92,18 +93,18 @@ public class FragmentEditProfile extends Fragment {
         username.setText(current_user.getUsername());
         dob.setText(current_user.getDob());
         phone.setText(current_user.getPhone());
-        about_me.setText(current_user.getAbout());
+        aboutme.setText(current_user.getAbout());
         desc_fullname.setText(getResources().getString(R.string.fullname));
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
-        desc_about_me.setText(getResources().getString(R.string.about_me));
+        desc_aboutme.setText(getResources().getString(R.string.about_me));
     }
 
     private void setEdited(View view) {
         current_user.setUsername(username.getText().toString());
-        current_user.setAbout(about_me.getText().toString());
+        current_user.setAbout(aboutme.getText().toString());
         current_user.setDob(dob.getText().toString());
-        current_user.setName(full_name.getText().toString());
+        current_user.setName(fullname.getText().toString());
         current_user.setPhone(phone.getText().toString());
         userViewModel.updateProfile(current_user.getUsername(),
                 current_user.getName(),
@@ -112,7 +113,7 @@ public class FragmentEditProfile extends Fragment {
                 current_user.getAbout());
     }
     private void dobPickerSetup(Context context, View view) {
-        TextView tv_dob = (TextView) view.findViewById(R.id.profile_dob);
+        TextView tv_dob = (TextView) view.findViewById(R.id.edit_profile_dob);
 
         DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -141,5 +142,17 @@ public class FragmentEditProfile extends Fragment {
                 dialog.show();
             }
         });
+    }
+    public void initialize_elements(){
+        username=(EditText) getView().findViewById(R.id.edit_profile_username);
+        fullname=(EditText) getView().findViewById(R.id.edit_profile_fullname);
+        dob=(EditText) getView().findViewById(R.id.edit_profile_dob);
+        aboutme=(EditText) getView().findViewById(R.id.edit_profile_about_me);
+        phone=(EditText) getView().findViewById(R.id.edit_profile_phone_num);
+
+        desc_fullname=(TextView) getView().findViewById(R.id.edit_profile_desc_fullname);
+        desc_dob=(TextView) getView().findViewById(R.id.edit_profile_desc_dob);
+        desc_aboutme=(TextView) getView().findViewById(R.id.edit_profile_desc_about_me);
+        desc_phone=(TextView) getView().findViewById(R.id.edit_profile_desc_phone_num);
     }
 }
