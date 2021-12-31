@@ -33,13 +33,13 @@ public class FragmentEditProfile extends Fragment {
     private UserViewModel userViewModel;
     private NavController navController;
     private User current_user;
-    private EditText username, fullname,dob,phone, aboutme;
-    private TextView desc_fullname,desc_phone,desc_dob,desc_aboutme;
+    private EditText username, fullname, dob, phone, aboutme;
+    private TextView desc_fullname, desc_phone, desc_dob, desc_aboutme;
 
     public FragmentEditProfile() {
         // Required empty public constructor
     }
-    
+
     // TODO: Rename and change types and number of parameters
 
     @Override
@@ -53,11 +53,12 @@ public class FragmentEditProfile extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
-    private void initAppBar(){
+
+    private void initAppBar() {
         TextView appbar_title = (TextView) getView().findViewById(R.id.tv_action_bar_center);
         appbar_title.setText(getResources().getString(R.string.my_profile));
         ImageButton back_button = (ImageButton) getView().findViewById(R.id.btn_action_bar_leftmost);
-        ImageButton save_button =(ImageButton) getView().findViewById(R.id.btn_action_bar_rightmost);
+        ImageButton save_button = (ImageButton) getView().findViewById(R.id.btn_action_bar_rightmost);
         back_button.setImageResource(R.drawable.ic_back);
         save_button.setImageResource(R.drawable.ic_save);
         save_button.setOnClickListener(new View.OnClickListener() {
@@ -79,17 +80,18 @@ public class FragmentEditProfile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initAppBar();
-        navController= Navigation.findNavController(view);
+        navController = Navigation.findNavController(view);
 
-        NavBackStackEntry backStackEntry=navController.getBackStackEntry(R.id.nav_graph);
-        userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
-        current_user=userViewModel.getCurrentUser();
+        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
+        userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
+        current_user = userViewModel.getCurrentUser();
 
         initialize_elements();
         setUserInfo();
-        dobPickerSetup(getContext(),view);
+        dobPickerSetup(getContext(), view);
     }
-    public void setUserInfo(){
+
+    public void setUserInfo() {
         username.setText(current_user.getUsername());
         dob.setText(current_user.getDob());
         phone.setText(current_user.getPhone());
@@ -112,6 +114,7 @@ public class FragmentEditProfile extends Fragment {
                 current_user.getPhone(),
                 current_user.getAbout());
     }
+
     private void dobPickerSetup(Context context, View view) {
         TextView tv_dob = (TextView) view.findViewById(R.id.edit_profile_dob);
 
@@ -143,16 +146,17 @@ public class FragmentEditProfile extends Fragment {
             }
         });
     }
-    public void initialize_elements(){
-        username=(EditText) getView().findViewById(R.id.edit_profile_username);
-        fullname=(EditText) getView().findViewById(R.id.edit_profile_fullname);
-        dob=(EditText) getView().findViewById(R.id.edit_profile_dob);
-        aboutme=(EditText) getView().findViewById(R.id.edit_profile_about_me);
-        phone=(EditText) getView().findViewById(R.id.edit_profile_phone_num);
 
-        desc_fullname=(TextView) getView().findViewById(R.id.edit_profile_desc_fullname);
-        desc_dob=(TextView) getView().findViewById(R.id.edit_profile_desc_dob);
-        desc_aboutme=(TextView) getView().findViewById(R.id.edit_profile_desc_about_me);
-        desc_phone=(TextView) getView().findViewById(R.id.edit_profile_desc_phone_num);
+    public void initialize_elements() {
+        username = (EditText) getView().findViewById(R.id.edit_profile_username);
+        fullname = (EditText) getView().findViewById(R.id.edit_profile_fullname);
+        dob = (EditText) getView().findViewById(R.id.edit_profile_dob);
+        aboutme = (EditText) getView().findViewById(R.id.edit_profile_about_me);
+        phone = (EditText) getView().findViewById(R.id.edit_profile_phone_num);
+
+        desc_fullname = (TextView) getView().findViewById(R.id.edit_profile_desc_fullname);
+        desc_dob = (TextView) getView().findViewById(R.id.edit_profile_desc_dob);
+        desc_aboutme = (TextView) getView().findViewById(R.id.edit_profile_desc_about_me);
+        desc_phone = (TextView) getView().findViewById(R.id.edit_profile_desc_phone_num);
     }
 }

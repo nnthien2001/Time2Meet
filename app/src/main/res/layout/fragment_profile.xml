@@ -4,141 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FragmentProfile"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".ui.FragmentProfile">
 
-    <include layout="@layout/action_bar"/>
+    <include layout="@layout/action_bar" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/profile_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/meeting_banner"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/action_bar_height"
         android:adjustViewBounds="true"
-        android:id="@+id/profile_banner"
-        android:layout_marginTop="@dimen/action_bar_height"/>
+        android:src="@drawable/meeting_banner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.time2meet.ui.CircularImageView
+        android:id="@+id/user_avatar"
         android:layout_width="108dp"
         android:layout_height="108dp"
+        android:layout_marginTop="93dp"
         android:src="@drawable/avatar0"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="93dp"
-        android:id="@+id/user_avatar"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/user_avatar"
-        android:text="Username"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/action_bar_text_size"
+        android:text="Username"
+        android:textColor="@color/black"
         android:textSize="@dimen/action_bar_text_size"
-        android:textColor="@color/black"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_avatar" />
+
     <TextView
         android:id="@+id/profile_desc_fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
         android:text="@string/fullname"
-        android:textSize="@dimen/default_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_username"
-        android:layout_marginStart="@dimen/content_margin"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
         android:textColor="@color/descriptive_text"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_fullname"
-        android:textSize="@dimen/display_info_text_size"
-        android:text="Full name"
-        app:layout_constraintTop_toBottomOf="@id/profile_desc_fullname"
-        android:layout_marginStart="@dimen/content_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
-        android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_desc_dob"
-        android:text="DoB"
         android:textSize="@dimen/default_text_size"
-        app:layout_constraintTop_toBottomOf="@id/profile_fullname"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_username" />
+
+    <TextView
+        android:id="@+id/profile_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:text="Full name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/display_info_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_fullname" />
+
+    <TextView
+        android:id="@+id/profile_desc_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/action_bar_text_size"
-        android:textColor="@color/descriptive_text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_dob"
-        android:textSize="@dimen/display_info_text_size"
         android:text="DoB"
-        app:layout_constraintTop_toBottomOf="@id/profile_desc_dob"
-        android:layout_marginStart="@dimen/content_margin"
+        android:textColor="@color/descriptive_text"
+        android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toBottomOf="@id/profile_fullname" />
+
     <TextView
+        android:id="@+id/profile_dob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profile_desc_phone_num"
-        android:text="@string/phone_num"
-        android:textSize="@dimen/default_text_size"
-        app:layout_constraintTop_toBottomOf="@id/profile_fullname"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:text="DoB"
+        android:textColor="@color/black"
+        android:textSize="@dimen/display_info_text_size"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_dob" />
+
+    <TextView
+        android:id="@+id/profile_desc_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginTop="@dimen/action_bar_text_size"
-        android:textColor="@color/descriptive_text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_phone_num"
-        android:textSize="@dimen/display_info_text_size"
-        android:text="Phone Number"
-        app:layout_constraintTop_toBottomOf="@id/profile_desc_phone_num"
-        app:layout_constraintStart_toStartOf="@id/profile_desc_phone_num"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
-        android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_desc_about_me"
-        android:text="@string/about_me"
+        android:text="@string/phone_num"
+        android:textColor="@color/descriptive_text"
         android:textSize="@dimen/default_text_size"
-        app:layout_constraintTop_toBottomOf="@id/profile_dob"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_fullname" />
+
+    <TextView
+        android:id="@+id/profile_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:text="Phone Number"
+        android:textColor="@color/black"
+        android:textSize="@dimen/display_info_text_size"
+        app:layout_constraintStart_toStartOf="@id/profile_desc_phone_num"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_phone_num" />
+
+    <TextView
+        android:id="@+id/profile_desc_about_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/action_bar_text_size"
-        android:textColor="@color/descriptive_text"/>
+        android:text="@string/about_me"
+        android:textColor="@color/descriptive_text"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_dob" />
+
     <TextView
+        android:id="@+id/profile_about_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profile_about_me"
-        android:textSize="@dimen/display_info_text_size"
-        android:text="About me"
-        app:layout_constraintTop_toBottomOf="@id/profile_desc_about_me"
         android:layout_marginStart="@dimen/content_margin"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/fragment_vertical_margin"
-        android:textColor="@color/black"/>
+        android:text="About me"
+        android:textColor="@color/black"
+        android:textSize="@dimen/display_info_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_desc_about_me" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/login_title_text_size"
+        android:backgroundTint="@color/button_background"
+        android:onClick="navigateEditProfile"
         android:text="@string/edit_password"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/login_title_text_size"
-        android:onClick="navigateEditProfile"
-        android:backgroundTint="@color/button_background"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
