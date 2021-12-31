@@ -38,7 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/action_bar_text_size"
-        android:textSize="@dimen/action_bar_text_size"/>
+        android:textSize="@dimen/action_bar_text_size"
+        android:textColor="@color/black"/>
     <TextView
         android:id="@+id/profile_desc_fullname"
         android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_username"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/descriptive_text"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -59,7 +61,8 @@
         app:layout_constraintTop_toBottomOf="@id/profile_desc_fullname"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +72,8 @@
         app:layout_constraintTop_toBottomOf="@id/profile_fullname"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/content_margin"
-        android:layout_marginTop="@dimen/action_bar_text_size"/>
+        android:layout_marginTop="@dimen/action_bar_text_size"
+        android:textColor="@color/descriptive_text"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +83,8 @@
         app:layout_constraintTop_toBottomOf="@id/profile_desc_dob"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +95,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="@dimen/action_bar_text_size"/>
+        android:layout_marginTop="@dimen/action_bar_text_size"
+        android:textColor="@color/descriptive_text"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +105,8 @@
         android:text="Phone Number"
         app:layout_constraintTop_toBottomOf="@id/profile_desc_phone_num"
         app:layout_constraintStart_toStartOf="@id/profile_desc_phone_num"
-        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +116,8 @@
         app:layout_constraintTop_toBottomOf="@id/profile_dob"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/content_margin"
-        android:layout_marginTop="@dimen/action_bar_text_size"/>
+        android:layout_marginTop="@dimen/action_bar_text_size"
+        android:textColor="@color/descriptive_text"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,7 +127,8 @@
         app:layout_constraintTop_toBottomOf="@id/profile_desc_about_me"
         android:layout_marginStart="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/fragment_vertical_margin" />
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/black"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
