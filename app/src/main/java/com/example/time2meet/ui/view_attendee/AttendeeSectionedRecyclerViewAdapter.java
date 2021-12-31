@@ -5,12 +5,18 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.time2meet.R;
 
 import java.util.Arrays;
 import java.util.Comparator;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -71,6 +77,7 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
             title = (TextView) view.findViewById(mTextResourceid);
         }
     }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {

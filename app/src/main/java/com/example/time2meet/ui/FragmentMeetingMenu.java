@@ -10,10 +10,12 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
@@ -69,7 +71,7 @@ public class FragmentMeetingMenu extends Fragment implements View.OnClickListene
             navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentAvailabilityBoard);
         }
 
-        if(v.getId() == R.id.view_attendee_btn) {
+        if(v.getId() == R.id.view_attendee_btn) { ;
             navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentViewAttendee);
         }
     }

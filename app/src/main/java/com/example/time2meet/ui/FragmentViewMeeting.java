@@ -59,18 +59,18 @@ public class FragmentViewMeeting extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentViewMeetingBinding.inflate(inflater, container, false);
 
-        //return inflater.inflate(R.layout.fragment_meeting_menu, container, false);
+//        return inflater.inflate(R.layout.fragment_meeting_menu, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        navController = Navigation.findNavController(view);
-//
-//        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-//        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
-//        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
+        navController = Navigation.findNavController(view);
+
+        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
+        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
         setDataToView();
 
@@ -123,7 +123,7 @@ public class FragmentViewMeeting extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
         meetingViewModel.getMeetingLiveDate().removeObservers(getViewLifecycleOwner());
     }
 }

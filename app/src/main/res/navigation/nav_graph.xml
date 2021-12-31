@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_profile" />
 
     <navigation android:id="@+id/meeting_nav_graph"
-        app:startDestination="@id/fragmentMeetingMenu">
+        app:startDestination="@id/fragmentViewAttendee">
         <fragment
             android:id="@+id/fragmentMeetingMenu"
             android:name="com.example.time2meet.ui.FragmentViewMeeting"

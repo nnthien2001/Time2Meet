@@ -78,16 +78,16 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     public void onClick(@NonNull View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-                if (userViewModel.login(edtUsername.getText().toString()
-                        , edtPassword.getText().toString())) {
-                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
-                }
-                else {
-                        // Testing purpose
-                        navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
+//                if (userViewModel.login(edtUsername.getText().toString()
+//                        , edtPassword.getText().toString())) {
+//                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
+//                }
+//                else {
                         // TODO: Handle error message
+                // Testing purpose Khang
+                navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
                         break;
-                }
+//                }
             case R.id.btn_signup:
                 // Check username exist: userViewModel.isUsernameExist(username)
                 // TODO: action move from FragmentLogin to FragmentSignUp

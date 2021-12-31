@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,9 @@ public class FragmentViewAttendee extends Fragment {
     private View view;
     private User host;
     private FloatingActionButton fab;
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> usernames = new ArrayList<>();
+    private AttendeeRecyclerViewAdapter adapter;
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -82,8 +86,7 @@ public class FragmentViewAttendee extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast toast = Toast.makeText(getContext(), "Hello man", Toast.LENGTH_LONG);
-                    toast.show();
+                    Toast.makeText(getContext(), "Hello man", Toast.LENGTH_LONG).show();
                     // TODO: implement add a new attendee to list
                 }
             });
@@ -93,11 +96,9 @@ public class FragmentViewAttendee extends Fragment {
 
     private void initRecyclerView(View rootView) {
         RecyclerView recyclerView = rootView.findViewById(R.id.attendee_recycler_view);
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<String> usernames = new ArrayList<>();
 
         getData(names, usernames);
-        AttendeeRecyclerViewAdapter adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
+        adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -116,8 +117,8 @@ public class FragmentViewAttendee extends Fragment {
         AttendeeSectionedRecyclerViewAdapter mSectionedAdapter = new
                 AttendeeSectionedRecyclerViewAdapter(getContext(),R.layout.section,R.id.section_text,adapter);
         mSectionedAdapter.setSections(sections.toArray(dummy));
-
         //Apply this adapter to the RecyclerView
+        new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(mSectionedAdapter);
     }
 
@@ -133,7 +134,7 @@ public class FragmentViewAttendee extends Fragment {
             }
         } catch (Exception e) {
             System.out.println(e.toString());
-            for(int i=0; i<10; i++) {
+            for(int i=0; i<1; i++) {
                 names.add("This is test name:" + Integer.toString(i));
                 usernames.add("This is test username" + Integer.toString(i));
             }
@@ -153,8 +154,32 @@ public class FragmentViewAttendee extends Fragment {
             return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
         } catch (Exception e) {
             System.out.println(e.toString());
-        }
+    }
         return true;
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getBindingAdapterPosition();
+            // Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
+            int real_position = position - 2;
+            usernames.remove(real_position);
+            names.remove(real_position);
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder instanceof AttendeeSectionedRecyclerViewAdapter.SectionViewHolder) return 0;
+            if (viewHolder.getBindingAdapterPosition() <= 2) return 0;
+            return super.getSwipeDirs(recyclerView, viewHolder);
+        }
+    };
 
 }
