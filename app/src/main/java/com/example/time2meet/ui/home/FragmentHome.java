@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -29,6 +30,7 @@ import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -43,6 +45,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     private Helper helper;
     private PopupWindow createMeetingPopup;
     private PopupWindow joinMeetingPopup;
+    private MeetingListAdapter adapter;
+    private ArrayList<Meeting> meetings;
+
     public FragmentHome() {
         // Required empty public constructor
     }
@@ -67,10 +72,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph);
         userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
+        meetings = new ArrayList<>();
 //        welcomeTextSetup(view, user);
+        meetingListSetup();
         buttonsSetup(view);
         //tabLayoutSetup(view);
-        meetingListSetup(view);
         helper = Helper.getInstance();
     }
 
@@ -89,6 +95,33 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                 .getIdentifier(userViewModel.getCurrentUser().getImage(), "drawable", this.getContext().getPackageName()));
         view.findViewById(R.id.btn_create_meeting).setOnClickListener(this);
         view.findViewById(R.id.btn_join_meeting).setOnClickListener(this);
+        ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getText().toString()){
+                    case "All Meetings":
+                        meetings.clear();
+                        meetings.addAll(userViewModel.getUserMeetingList());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case "Upcoming Meetings":
+                        meetings.clear();
+                        meetings.addAll(userViewModel.getUserUpComingMeeting());
+                        adapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void tabLayoutSetup(@NonNull View view) {
@@ -97,12 +130,12 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         tabLayout.addTab(tabLayout.newTab().setText("Upcoming Meetings"));
     }
 
-    private void meetingListSetup(View view) {
+    private void meetingListSetup() {
         RecyclerView rvMeetings = (RecyclerView) getView().findViewById(R.id.rv_meetings);
 
         // TODO: Handle get meeting list logic
-        ArrayList<Meeting> meetings = userViewModel.getUserMeetingList();
-        MeetingListAdapter adapter = new MeetingListAdapter(meetings);
+        meetings.addAll(userViewModel.getUserMeetingList());
+        adapter = new MeetingListAdapter(meetings, navController);
         rvMeetings.setAdapter(adapter);
     }
 
@@ -131,6 +164,15 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                 break;
             case R.id.btn_join:
                 joinMeeting();
+                break;
+            case R.id.tab_left:
+                meetings.clear();
+                meetings.addAll(userViewModel.getUserMeetingList());
+                adapter.notifyDataSetChanged();
+                break;
+            case R.id.tab_right:
+                meetings.clear();
+                meetings.addAll(userViewModel.getUserUpComingMeeting());
                 break;
         }
     }
@@ -193,6 +235,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             userViewModel.createMeeting(userViewModel.getCurrentUser().getUserID(),
                     meeting_name, meeting_start_date, meeting_end_date, meeting_date, location,description);
             createMeetingPopup.dismiss();
+            meetings.clear();
+            meetings.addAll(userViewModel.getUserMeetingList());
+            adapter.notifyDataSetChanged();
         }
     }
 

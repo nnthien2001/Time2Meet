@@ -22,12 +22,14 @@
             >
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_left"
                 android:text="All Meetings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_right"
                 android:text="Upcoming Meetings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
