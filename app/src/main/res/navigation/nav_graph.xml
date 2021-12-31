@@ -16,9 +16,6 @@
             app:destination="@id/fragmentHome"
             app:popUpTo="@id/fragmentLogin"
             app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_fragmentLogin_to_meeting_nav_graph"
-            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
@@ -33,6 +30,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
+        <action
+            android:id="@+id/action_fragmentHome_to_meeting_nav_graph"
+            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
