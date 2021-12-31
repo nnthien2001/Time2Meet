@@ -75,8 +75,9 @@ public class FragmentAvailabilityBoard extends Fragment {
         // oke bro. sorry =(((((( didn't mean to
         userViewModel = new UserViewModel();
         meetingViewModel = new MeetingViewModel();
-
-        meetingViewModel.goMeeting(1);
+        if (getArguments() != null) {
+            meetingViewModel.goMeeting(getArguments().getInt("meetingID"));
+        }
         availabilityBoard = new AvailabilityBoard(meetingViewModel.getMeeting());
         isEdit = false;
         this.view = view;

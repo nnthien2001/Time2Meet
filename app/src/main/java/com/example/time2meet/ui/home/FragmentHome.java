@@ -102,10 +102,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
         // TODO: Handle get meeting list logic
         ArrayList<Meeting> meetings = userViewModel.getUserMeetingList();
-        Log.i("debug", String.valueOf(meetings.size()));
-        for (Meeting m : meetings) {
-            Log.i("debug", m.getMeetingName());
-        }
         MeetingListAdapter adapter = new MeetingListAdapter(meetings);
         rvMeetings.setAdapter(adapter);
     }
@@ -149,6 +145,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         else {
             joinMeetingPopup.dismiss();
             // TODO: pass metingID to view meeting
+            Bundle bundle = new Bundle();
+            bundle.putInt("meetingID", meetingID);
+            navController.navigate(R.id.action_fragmentHome_to_meeting_nav_graph, bundle);
         }
     }
 

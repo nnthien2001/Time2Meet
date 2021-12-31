@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +84,9 @@ public class FragmentViewMeeting extends Fragment {
         binding.meetingBtnViewAvailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentAvailabilityBoard);
+                Bundle bundle = new Bundle();
+                bundle.putInt("meetingID", meetingID);
+                navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentAvailabilityBoard, bundle);
             }
         });
 
@@ -95,6 +98,7 @@ public class FragmentViewMeeting extends Fragment {
     }
 
     public void setDataToView() {
+        binding.meetingName.setText(meeting.getMeetingName());
         binding.meetingStartDate.setText(meeting.getStartDate());
         binding.meetingEndDate.setText(meeting.getEndDate());
         if (meeting.getDate() != null) {
@@ -105,7 +109,7 @@ public class FragmentViewMeeting extends Fragment {
         }
         binding.meetingLocation.setText(meeting.getLocation());
         binding.meetingHost.setText(meetingViewModel.getHost().getName());
-        binding.meetingMeetingId.setText(meeting.getMeetingID());
+        binding.meetingMeetingId.setText(meeting.getMeetingID().toString());
         binding.meetingDescription.setText(meeting.getDescription());
     }
 
