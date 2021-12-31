@@ -1,5 +1,7 @@
 package com.example.time2meet.data;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -43,8 +45,8 @@ public class MeetingViewModel extends ViewModel {
     public User getHost() {
         ArrayList<User> _attendees = meetingRepository.getAllAttendee().getValue();
         Meeting meeting = meetingRepository.getMeeting().getValue();
-
         for (User u : _attendees) {
+
             if (u.getUserID().equals(meeting.getHostID()))
                 return u;
         }
@@ -55,7 +57,4 @@ public class MeetingViewModel extends ViewModel {
         return meetingRepository.inviteAttendee(username);
     }
 
-    public Integer removeAttendee(Integer userID) {
-        return meetingRepository.removeAttendee(userID);
-    }
 }
