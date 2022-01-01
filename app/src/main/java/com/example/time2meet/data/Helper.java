@@ -3,25 +3,21 @@ package com.example.time2meet.data;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Locale;
 
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-
 public class Helper {
-    private Helper instance;
+    private static Helper instance;
     private Helper(){}
 
-    public Helper getInstance() {
+    public static Helper getInstance() {
         if (instance == null) {
             instance = new Helper();
         }
@@ -80,5 +76,23 @@ public class Helper {
         }
         final byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         return bytesToHex(encodedHash);
+    }
+
+    public Date stringToDate(String s) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date;
+        try {
+            date = format.parse(s);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Integer compareDate(String start, String end) {
+        Date startDate = stringToDate(start);
+        Date endDate = stringToDate(end);
+        return startDate.compareTo(endDate);
     }
 }

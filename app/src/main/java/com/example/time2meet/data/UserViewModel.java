@@ -58,4 +58,15 @@ public class UserViewModel extends ViewModel {
     public Boolean isUsernameExist(String username) {
         return userRepository.isUsernameExist(username);
     }
+
+
+    public Integer createMeeting(Integer hostID, String name, String startDate, String endDate, String date,
+                                 String location, String description) {
+        return userRepository.createMeeting(new Meeting(hostID, name, startDate, endDate,
+                date, location, description));
+    }
+
+    public Boolean isMeetingExist(Integer meetingID) {
+        return userRepository.isMeetingExist(meetingID);
+    }
 }
