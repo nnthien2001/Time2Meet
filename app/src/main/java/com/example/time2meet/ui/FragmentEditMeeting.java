@@ -28,7 +28,6 @@ public class FragmentEditMeeting extends Fragment {
     private NavController navController;
     private MeetingViewModel meetingViewModel;
     private Meeting meeting;
-    private Integer meetingID;
 
     public FragmentEditMeeting() {
         // Required empty public constructor
@@ -43,7 +42,6 @@ public class FragmentEditMeeting extends Fragment {
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
 
         // set up meeting
-        meetingViewModel.goMeeting(meetingID);
         meeting = meetingViewModel.getMeeting();
     }
 
