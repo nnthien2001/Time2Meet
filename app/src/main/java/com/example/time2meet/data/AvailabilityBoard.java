@@ -35,12 +35,15 @@ public class AvailabilityBoard {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         simpleDateFormat = new SimpleDateFormat("MMM dd");
         availability = new HashMap<>();
+        Log.i("debug", meeting.getMeetingName());
         try {
-            this.startDate = format.parse(meeting.getStartDate());
-            this.endDate = format.parse(meeting.getEndDate());
+            startDate = format.parse(meeting.getStartDate());
+            endDate = format.parse(meeting.getEndDate());
+            Log.i("debug1", startDate.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Log.i("debug", startDate.toString());
         Integer interval = Math.toIntExact((endDate.getTime() - startDate.getTime()) / 3600000) + 24;
         for (int i = 0; i<interval;++i){
             availability.put(i, 0);

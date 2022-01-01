@@ -3,43 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/cell_less_than_3.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/cell_selected.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_back.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_edit.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_key_pass.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_link.xml" value="0.4648148148148148" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_menu.xml" value="0.4648148148148148" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/ic_show_unhide.xml" value="0.4648148148148148" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/drawable/input_textbox.xml" value="0.5661458333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/action_bar.xml" value="0.3854166666666667" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_availability_board.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_password.xml" value="0.3177083333333333" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_profile.xml" value="0.33" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_home.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_view_attendee.xml" value="0.55" />
-        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/meeting_item.xml" value="0.18490374873353596" />
-        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1" />
-        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_edit_password.xml" value="0.67" />
-        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_edit_profile.xml" value="0.1" />
-        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.1" />
-        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/GitHub/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.14375" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_availability_board.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_menu.xml" value="0.22" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_view_attendee.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/action_bar.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/popup_create_meeting.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
