@@ -29,9 +29,6 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentSignup"
             app:destination="@id/fragmentSignup" />
-        <action
-            android:id="@+id/action_fragmentLogin_to_meeting_nav_graph"
-            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
