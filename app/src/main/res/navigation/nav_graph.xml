@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_fragmentProfile_to_fragmentEditProfile"
             app:destination="@id/fragmentEditProfile" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_fragmentEditPassword"
+            app:destination="@id/fragmentEditPassword" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEditProfile"
@@ -93,4 +96,9 @@
             android:label="fragment_availability_board"
             tools:layout="@layout/fragment_availability_board" />
     </navigation>
+    <fragment
+        android:id="@+id/fragmentEditPassword"
+        android:name="com.example.time2meet.ui.FragmentEditPassword"
+        android:label="fragment_edit_password"
+        tools:layout="@layout/fragment_edit_password" />
 </navigation>

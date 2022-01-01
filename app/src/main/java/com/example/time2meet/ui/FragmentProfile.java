@@ -1,5 +1,6 @@
 package com.example.time2meet.ui;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class FragmentProfile extends Fragment {
     private Button edit_password_button;
     private ImageButton back_button;
     private ImageButton edit_button;
+    private CircularImageView user_avatar;
 
     public FragmentProfile() {
         // Required empty public constructor
@@ -88,9 +90,8 @@ public class FragmentProfile extends Fragment {
     }
 
     public void setUserInfo(){
-
-
         username.setText(current_user.getUsername());
+        fullname.setText(current_user.getName());
         dob.setText(current_user.getDob());
         phone.setText(current_user.getPhone());
         aboutme.setText(current_user.getAbout());
@@ -98,16 +99,29 @@ public class FragmentProfile extends Fragment {
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
         desc_aboutme.setText(getResources().getString(R.string.about_me));
+        String avatar_id="avatar0";//=current_user.getAvatar
+        int avatar_src= getResources().getIdentifier(avatar_id,"drawable",getContext().getPackageName());
+        user_avatar.setImageResource(avatar_src);
     }
     public void initialize_elements(){
         username=(TextView) getView().findViewById(R.id.profile_username);
         dob=(TextView) getView().findViewById(R.id.profile_dob);
         aboutme=(TextView) getView().findViewById(R.id.profile_about_me);
         phone=(TextView) getView().findViewById(R.id.profile_phone_num);
+        fullname=(TextView) getView().findViewById(R.id.profile_fullname);
 
         desc_fullname=(TextView) getView().findViewById(R.id.profile_desc_fullname);
         desc_dob=(TextView) getView().findViewById(R.id.profile_desc_dob);
         desc_aboutme=(TextView) getView().findViewById(R.id.profile_desc_about_me);
         desc_phone=(TextView) getView().findViewById(R.id.profile_desc_phone_num);
+
+        user_avatar=(CircularImageView) getView().findViewById(R.id.user_avatar);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        current_user=userViewModel.getCurrentUser();
+        setUserInfo();
     }
 }

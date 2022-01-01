@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/action_bar_text_size"
         android:text="Username"
+        android:singleLine="true"
         android:textSize="@dimen/action_bar_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +63,7 @@
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
         android:text="Full name"
+        android:singleLine="true"
         android:textSize="@dimen/display_info_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_profile_desc_fullname" />
@@ -86,6 +88,7 @@
         android:layout_marginTop="@dimen/fragment_vertical_margin"
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
+        android:singleLine="true"
         android:text="DoB"
         android:textSize="@dimen/display_info_text_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +115,8 @@
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
         android:text="Phone Number"
+        android:inputType="phone"
+        android:singleLine="true"
         android:textSize="@dimen/display_info_text_size"
         app:layout_constraintStart_toStartOf="@id/edit_profile_desc_phone_num"
         app:layout_constraintTop_toBottomOf="@id/edit_profile_desc_phone_num" />

@@ -16,16 +16,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentEditPassword#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentEditPassword extends Fragment {
     private NavController navController;
     private User current_user;
@@ -33,6 +30,7 @@ public class FragmentEditPassword extends Fragment {
     private EditText current_password;
     private EditText new_password;
     private EditText confirm_password;
+    //private Helper
 
     public FragmentEditPassword() {
         // Required empty public constructor
@@ -92,5 +90,18 @@ public class FragmentEditPassword extends Fragment {
 
     private void setEdited(View view) {
         //TODO: Hash password and update
+        String current=current_password.getText().toString();
+        String new_pass=new_password.getText().toString();
+        String confirm=confirm_password.getText().toString();
+        //Hash and check all three before saving
+        if (current==current_user.getPassword() && new_pass==confirm)
+        {
+            //Update password
+            userViewModel.changePassword(new_pass);
+            Toast.makeText(getContext(),"Password updated!",Toast.LENGTH_LONG).show();
+            navController.navigateUp();
+        }
+        else Toast.makeText(getContext(),"Incorrect password or new passwords are different",Toast.LENGTH_LONG).show();
+
     }
 }

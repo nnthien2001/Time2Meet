@@ -14,6 +14,7 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class FragmentEditProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 setEdited(view);
+                navController.navigateUp();
             }
         });
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +98,7 @@ public class FragmentEditProfile extends Fragment {
         dob.setText(current_user.getDob());
         phone.setText(current_user.getPhone());
         aboutme.setText(current_user.getAbout());
+        fullname.setText(current_user.getName());
         desc_fullname.setText(getResources().getString(R.string.fullname));
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
@@ -114,6 +117,9 @@ public class FragmentEditProfile extends Fragment {
                 phone.getText().toString(),
                 aboutme.getText().toString());
         current_user = userViewModel.getCurrentUser();
+        Log.d("Username",current_user.getUsername());
+        Log.d("Name",current_user.getName());
+
     }
 
     private void dobPickerSetup(Context context, View view) {
@@ -159,5 +165,12 @@ public class FragmentEditProfile extends Fragment {
         desc_dob = (TextView) getView().findViewById(R.id.edit_profile_desc_dob);
         desc_aboutme = (TextView) getView().findViewById(R.id.edit_profile_desc_about_me);
         desc_phone = (TextView) getView().findViewById(R.id.edit_profile_desc_phone_num);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        current_user=userViewModel.getCurrentUser();
+        setUserInfo();
     }
 }
