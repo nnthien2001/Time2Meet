@@ -99,7 +99,7 @@ public class FragmentProfile extends Fragment {
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
         desc_aboutme.setText(getResources().getString(R.string.about_me));
-        String avatar_id="avatar0";//=current_user.getAvatar
+        String avatar_id=current_user.getImage();//=current_user.getAvatar
         int avatar_src= getResources().getIdentifier(avatar_id,"drawable",getContext().getPackageName());
         user_avatar.setImageResource(avatar_src);
     }

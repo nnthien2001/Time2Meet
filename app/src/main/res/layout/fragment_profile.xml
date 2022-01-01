@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.time2meet.ui.CircularImageView
-        android:id="@+id/edit_user_avatar"
+        android:id="@+id/user_avatar"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:layout_marginTop="93dp"

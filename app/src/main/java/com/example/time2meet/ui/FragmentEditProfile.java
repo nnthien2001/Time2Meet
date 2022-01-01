@@ -103,6 +103,9 @@ public class FragmentEditProfile extends Fragment {
         desc_dob.setText(getResources().getString(R.string.dob));
         desc_phone.setText(getResources().getString(R.string.phone_num));
         desc_aboutme.setText(getResources().getString(R.string.about_me));
+        ((CircularImageView) getView().findViewById(R.id.edit_user_avatar))
+                .setImageResource(getResources().getIdentifier(current_user.getImage(),
+                        "drawable",getContext().getPackageName()));
     }
 
     private void setEdited(View view) {
