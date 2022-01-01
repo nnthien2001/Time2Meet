@@ -103,16 +103,17 @@ public class FragmentEditProfile extends Fragment {
     }
 
     private void setEdited(View view) {
-        current_user.setUsername(username.getText().toString());
-        current_user.setAbout(aboutme.getText().toString());
-        current_user.setDob(dob.getText().toString());
-        current_user.setName(fullname.getText().toString());
-        current_user.setPhone(phone.getText().toString());
-        userViewModel.updateProfile(current_user.getUsername(),
-                current_user.getName(),
-                current_user.getDob(),
-                current_user.getPhone(),
-                current_user.getAbout());
+//        current_user.setUsername(username.getText().toString());
+//        current_user.setAbout(aboutme.getText().toString());
+//        current_user.setDob(dob.getText().toString());
+//        current_user.setName(fullname.getText().toString());
+//        current_user.setPhone(phone.getText().toString());
+        userViewModel.updateProfile(username.getText().toString(),
+                fullname.getText().toString(),
+                dob.getText().toString(),
+                phone.getText().toString(),
+                aboutme.getText().toString());
+        current_user = userViewModel.getCurrentUser();
     }
 
     private void dobPickerSetup(Context context, View view) {
