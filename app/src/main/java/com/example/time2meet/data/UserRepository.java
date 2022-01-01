@@ -126,6 +126,7 @@ public class UserRepository {
                 Meeting meeting = new getMeetingAsyncTask().execute(i).get();
                 all_meetings.add(meeting);
             }
+            Log.i("test", String.valueOf(all_meetings.size()));
             meetingList.setValue(all_meetings);
             return request_state;
         } catch (ExecutionException | InterruptedException e) {
@@ -148,13 +149,13 @@ public class UserRepository {
         try {
             Meeting result = new createMeetingAsyncTask().execute(new_meeting).get();
             if (request_state == REQUEST_SUCCESS) {
-                UserRepository userRepository = UserRepository.getInstance();
-                User host = userRepository.getUser().getValue();
+                User host = user.getValue();
                 ArrayList<Integer> meetingList = host.getMeetingList();
                 meetingList.add(result.getMeetingID());
                 host.setMeetingList(meetingList);
-                userRepository.updateMeetingList(host.getUsername(), meetingList);
-                userRepository.setUser(host);
+                updateMeetingList(host.getUsername(), meetingList);
+                setUser(host);
+                getAllMeetings();
             }
             return request_state;
         } catch (ExecutionException e) {

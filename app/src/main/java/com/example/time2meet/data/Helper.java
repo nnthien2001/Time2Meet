@@ -1,5 +1,8 @@
 package com.example.time2meet.data;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,7 +24,7 @@ public class Helper {
         return instance;
     }
 
-    public Boolean isValidDate (String value){
+    public Boolean isValidDate(String value) {
         LocalDateTime ldt = null;
         String format = "dd/MM/yyyy";
         Locale locale = Locale.ENGLISH;
@@ -48,6 +51,31 @@ public class Helper {
         }
 
         return false;
+    }
+
+    public static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+
+    public static String hashPassword(String password) {
+        String algorithm = new String("SHA-256");
+
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance(algorithm);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        final byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        return bytesToHex(encodedHash);
     }
 
     public Date stringToDate(String s) {

@@ -1,4 +1,4 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.login;
 
 import android.os.Bundle;
 
@@ -10,29 +10,21 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.time2meet.ApiService;
 import com.example.time2meet.R;
-import com.example.time2meet.data.Authenticator;
+import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.UserViewModel;
-import com.example.time2meet.data.User;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class FragmentLogin extends Fragment implements View.OnClickListener {
+public class FragmentLogin extends Fragment {
 
     private NavController navController;
     private UserViewModel userViewModel;
+
     private EditText edtUsername;
     private EditText edtPassword;
 
@@ -65,33 +57,30 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
     }
 
     private void typeinInfoSetup(@NonNull View view) {
-        edtUsername = (EditText) view.findViewById(R.id.edt_username_login);
-        edtPassword = (EditText) view.findViewById(R.id.edt_password_login);
+        edtUsername = view.findViewById(R.id.edt_username_login);
+        edtPassword = view.findViewById(R.id.edt_password_login);
     }
 
     private void buttonsSetup(@NonNull View view) {
-        view.findViewById(R.id.btn_login).setOnClickListener(this);
-        view.findViewById(R.id.btn_signup).setOnClickListener(this);
+        view.findViewById(R.id.btn_login).setOnClickListener(v -> {
+            if (edtUsername.getText().toString().equals("") || edtPassword.getText().toString().equals(""))
+                return;
+            if (userViewModel.login(edtUsername.getText().toString(),
+                    Helper.hashPassword(edtPassword.getText().toString()))) {
+                navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
+            }
+            else {
+                Toast.makeText(
+                        this.getContext(),
+                        "Username and password do not match or this account does not exist.",
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        });
+
+        view.findViewById(R.id.btn_to_signup).setOnClickListener(v -> {
+            navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
+        });
     }
 
-    @Override
-    public void onClick(@NonNull View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-//                if (userViewModel.login(edtUsername.getText().toString()
-//                        , edtPassword.getText().toString())) {
-//                        navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
-//                }
-//                else {
-                        // TODO: Handle error message
-                // Testing purpose Khang
-                navController.navigate(R.id.action_fragmentLogin_to_meeting_nav_graph);
-                        break;
-//                }
-            case R.id.btn_signup:
-                // Check username exist: userViewModel.isUsernameExist(username)
-                // TODO: action move from FragmentLogin to FragmentSignUp
-                break;
-        }
-    }
 }

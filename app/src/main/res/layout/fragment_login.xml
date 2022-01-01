@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.FragmentLogin"
+    tools:context=".ui.login.FragmentLogin"
     android:background="@color/colorPrimaryVariant"
     >
 
@@ -127,7 +127,7 @@
 
             <TextView
                 android:text="SIGN UP"
-                android:id="@+id/btn_signup"
+                android:id="@+id/btn_to_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"

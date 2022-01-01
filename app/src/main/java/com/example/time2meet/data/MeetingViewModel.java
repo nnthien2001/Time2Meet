@@ -57,4 +57,7 @@ public class MeetingViewModel extends ViewModel {
         return meetingRepository.inviteAttendee(username);
     }
 
+    public Integer removeAttendee(Integer userID) {
+        return meetingRepository.removeAttendee(userID);
+    }
 }

@@ -3,22 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentLogin">
+    app:startDestination="@id/fragmentLanding">
+
+    <fragment
+        android:id="@+id/fragmentLanding"
+        android:name="com.example.time2meet.ui.FragmentLanding"
+        android:label="fragment_landing"
+        tools:layout="@layout/fragment_landing"
+        >
+        <action
+            android:id="@+id/action_fragmentLanding_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.example.time2meet.ui.FragmentLogin"
+        android:name="com.example.time2meet.ui.login.FragmentLogin"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
             app:destination="@id/fragmentHome"
-            app:popUpTo="@id/fragmentLogin"
-            app:popUpToInclusive="true"/>
+            app:popUpTo="@id/fragmentLanding"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentSignup"
+            app:destination="@id/fragmentSignup" />
         <action
             android:id="@+id/action_fragmentLogin_to_meeting_nav_graph"
             app:destination="@id/meeting_nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="com.example.time2meet.ui.login.FragmentSignup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup"
+        >
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:popUpTo="@id/fragmentLanding"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -26,7 +55,6 @@
         android:name="com.example.time2meet.ui.home.FragmentHome"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-
         <action
             android:id="@+id/action_fragmentHome_to_fragmentMeetingMenu"
             app:destination="@id/meeting_nav_graph" />
@@ -45,7 +73,7 @@
         tools:layout="@layout/fragment_profile" />
 
     <navigation android:id="@+id/meeting_nav_graph"
-        app:startDestination="@id/fragmentViewAttendee">
+        app:startDestination="@id/fragmentMeetingMenu">
         <fragment
             android:id="@+id/fragmentMeetingMenu"
             android:name="com.example.time2meet.ui.FragmentViewMeeting"
@@ -67,7 +95,7 @@
 
         <fragment
             android:id="@+id/fragmentViewAttendee"
-            android:name="com.example.time2meet.ui.view_attendee.FragmentViewAttendee"
+            android:name="com.example.time2meet.ui.FragmentViewAttendee"
             android:label="fragment_view_attendee"
             tools:layout="@layout/fragment_view_attendee">
             <action
