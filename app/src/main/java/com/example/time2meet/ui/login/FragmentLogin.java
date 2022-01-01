@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Helper;
@@ -62,18 +63,22 @@ public class FragmentLogin extends Fragment {
 
     private void buttonsSetup(@NonNull View view) {
         view.findViewById(R.id.btn_login).setOnClickListener(v -> {
+            if (edtUsername.getText().toString().equals("") || edtPassword.getText().toString().equals(""))
+                return;
             if (userViewModel.login(edtUsername.getText().toString(),
                     Helper.hashPassword(edtPassword.getText().toString()))) {
                 navController.navigate(R.id.action_fragmentLogin_to_fragmentHome);
             }
             else {
-                // TODO: Handle error message
+                Toast.makeText(
+                        this.getContext(),
+                        "Username and password do not match or this account does not exist.",
+                        Toast.LENGTH_LONG
+                ).show();
             }
         });
 
         view.findViewById(R.id.btn_to_signup).setOnClickListener(v -> {
-            // Check username exist: userViewModel.isUsernameExist(username)
-            // TODO: action move from FragmentLogin to FragmentSignUp
             navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
         });
     }

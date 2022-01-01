@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Helper;
@@ -121,7 +122,21 @@ public class FragmentSignup extends Fragment {
 
     private void buttonsSetup(View view) {
         view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {
-            if (edt_password.getText().toString().equals(edt_confirm_password.getText().toString())) {
+            if (edt_username.getText().toString().equals("")
+                || edt_password.getText().toString().equals("")
+                || edt_confirm_password.getText().toString().equals(""))
+                return;
+
+            if (userViewModel.isUsernameExist(edt_username.getText().toString())) {
+                Log.d("Create account", "Username already exists.");
+
+                Toast.makeText(
+                        this.getContext(),
+                        "Username already exists.",
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+            else if (edt_password.getText().toString().equals(edt_confirm_password.getText().toString())) {
                 int rqstate = userViewModel.signUp(
                         edt_username.getText().toString(),
                         Helper.hashPassword(edt_password.getText().toString()),
@@ -130,7 +145,7 @@ public class FragmentSignup extends Fragment {
                         edt_phone_number.getText().toString());
 
                 if (rqstate == UserRepository.getInstance().REQUEST_SUCCESS) {
-                    Log.d("Create account button", "Sign up successfully!");
+                    Log.d("Create account", "Sign up successfully!");
 
                     rqstate = userViewModel.login(
                             edt_username.getText().toString(),
@@ -138,22 +153,40 @@ public class FragmentSignup extends Fragment {
                     ) ? 1 : 0;
 
                     if (rqstate == 1) {
-                        Log.d("Create account button", "Login successfully!");
+                        Log.d("Create account", "Login successfully!");
                     }
                     else {
                         Log.d("Create account button", "Login failed!");
+
+                        Toast.makeText(
+                                this.getContext(),
+                                "Something went wrong. Login failed.",
+                                Toast.LENGTH_LONG
+                        ).show();
+
+                        navController.navigate(R.id.action_fragmentSignup_to_fragmentLogin);
                     }
 
                     navController.navigate(R.id.action_fragmentSignup_to_fragmentHome);
                 }
                 else {
-                    Log.d("Create account button set up", "Sign up failed!");
+                    Log.d("Create account", "Sign up failed!");
 
-                    // TODO: Handle error message for signing up
+                    Toast.makeText(
+                            this.getContext(),
+                            "Something went wrong. Sign up failed.",
+                            Toast.LENGTH_LONG
+                    ).show();
                 }
             }
             else {
-                // TODO: Handle error message for confirming password
+                Log.d("Create account", "Passwords mismatch.");
+
+                Toast.makeText(
+                        this.getContext(),
+                        "Please make sure your passwords match.",
+                        Toast.LENGTH_LONG
+                ).show();
             }
         });
 
