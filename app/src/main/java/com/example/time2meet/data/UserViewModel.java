@@ -69,4 +69,8 @@ public class UserViewModel extends ViewModel {
     public Boolean isMeetingExist(Integer meetingID) {
         return userRepository.isMeetingExist(meetingID);
     }
+
+    public User getUser(Integer ID) {
+        return userRepository.getUser(ID);
+    }
 }
