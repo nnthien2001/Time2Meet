@@ -30,7 +30,7 @@
         android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:inputType="number"/>
+        android:inputType="text"/>
 
     <Button
         android:id="@+id/btn_cancel_invite"

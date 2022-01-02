@@ -109,7 +109,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         inviteNewAttendeePopup = popupWindow;
         inviteNewAttendeePopupView = popupWindow.getContentView();
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
+        Toast.makeText(getContext(), "I am inviting new attendee", Toast.LENGTH_SHORT).show();
+        inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
+        inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
     }
 
     private void initRecyclerView(View rootView) {
@@ -199,6 +201,8 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         removeNewAttendeeConfirmationPopup = popupWindow;
         removeNewAttendeeConfirmationView = popupWindow.getContentView();
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        removeNewAttendeeConfirmationView.findViewById(R.id.btn_remove_attendee).setOnClickListener(this);
+        removeNewAttendeeConfirmationView.findViewById(R.id.btn_cancel_remove_attendee).setOnClickListener(this);
     }
 
     @Override
@@ -211,6 +215,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                 inviteNewAttendeePopup.dismiss();
                 break;
             case R.id.btn_invite:
+                Toast.makeText(getContext(), "Inviting", Toast.LENGTH_SHORT).show();
                 inviteAttendee();
                 break;
             case R.id.btn_cancel_remove_attendee:
