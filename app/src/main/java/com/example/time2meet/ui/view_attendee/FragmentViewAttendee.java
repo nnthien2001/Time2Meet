@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         navController = Navigation.findNavController(view);
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-        meetingViewModel = new MeetingViewModel();
+        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
         userViewModel = new UserViewModel();
 
         this.view = view;
@@ -101,8 +102,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         inviteNewAttendeePopup = popupWindow;
         inviteNewAttendeePopupView = popupWindow.getContentView();
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
-        inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
+//        inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
+//        inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
+
     }
 
     private void initRecyclerView(View rootView) {
@@ -146,11 +148,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                 usernames.add(attendee.getUsername());
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
-            for(int i=0; i<10; i++) {
-                names.add("This is test name:" + Integer.toString(i));
-                usernames.add("This is test username" + Integer.toString(i));
-            }
+            Toast.makeText(getContext(), "There is a network error", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -166,9 +164,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         try {
             return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
         } catch (Exception e) {
-            System.out.println(e.toString());
+            Toast.makeText(getContext(), "There is a network error", Toast.LENGTH_SHORT).show();
         }
-        return true;
+        return false;
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -202,9 +200,18 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                 openInviteNewAttendee();
                 break;
             case R.id.btn_cancel_invite:
+                inviteNewAttendeePopup.dismiss();
                 break;
             case R.id.btn_invite:
+                inviteAttendee();
                 break;
         }
+    }
+
+    private void inviteAttendee() {
+        String attendee_username = ((EditText)inviteNewAttendeePopupView.findViewById(R.id.attendee_username))
+                .getText().toString();
+        meetingViewModel.invite(attendee_username);
+        // TODO: Handle error
     }
 }
