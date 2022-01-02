@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,7 +47,7 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
             @Override
             public void onChanged() {
                 mValid = mBaseAdapter.getItemCount()>0;
-                notifyDataSetChanged();
+                setSections();
             }
 
             @Override
@@ -123,20 +126,30 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
     }
 
 
-    public void setSections(Section[] sections) {
+    public void setSections() {
+
+        //This is the code to provide a sectioned list
+        List<Section> sectionsList =
+                new ArrayList<Section>();
+
+        //Sections
+        sectionsList.add(new AttendeeSectionedRecyclerViewAdapter.Section(0,"host"));
+        if(mBaseAdapter.getItemCount()>1) {
+            sectionsList.add(new AttendeeSectionedRecyclerViewAdapter.Section(1, "attendee"));
+        }
+
+        //Add your adapter to the sectionAdapter
         mSections.clear();
 
-        Arrays.sort(sections, new Comparator<Section>() {
+        Collections.sort(sectionsList, new Comparator<Section>() {
             @Override
             public int compare(Section o, Section o1) {
-                return (o.firstPosition == o1.firstPosition)
-                        ? 0
-                        : ((o.firstPosition < o1.firstPosition) ? -1 : 1);
+                return Integer.compare(o.firstPosition, o1.firstPosition);
             }
         });
 
         int offset = 0; // offset positions for the headers we're adding
-        for (Section section : sections) {
+        for (Section section : sectionsList) {
             section.sectionedPosition = section.firstPosition + offset;
             mSections.append(section.sectionedPosition, section);
             ++offset;
