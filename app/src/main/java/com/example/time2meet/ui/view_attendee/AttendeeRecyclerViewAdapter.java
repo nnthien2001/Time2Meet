@@ -1,6 +1,7 @@
 package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
         return mNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         CircleImageView profilePicture;
         TextView attendeeName;
@@ -77,6 +78,12 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
             attendeeName = itemView.findViewById(R.id.attendee_name);
             attendeeUsername = itemView.findViewById(R.id.attendee_username);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            // TODO: pass userID (or username?) to view profile
         }
     }
 }

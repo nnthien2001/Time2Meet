@@ -54,6 +54,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private PopupWindow removeNewAttendeeConfirmationPopup;
     private View removeNewAttendeeConfirmationView;
     private String attendeeToRemove = null;
+    private ImageButton back_button;
     private static final String TAG = FragmentViewAttendee.class.getSimpleName();
 
     public FragmentViewAttendee() {
@@ -152,8 +153,15 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private void initAppBar() {
         TextView tv_appbar = (TextView) view.findViewById(R.id.tv_action_bar_center);
         tv_appbar.setText("Attendance List");
-        ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
-        imgBtn_back.setImageResource(R.drawable.ic_back);
+        back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
+        back_button.setImageResource(R.drawable.ic_back);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: Pop the backstack after finish viewing?
+                navController.navigateUp();
+            }
+        });
     }
 
     private boolean isHostOfThisMeeting() {
@@ -275,4 +283,5 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         //binding = null;
         meetingViewModel.getMeetingLiveDate().removeObservers(getViewLifecycleOwner());
     }
+
 }
