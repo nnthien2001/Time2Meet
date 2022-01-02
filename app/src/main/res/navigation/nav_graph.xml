@@ -29,9 +29,6 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentSignup"
             app:destination="@id/fragmentSignup" />
-        <action
-            android:id="@+id/action_fragmentLogin_to_meeting_nav_graph"
-            app:destination="@id/meeting_nav_graph" />
     </fragment>
 
     <fragment
@@ -95,7 +92,7 @@
 
         <fragment
             android:id="@+id/fragmentViewAttendee"
-            android:name="com.example.time2meet.ui.FragmentViewAttendee"
+            android:name="com.example.time2meet.ui.view_attendee.FragmentViewAttendee"
             android:label="fragment_view_attendee"
             tools:layout="@layout/fragment_view_attendee">
             <action

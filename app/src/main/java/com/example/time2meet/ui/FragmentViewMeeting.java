@@ -109,7 +109,7 @@ public class FragmentViewMeeting extends Fragment {
         }
         binding.meetingLocation.setText(meeting.getLocation());
         binding.meetingHost.setText(meetingViewModel.getHost().getName());
-        binding.meetingMeetingId.setText(meeting.getMeetingID());
+        binding.meetingMeetingId.setText(meeting.getMeetingID().toString());
         binding.meetingDescription.setText(meeting.getDescription());
     }
 
