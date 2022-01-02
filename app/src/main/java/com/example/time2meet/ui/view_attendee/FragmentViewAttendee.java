@@ -131,21 +131,21 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     }
 
     private void getData() {
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<User> attendees = new ArrayList<>();
+        attendees.add(this.host);
+        ArrayList<User> dummy = meetingViewModel.getAttendees();
 
-        ArrayList<User> attendees = new ArrayList<>(meetingViewModel.getAttendees());
-
-        names.add(this.host.getName());
-        usernames.add(this.host.getUsername());
-        for(User attendee : attendees) if(!attendee.getUsername().equals(this.host.getUsername())) {
-            names.add(attendee.getName());
-            usernames.add(attendee.getUsername());
+        for(User user : dummy) {
+            if(!user.getUsername().equals(this.host.getUsername())) {
+                attendees.add(user);
+            }
         }
-        if(adapter == null) adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
+
+        if(adapter == null) {
+            adapter = new AttendeeRecyclerViewAdapter(getContext(), attendees);
+        }
         else {
-            adapter.setmNames(names);
-            adapter.setmUsernames(usernames);
+            adapter.setUsers(attendees);
         }
 
     }
@@ -180,7 +180,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             int position = viewHolder.getBindingAdapterPosition();
             Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
             int real_position = position - 2;
-            String remove_attedee_username = adapter.getmUsernames().get(real_position);
+            String remove_attedee_username = adapter.getUsers().get(real_position).getUsername();
             openRemoveAttendeeConfirmation(remove_attedee_username);
             getData();
         }

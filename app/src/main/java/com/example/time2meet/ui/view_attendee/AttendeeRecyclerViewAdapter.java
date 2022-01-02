@@ -12,38 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.User;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "AttendeeRecyclerViewAdapter";
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mUsernames = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
 
-    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<String> mNames, ArrayList<String> mUsernames) {
-        this.mNames = mNames;
-        this.mUsernames = mUsernames;
+    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users) {
+        this.users.addAll(users);
         this.mContext = mContext;
     }
 
-    public ArrayList<String> getmNames() {
-        return mNames;
+    public ArrayList<User> getUsers() {
+        return this.users;
     }
 
-    public ArrayList<String> getmUsernames() {
-        return mUsernames;
-    }
-
-    public void setmNames(ArrayList<String> mNames) {
-        this.mNames = mNames;
-        notifyDataSetChanged();
-    }
-
-    public void setmUsernames(ArrayList<String> mUsernames) {
-        this.mUsernames = mUsernames;
+    public void setUsers(ArrayList<User> users) {
+        this.users.clear();
+        this.users.addAll(users);
         notifyDataSetChanged();
     }
 
@@ -57,13 +49,13 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.attendeeName.setText(mNames.get(position));
-        holder.attendeeUsername.setText(mUsernames.get(position));
+        holder.attendeeName.setText(users.get(position).getName());
+        holder.attendeeUsername.setText(users.get(position).getUsername());
     }
 
     @Override
     public int getItemCount() {
-        return mNames.size();
+        return users.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
