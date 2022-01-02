@@ -51,6 +51,10 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.attendeeName.setText(users.get(position).getName());
         holder.attendeeUsername.setText(users.get(position).getUsername());
+
+        String avatar_id=users.get(position).getImage();
+        int avatar_src= mContext.getResources().getIdentifier(avatar_id,"drawable",mContext.getPackageName());
+        holder.profilePicture.setImageResource(avatar_src);
     }
 
     @Override
