@@ -28,6 +28,7 @@ import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
+import com.example.time2meet.databinding.MeetingItemBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -47,6 +48,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private LayoutInflater inflater;
     private PopupWindow inviteNewAttendeePopup;
     private View inviteNewAttendeePopupView;
+    private PopupWindow removeNewAttendeeConfirmationPopup;
+    private View removeNewAttendeeConfirmationView;
+    private String attendeeToRemove = null;
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -102,15 +106,13 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         inviteNewAttendeePopup = popupWindow;
         inviteNewAttendeePopupView = popupWindow.getContentView();
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//        inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
-//        inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
 
     }
 
     private void initRecyclerView(View rootView) {
         RecyclerView recyclerView = rootView.findViewById(R.id.attendee_recycler_view);
 
-        getData(names, usernames);
+        getData();
         adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -137,7 +139,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         recyclerView.setAdapter(mSectionedAdapter);
     }
 
-    private void getData(ArrayList<String> names, ArrayList<String> usernames) {
+    private void getData() {
         try {
             ArrayList<User> attendees = meetingViewModel.getAttendees();
             attendees.remove(this.host);
@@ -180,9 +182,8 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             int position = viewHolder.getBindingAdapterPosition();
             // Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
             int real_position = position - 2;
-            usernames.remove(real_position);
-            names.remove(real_position);
-            adapter.notifyDataSetChanged();
+            String remove_attedee_username = usernames.get(real_position);
+            openRemoveAttendeeConfirmation(remove_attedee_username);
         }
 
         @Override
@@ -192,6 +193,17 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             return super.getSwipeDirs(recyclerView, viewHolder);
         }
     };
+
+    private void openRemoveAttendeeConfirmation(String remove_attedee_username) {
+        attendeeToRemove = remove_attedee_username;
+        View layout = inflater.inflate(R.layout.popup_remove_attendee_confirmation, null);
+        PopupWindow popupWindow = new PopupWindow(layout, (int) (300 * this.getContext().getResources().getDisplayMetrics().density),
+                (int) (200 * this.getContext().getResources().getDisplayMetrics().density),
+                true);
+        removeNewAttendeeConfirmationPopup = popupWindow;
+        removeNewAttendeeConfirmationView = popupWindow.getContentView();
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
 
     @Override
     public void onClick(View v) {
@@ -205,6 +217,30 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             case R.id.btn_invite:
                 inviteAttendee();
                 break;
+            case R.id.btn_cancel_remove_attendee:
+                removeNewAttendeeConfirmationPopup.dismiss();
+                break;
+            case R.id.btn_remove_attendee:
+                removeAttendee();
+                break;
+        }
+    }
+
+
+
+    private void removeAttendee() {
+        assert attendeeToRemove != null;
+        meetingViewModel.removeAttendee(getUserIDOfAttendeeToRemove());
+        attendeeToRemove = null;
+        // TODO: Observe changes in data
+    }
+
+    private Integer getUserIDOfAttendeeToRemove() {
+        ArrayList<User> users = meetingViewModel.getAttendees();
+        for(User user : users) {
+            if(user.getUsername().equals(attendeeToRemove)) {
+                return user.getUserID();
+            }
         }
     }
 
