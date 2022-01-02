@@ -28,6 +28,24 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
         this.mContext = mContext;
     }
 
+    public ArrayList<String> getmNames() {
+        return mNames;
+    }
+
+    public ArrayList<String> getmUsernames() {
+        return mUsernames;
+    }
+
+    public void setmNames(ArrayList<String> mNames) {
+        this.mNames = mNames;
+        notifyDataSetChanged();
+    }
+
+    public void setmUsernames(ArrayList<String> mUsernames) {
+        this.mUsernames = mUsernames;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -31,6 +31,7 @@ import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
+import com.example.time2meet.data.UserRepository;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.databinding.MeetingItemBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,8 +47,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private View view;
     private User host;
     private FloatingActionButton fab;
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> usernames = new ArrayList<>();
     private AttendeeRecyclerViewAdapter adapter;
     private LayoutInflater inflater;
     private PopupWindow inviteNewAttendeePopup;
@@ -82,6 +81,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         assert this.host != null;
 
         initRecyclerView(rootView);
+        setupObserver();
 
         return rootView;
     }
@@ -98,7 +98,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             fab.setOnClickListener(this);
         }
 
-        setupObserver();
     }
 
     private void openInviteNewAttendee() {
@@ -116,9 +115,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
 
     private void initRecyclerView(View rootView) {
         RecyclerView recyclerView = rootView.findViewById(R.id.attendee_recycler_view);
-
         getData();
-        adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -133,20 +130,21 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     }
 
     private void getData() {
-        try {
-            names.clear();
-            usernames.clear();
-            ArrayList<User> attendees = meetingViewModel.getAttendees();
-            attendees.remove(this.host);
-            names.add(this.host.getName());
-            usernames.add(this.host.getUsername());
-            for(User attendee : attendees) {
-                names.add(attendee.getName());
-                usernames.add(attendee.getUsername());
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "There is a network error", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> usernames = new ArrayList<>();
+
+        ArrayList<User> attendees = new ArrayList<>(meetingViewModel.getAttendees());
+
+        names.add(this.host.getName());
+        usernames.add(this.host.getUsername());
+        for(User attendee : attendees) if(!attendee.getUsername().equals(this.host.getUsername())) {
+            names.add(attendee.getName());
+            usernames.add(attendee.getUsername());
+        }
+        if(adapter == null) adapter = new AttendeeRecyclerViewAdapter(getContext(), names, usernames);
+        else {
+            adapter.setmNames(names);
+            adapter.setmUsernames(usernames);
         }
 
     }
@@ -159,14 +157,8 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     }
 
     private boolean isHostOfThisMeeting() {
-        try {
-            assert this.host != null;
-            return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "There is a network error", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        return false;
+        assert this.host != null;
+        return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -178,10 +170,11 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getBindingAdapterPosition();
-            // Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
             int real_position = position - 2;
-            String remove_attedee_username = usernames.get(real_position);
+            String remove_attedee_username = adapter.getmUsernames().get(real_position);
             openRemoveAttendeeConfirmation(remove_attedee_username);
+            getData();
         }
 
         @Override
@@ -231,9 +224,12 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
 
     private void removeAttendee() {
         assert attendeeToRemove != null;
+        assert !attendeeToRemove.equals(this.host.getUsername());
         meetingViewModel.removeAttendee(getUserIDOfAttendeeToRemove());
         attendeeToRemove = null;
-        // TODO: Observe changes in data
+
+        removeNewAttendeeConfirmationPopup.dismiss();
+        getData();
     }
 
     private Integer getUserIDOfAttendeeToRemove() {
@@ -249,8 +245,16 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private void inviteAttendee() {
         String attendee_username = ((EditText)inviteNewAttendeePopupView.findViewById(R.id.attendee_username))
                 .getText().toString();
-        meetingViewModel.invite(attendee_username);
+        int request_state = meetingViewModel.invite(attendee_username);
+
         // TODO: Handle error
+        if(request_state == UserRepository.getInstance().REQUEST_ERROR) {
+            Toast.makeText(getContext(), "There is error in inviting attendee", Toast.LENGTH_SHORT).show();
+        }
+        else Toast.makeText(getContext(), "Invite success", Toast.LENGTH_SHORT).show();
+
+        inviteNewAttendeePopup.dismiss();
+        getData();
     }
 
     public void setupObserver() {
@@ -259,8 +263,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             @Override
             public void onChanged(Meeting newMeeting) {
                 getData();
-                adapter.notifyDataSetChanged();
-                Toast.makeText(getContext(), "The size of the names = " + Integer.toString(names.size()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "The size of the attendees = " + Integer.toString(newMeeting.getAttendees().size()), Toast.LENGTH_SHORT).show();
             }
         };
         meetingViewModel.getMeetingLiveDate().observe(getViewLifecycleOwner(), meetingObserver);
