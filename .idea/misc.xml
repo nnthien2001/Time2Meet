@@ -4,7 +4,28 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.14375" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_account_profile.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_edit.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_key_pass.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_menu.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_save.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_show_unhide.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/input_textbox.xml" value="0.1015625" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/font/abhaya_libre.xml" value="0.5" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/action_bar.xml" value="0.67" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_availability_board.xml" value="0.33" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.33" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_edit_profile.xml" value="0.1" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_landing.xml" value="0.1" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_profile.xml" value="0.1328125" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.1" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/popup_create_meeting.xml" value="0.22" />
+        <entry key="..\:/Repositories/Time2Meet/app/src/main/res/layout/popup_join_meeting.xml" value="0.33" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />

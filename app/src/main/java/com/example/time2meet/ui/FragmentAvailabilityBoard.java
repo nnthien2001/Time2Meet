@@ -92,6 +92,7 @@ public class FragmentAvailabilityBoard extends Fragment {
     private void initAppBar() {
         TextView tv_appbar = (TextView) view.findViewById(R.id.tv_action_bar_center);
         tv_appbar.setText("Availability Board");
+        tv_appbar.setGravity(Gravity.LEFT);
         ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
         imgBtn_back.setImageResource(R.drawable.ic_back);
         ImageButton imgBtn_edit = (ImageButton) view.findViewById(R.id.btn_action_bar_rightmost);

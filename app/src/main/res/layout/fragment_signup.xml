@@ -46,6 +46,7 @@
                     android:padding="15dp"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -72,6 +73,7 @@
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -98,6 +100,7 @@
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -123,6 +126,7 @@
                     android:padding="15dp"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -156,6 +160,7 @@
                         android:textSize="@dimen/default_text_size"
                         android:background="@drawable/input_textbox"
                         android:clickable="true"
+                        android:singleLine="true"
                         />
 
                 </LinearLayout>
@@ -182,6 +187,7 @@
                         android:textSize="@dimen/default_text_size"
                         android:background="@drawable/input_textbox"
                         android:inputType="number"
+                        android:singleLine="true"
                         />
 
                 </LinearLayout>
