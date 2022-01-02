@@ -52,8 +52,9 @@
     <string name="join_meeting">Join meeting</string>
     <string name="my_profile">My Profile</string>
     <string name="edit_password">Edit Password</string>
-    <string name="title_host">HOST</string>
-    <string name="title_attendee">ATTENDEES</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm new password</string>
     <string name="meeting_start_date">Start Date</string>
     <string name="meeting_end_date">End Date</string>
     <string name="meeting_proposed_time">Proposed time</string>
