@@ -1,13 +1,17 @@
 package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
@@ -21,10 +25,12 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
     private static final String TAG = "AttendeeRecyclerViewAdapter";
     private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
+    static protected NavController navController;
 
-    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users) {
+    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users, NavController nav) {
         this.users.addAll(users);
         this.mContext = mContext;
+        navController = nav;
     }
 
     public User getUserByPosition(int position) {
@@ -65,7 +71,7 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
         return users.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CircleImageView profilePicture;
         TextView attendeeName;
@@ -79,7 +85,15 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
             attendeeName = itemView.findViewById(R.id.attendee_name);
             attendeeUsername = itemView.findViewById(R.id.attendee_username);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "Go to user profile with userID " + Integer.toString(userID));
+            Bundle bundle = new Bundle();
+            bundle.putInt("userID", this.userID);
+            navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
+        }
     }
 }
