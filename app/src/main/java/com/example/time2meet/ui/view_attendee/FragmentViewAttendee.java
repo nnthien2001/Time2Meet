@@ -122,31 +122,31 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         mSectionedAdapter.setSections();
 
         // View user profile operation
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(View view, int position) {
-                    }
-
-                    @Override public void onLongItemClick(View view, int position) {
-                        if(position==0 || position==2) {
-                        }
-                        else if(position==1) {
-                            goToUserProfile(host.getUserID());
-                        }
-                        else {
-                            goToUserProfile(adapter.getUsers().get(position-2).getUserID());
-                        }
-                    }
-
-                    private void goToUserProfile(Integer userID) {
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("userID", userID);
-                        navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
-                    }
-                })
-        );
+//        recyclerView.addOnItemTouchListener(
+//                new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+//
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                    }
+//
+//                    @Override public void onLongItemClick(View view, int position) {
+//                        if(position==0 || position==2) {
+//                        }
+//                        else if(position==1) {
+//                            goToUserProfile(host.getUserID());
+//                        }
+//                        else {
+//                            goToUserProfile(adapter.getUsers().get(position-2).getUserID());
+//                        }
+//                    }
+//
+//                    private void goToUserProfile(Integer userID) {
+//                        Bundle bundle = new Bundle();
+//                        bundle.putInt("userID", userID);
+//                        navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
+//                    }
+//                })
+//        );
 
         if(isHostOfThisMeeting()) {
             new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
