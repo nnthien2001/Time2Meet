@@ -275,9 +275,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private void inviteAttendee() {
         String attendee_username = ((EditText)inviteNewAttendeePopupView.findViewById(R.id.attendee_username))
                 .getText().toString();
-        int request_state = meetingViewModel.invite(attendee_username);
+        Integer request_state = meetingViewModel.invite(attendee_username);
         Log.d(TAG, "The request state is" + Integer.toString(request_state));
-        if(request_state == UserRepository.getInstance().REQUEST_ERROR) {
+        if(UserRepository.getInstance().REQUEST_ERROR.equals(request_state)) {
             Log.d(TAG, "Request failed");
             Toast.makeText(getContext(), "There is error in inviting attendee", Toast.LENGTH_SHORT).show();
         }
