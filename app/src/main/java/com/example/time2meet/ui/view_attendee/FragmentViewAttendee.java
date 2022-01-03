@@ -55,7 +55,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     private View removeNewAttendeeConfirmationView;
     private String attendeeToRemove = null;
     private ImageButton back_button;
-    private static final String TAG = FragmentViewAttendee.class.getSimpleName();
+    private static final String TAG = "FragmentViewAttendee";
 
     public FragmentViewAttendee() {
         // Required empty public constructor
@@ -276,11 +276,15 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         String attendee_username = ((EditText)inviteNewAttendeePopupView.findViewById(R.id.attendee_username))
                 .getText().toString();
         int request_state = meetingViewModel.invite(attendee_username);
+        Log.d(TAG, "The request state is" + Integer.toString(request_state));
         if(request_state == UserRepository.getInstance().REQUEST_ERROR) {
+            Log.d(TAG, "Request failed");
             Toast.makeText(getContext(), "There is error in inviting attendee", Toast.LENGTH_SHORT).show();
         }
         inviteNewAttendeePopup.dismiss();
         getData();
+        Log.d(TAG, "The size of the list" + Integer.toString(meetingViewModel.getAttendees().size()));
+        // Toast.makeText(getContext(), "The size of the list" + Integer.toString(meetingViewModel.getAttendees().size()), Toast.LENGTH_SHORT).show();
     }
 
     // set up observer
@@ -289,6 +293,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             @Override
             public void onChanged(Meeting newMeeting) {
                 getData();
+                Log.d(TAG, "The size of the list at change" + Integer.toString(meetingViewModel.getAttendees().size()));
             }
         };
         meetingViewModel.getMeetingLiveDate().observe(getViewLifecycleOwner(), meetingObserver);
