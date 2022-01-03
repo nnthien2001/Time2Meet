@@ -2,13 +2,17 @@ package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
@@ -23,10 +27,16 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
     private static final String TAG = "AttendeeRecyclerViewAdapter";
     private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
+    static protected NavController navController;
 
-    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users) {
+    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users, NavController nav) {
         this.users.addAll(users);
         this.mContext = mContext;
+        navController = nav;
+    }
+
+    public User getUserByPosition(int position) {
+        return users.get(position);
     }
 
     public ArrayList<User> getUsers() {
@@ -51,6 +61,7 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.attendeeName.setText(users.get(position).getName());
         holder.attendeeUsername.setText(users.get(position).getUsername());
+        holder.userID = users.get(position).getUserID();
 
         String avatar_id=users.get(position).getImage();
         int avatar_src= mContext.getResources().getIdentifier(avatar_id,"drawable",mContext.getPackageName());
@@ -62,12 +73,14 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
         return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CircleImageView profilePicture;
         TextView attendeeName;
         TextView attendeeUsername;
         RelativeLayout parentLayout;
+        int userID;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profilePicture = itemView.findViewById(R.id.profile_picture);
@@ -76,10 +89,12 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
-
         @Override
         public void onClick(View view) {
-            // TODO: pass userID (or username?) to view profile
+            Toast.makeText(view.getContext(), "adjfklafdlk", Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putInt("userID", userID);
+            navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
         }
     }
 }

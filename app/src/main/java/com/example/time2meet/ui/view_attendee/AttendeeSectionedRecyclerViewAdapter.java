@@ -1,12 +1,15 @@
 package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +24,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRecyclerViewAdapter.ViewHolder> {
 
     private final Context mContext;
     private static final int SECTION_TYPE = 0;
@@ -71,7 +74,7 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
     }
 
 
-    public static class SectionViewHolder extends RecyclerView.ViewHolder {
+    public static class SectionViewHolder extends AttendeeRecyclerViewAdapter.ViewHolder {
 
         public TextView title;
 
@@ -83,17 +86,17 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {
+    public AttendeeRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {
         if (typeView == SECTION_TYPE) {
             final View view = LayoutInflater.from(mContext).inflate(mSectionResourceId, parent, false);
             return new SectionViewHolder(view,mTextResourceId);
         }else{
-            return mBaseAdapter.onCreateViewHolder(parent, typeView -1);
+            return (AttendeeRecyclerViewAdapter.ViewHolder)mBaseAdapter.onCreateViewHolder(parent, typeView -1);
         }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder sectionViewHolder, int position) {
+    public void onBindViewHolder(AttendeeRecyclerViewAdapter.ViewHolder sectionViewHolder, int position) {
         if (isSectionHeaderPosition(position)) {
             ((SectionViewHolder)sectionViewHolder).title.setText(mSections.get(position).title);
         }else{
@@ -200,5 +203,6 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<R
     public int getItemCount() {
         return (mValid ? mBaseAdapter.getItemCount() + mSections.size() : 0);
     }
+
 
 }

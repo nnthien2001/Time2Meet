@@ -142,7 +142,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         }
 
         if(adapter == null) {
-            adapter = new AttendeeRecyclerViewAdapter(getContext(), attendees);
+            adapter = new AttendeeRecyclerViewAdapter(getContext(), attendees, navController);
         }
         else {
             adapter.setUsers(attendees);
@@ -174,6 +174,8 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
+
+
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {

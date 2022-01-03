@@ -85,6 +85,11 @@ public class FragmentProfile extends Fragment {
         userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
         current_user=userViewModel.getCurrentUser();
 
+        // Get the user from view attendance list fragment
+        if(getArguments()!=null) {
+            current_user = userViewModel.getUser(getArguments().getInt("userID"));
+        }
+
         initialize_elements();
         setUserInfo();
     }
