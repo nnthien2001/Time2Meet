@@ -121,11 +121,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                 AttendeeSectionedRecyclerViewAdapter(getContext(),R.layout.section,R.id.section_text,adapter);
         mSectionedAdapter.setSections();
 
-        if(isHostOfThisMeeting()) {
-            new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
-        }
-        recyclerView.setAdapter(mSectionedAdapter);
-
         // View user profile operation
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
@@ -152,6 +147,11 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                     }
                 })
         );
+
+        if(isHostOfThisMeeting()) {
+            new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
+        }
+        recyclerView.setAdapter(mSectionedAdapter);
     }
 
     private void getData() {
