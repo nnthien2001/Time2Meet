@@ -1,24 +1,18 @@
 package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,12 +21,10 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
     private static final String TAG = "AttendeeRecyclerViewAdapter";
     private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
-    static protected NavController navController;
 
-    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users, NavController nav) {
+    public AttendeeRecyclerViewAdapter(Context mContext, ArrayList<User> users) {
         this.users.addAll(users);
         this.mContext = mContext;
-        navController = nav;
     }
 
     public User getUserByPosition(int position) {

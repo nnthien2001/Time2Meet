@@ -1,30 +1,21 @@
 package com.example.time2meet.ui.view_attendee;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.time2meet.R;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRecyclerViewAdapter.ViewHolder> {
+public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context mContext;
     private static final int SECTION_TYPE = 0;
@@ -86,7 +77,7 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<A
 
 
     @Override
-    public AttendeeRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {
         if (typeView == SECTION_TYPE) {
             final View view = LayoutInflater.from(mContext).inflate(mSectionResourceId, parent, false);
             return new SectionViewHolder(view,mTextResourceId);
@@ -96,7 +87,7 @@ public class AttendeeSectionedRecyclerViewAdapter extends RecyclerView.Adapter<A
     }
 
     @Override
-    public void onBindViewHolder(AttendeeRecyclerViewAdapter.ViewHolder sectionViewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder sectionViewHolder, int position) {
         if (isSectionHeaderPosition(position)) {
             ((SectionViewHolder)sectionViewHolder).title.setText(mSections.get(position).title);
         }else{

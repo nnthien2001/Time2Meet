@@ -73,7 +73,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_view_attendee, container, false);
 
         this.inflater = inflater;
@@ -98,7 +97,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(this);
         }
-
     }
 
     private void openInviteNewAttendee() {
@@ -109,7 +107,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         inviteNewAttendeePopup = popupWindow;
         inviteNewAttendeePopupView = popupWindow.getContentView();
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        Toast.makeText(getContext(), "I am inviting new attendee", Toast.LENGTH_SHORT).show();
         inviteNewAttendeePopupView.findViewById(R.id.btn_invite).setOnClickListener(this);
         inviteNewAttendeePopupView.findViewById(R.id.btn_cancel_invite).setOnClickListener(this);
     }
@@ -123,11 +120,13 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         AttendeeSectionedRecyclerViewAdapter mSectionedAdapter = new
                 AttendeeSectionedRecyclerViewAdapter(getContext(),R.layout.section,R.id.section_text,adapter);
         mSectionedAdapter.setSections();
-        //Apply this adapter to the RecyclerView
+
         if(isHostOfThisMeeting()) {
             new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
         }
         recyclerView.setAdapter(mSectionedAdapter);
+
+        // View user profile operation
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
 
@@ -136,9 +135,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        Toast.makeText(getContext(), "This is positionnnn" + Integer.toString(position), Toast.LENGTH_SHORT).show();
                         if(position==0 || position==2) {
-                            return;
                         }
                         else if(position==1) {
                             goToUserProfile(host.getUserID());
@@ -149,7 +146,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                     }
 
                     private void goToUserProfile(Integer userID) {
-                        Toast.makeText(getContext(), "Go to" + Integer.toString(userID), Toast.LENGTH_SHORT).show();
                         Bundle bundle = new Bundle();
                         bundle.putInt("userID", userID);
                         navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
@@ -170,7 +166,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         }
 
         if(adapter == null) {
-            adapter = new AttendeeRecyclerViewAdapter(getContext(), attendees, navController);
+            adapter = new AttendeeRecyclerViewAdapter(getContext(), attendees);
         }
         else {
             adapter.setUsers(attendees);
@@ -186,7 +182,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Pop the backstack after finish viewing?
                 navController.navigateUp();
             }
         });
@@ -197,6 +192,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         return this.host.getUserID().equals(userViewModel.getCurrentUser().getUserID());
     }
 
+    // Swipe and remove operation
     ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -204,11 +200,9 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         }
 
 
-
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getBindingAdapterPosition();
-            Toast.makeText(getContext(), "This is position" + Integer.toString(position), Toast.LENGTH_SHORT).show();
             int real_position = position - 2;
             String remove_attedee_username = adapter.getUsers().get(real_position).getUsername();
             openRemoveAttendeeConfirmation(remove_attedee_username);
@@ -246,7 +240,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
                 inviteNewAttendeePopup.dismiss();
                 break;
             case R.id.btn_invite:
-                Toast.makeText(getContext(), "Inviting", Toast.LENGTH_SHORT).show();
                 inviteAttendee();
                 break;
             case R.id.btn_cancel_remove_attendee:
@@ -265,7 +258,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         assert !attendeeToRemove.equals(this.host.getUsername());
         meetingViewModel.removeAttendee(getUserIDOfAttendeeToRemove());
         attendeeToRemove = null;
-
         removeNewAttendeeConfirmationPopup.dismiss();
         getData();
     }
@@ -284,24 +276,19 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         String attendee_username = ((EditText)inviteNewAttendeePopupView.findViewById(R.id.attendee_username))
                 .getText().toString();
         int request_state = meetingViewModel.invite(attendee_username);
-
-        // TODO: Handle error
         if(request_state == UserRepository.getInstance().REQUEST_ERROR) {
             Toast.makeText(getContext(), "There is error in inviting attendee", Toast.LENGTH_SHORT).show();
         }
-        else Toast.makeText(getContext(), "Invite success", Toast.LENGTH_SHORT).show();
-
         inviteNewAttendeePopup.dismiss();
         getData();
     }
 
+    // set up observer
     public void setupObserver() {
-        // set up observer
         final Observer<Meeting> meetingObserver = new Observer<Meeting>() {
             @Override
             public void onChanged(Meeting newMeeting) {
                 getData();
-                Toast.makeText(getContext(), "The size of the attendees = " + Integer.toString(newMeeting.getAttendees().size()), Toast.LENGTH_SHORT).show();
             }
         };
         meetingViewModel.getMeetingLiveDate().observe(getViewLifecycleOwner(), meetingObserver);
@@ -310,7 +297,6 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //binding = null;
         meetingViewModel.getMeetingLiveDate().removeObservers(getViewLifecycleOwner());
     }
 
