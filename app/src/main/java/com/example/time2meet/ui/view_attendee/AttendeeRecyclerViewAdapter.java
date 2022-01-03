@@ -73,7 +73,7 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
         return users.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView profilePicture;
         TextView attendeeName;
@@ -89,12 +89,5 @@ public class AttendeeRecyclerViewAdapter extends RecyclerView.Adapter<AttendeeRe
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "adjfklafdlk", Toast.LENGTH_SHORT).show();
-            Bundle bundle = new Bundle();
-            bundle.putInt("userID", userID);
-            navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
-        }
     }
 }

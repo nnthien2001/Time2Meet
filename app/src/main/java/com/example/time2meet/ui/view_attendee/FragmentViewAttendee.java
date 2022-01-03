@@ -128,6 +128,34 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
             new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recyclerView);
         }
         recyclerView.setAdapter(mSectionedAdapter);
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Toast.makeText(getContext(), "This is positionnnn" + Integer.toString(position), Toast.LENGTH_SHORT).show();
+                        if(position==0 || position==2) {
+                            return;
+                        }
+                        else if(position==1) {
+                            goToUserProfile(host.getUserID());
+                        }
+                        else {
+                            goToUserProfile(adapter.getUsers().get(position-2).getUserID());
+                        }
+                    }
+
+                    private void goToUserProfile(Integer userID) {
+                        Toast.makeText(getContext(), "Go to" + Integer.toString(userID), Toast.LENGTH_SHORT).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("userID", userID);
+                        navController.navigate(R.id.action_fragmentViewAttendee_to_fragmentProfile, bundle);
+                    }
+                })
+        );
     }
 
     private void getData() {
