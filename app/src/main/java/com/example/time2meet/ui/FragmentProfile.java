@@ -48,8 +48,7 @@ public class FragmentProfile extends Fragment {
         super.onCreate(savedInstanceState);
 
         navController = NavHostFragment.findNavController(this);
-        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-        userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
+        userViewModel = new UserViewModel();
 
         // Get the userID from view attendance list fragment
         if(getArguments()!=null) {
