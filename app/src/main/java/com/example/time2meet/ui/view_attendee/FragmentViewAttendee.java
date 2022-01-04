@@ -252,7 +252,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         Log.d(TAG, "The request state is" + Integer.toString(request_state));
         if(UserRepository.getInstance().REQUEST_ERROR.equals(request_state)) {
             Log.d(TAG, "Request failed");
-            Toast.makeText(getContext(), "There is error in inviting attendee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "This user does not exits", Toast.LENGTH_SHORT).show();
         }
         inviteNewAttendeePopup.dismiss();
         getData();

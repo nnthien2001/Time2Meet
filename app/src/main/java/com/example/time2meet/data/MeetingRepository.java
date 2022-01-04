@@ -72,6 +72,9 @@ public class MeetingRepository {
     public Integer inviteAttendee(String username) {
         UserRepository userRepository = UserRepository.getInstance();
         User _user = userRepository.getUser(username);
+        if (null == _user || !_user.getUsername().equals(username)) {
+            return REQUEST_ERROR;
+        }
         ArrayList<Integer> meetingList = _user.getMeetingList();
         if (meetingList.contains(meeting.getValue().getMeetingID()))
             return REQUEST_SUCCESS;

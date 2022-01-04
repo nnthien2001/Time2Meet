@@ -451,7 +451,7 @@
                             android:height="35dp"
                             android:background="@drawable/cell_border"
                             android:gravity="center"
-                            android:text="10pm-0am"
+                            android:text="11pm-0am"
                             android:textSize="@dimen/default_text_size" />
                     </TableRow>
 
