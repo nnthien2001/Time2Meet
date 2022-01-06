@@ -60,4 +60,8 @@
     <string name="meeting_proposed_time">Proposed time</string>
     <string name="meeting_location">Location</string>
     <string name="meeting_time_undecided">Undecided</string>
+    <string name="delete_meeting">Delete meeting</string>
+    <string name="confirm">Confirm</string>
+    <string name="delete">Delete</string>
+    <string name="confirm_delete_stm">Do you want to delete this meeting</string>
 </resources>

@@ -11,16 +11,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
-import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.databinding.FragmentEditMeetingBinding;
+import com.example.time2meet.databinding.PopupConfirmActionBinding;
 
 public class FragmentEditMeeting extends Fragment {
 
@@ -70,12 +73,81 @@ public class FragmentEditMeeting extends Fragment {
         binding.meetingBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = binding.meetingEditName.getText().toString();
-                String time = binding.meetingEditTime.getText().toString();
-                String location = binding.meetingEditLocation.getText().toString();
-                String description = binding.meetingEditDescription.getText().toString();
+                saveEdit();
+            }
+        });
+        binding.meetingBtnDeleteMeeting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openConfirmDelete(v);
+            }
+        });
 
-                meetingViewModel.updateMeeting(name, time, location, description);
+        setupAppBar();
+    }
+
+    void openConfirmDelete(View view) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.popup_confirm_action, null);
+        PopupWindow popupWindow = new PopupWindow(layout, (int) (300 * this.getContext().getResources().getDisplayMetrics().density),
+                (int) (200 * this.getContext().getResources().getDisplayMetrics().density),
+                true);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        
+        PopupConfirmActionBinding popupBinding = PopupConfirmActionBinding.bind(layout);
+        popupBinding.confirmStatement.setText(R.string.confirm_delete_stm);
+        popupBinding.confirmStatement.setGravity(Gravity.CENTER);
+        popupBinding.confirmStatement.setAllCaps(false);
+
+        popupBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        popupBinding.btnConfirm.setText(R.string.delete);
+        popupBinding.btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                deleteMeeting();
+            }
+        });
+    }
+
+    private void deleteMeeting() {
+        //TODO: call delete meeting method
+        navController.popBackStack(R.id.fragmentHome, false);
+    }
+
+    private void saveEdit() {
+        String name = binding.meetingEditName.getText().toString();
+        String time = binding.meetingEditTime.getText().toString();
+        String location = binding.meetingEditLocation.getText().toString();
+        String description = binding.meetingEditDescription.getText().toString();
+
+        meetingViewModel.updateMeeting(name, time, location, description);
+        navController.navigateUp();
+    }
+
+    private void setupAppBar(){
+        TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
+        appbar_title.setText(getResources().getString(R.string.edit_meeting));
+
+        ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
+        ImageButton save_button =getView().findViewById(R.id.btn_action_bar_rightmost);
+        back_button.setImageResource(R.drawable.ic_back);
+        save_button.setImageResource(R.drawable.ic_save);
+
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveEdit();
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 navController.navigateUp();
             }
         });
