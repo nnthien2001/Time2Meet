@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         tools:context=".ui.FragmentEditMeeting"
         android:orientation="vertical"
-        tools:viewBindingIgnore="true">
+        tools:viewBindingIgnore="true"
+        android:background="@color/background">
 
         <include
             android:id="@+id/include"
@@ -36,7 +37,8 @@
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_name"
             android:layout_marginTop="@dimen/fragment_vertical_margin"
             android:layout_marginStart="@dimen/content_margin"
-            android:layout_marginEnd="@dimen/content_margin"/>
+            android:layout_marginEnd="@dimen/content_margin"
+            />
 
         <TextView
             android:id="@+id/meeting_edit_desc_time"

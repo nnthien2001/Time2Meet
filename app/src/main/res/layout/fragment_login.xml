@@ -28,7 +28,8 @@
             />
 
         <TextView
-            android:text="LOGIN"
+            android:text="@string/login"
+            android:textAllCaps="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -124,14 +125,15 @@
             >
 
             <TextView
-                android:text="Don't have an account yet?"
+                android:text="@string/prompt_non_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sign_up_hyperlink"
                 />
 
             <TextView
-                android:text="SIGN UP"
+                android:text="@string/sign_up"
+                android:textAllCaps="true"
                 android:id="@+id/btn_to_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

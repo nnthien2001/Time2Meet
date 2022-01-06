@@ -4,6 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.14375" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/action_bar.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_availability_board.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_edit_password.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_home.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_landing.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_profile.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.3140625" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_view_attendee.xml" value="0.328125" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/fragment_view_meeting.xml" value="0.328125" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/meeting_item.xml" value="0.328125" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/popup_create_meeting.xml" value="0.328125" />
         <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1015625" />
         <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_account_profile.xml" value="0.1015625" />
         <entry key="..\:/Repositories/Time2Meet/app/src/main/res/drawable/ic_edit.xml" value="0.1015625" />
