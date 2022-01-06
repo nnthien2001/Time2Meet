@@ -46,6 +46,10 @@ public class MeetingViewModel extends ViewModel {
         ArrayList<User> _attendees = meetingRepository.getAllAttendee().getValue();
         Meeting meeting = meetingRepository.getMeeting().getValue();
         for (User u : _attendees) {
+//            Log.d("MVM", meeting.getHostID().toString());
+//            if (u == null)
+//                Log.d("MVM attendee", "is null");
+//            Log.d("MVM", u.getName());
 
             if (u.getUserID().equals(meeting.getHostID()))
                 return u;

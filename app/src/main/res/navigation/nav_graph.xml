@@ -52,9 +52,9 @@
         android:name="com.example.time2meet.ui.home.FragmentHome"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentMeetingMenu"
-            app:destination="@id/meeting_nav_graph" />
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_fragmentMeetingMenu"-->
+<!--            app:destination="@id/meeting_nav_graph" />-->
         <action
             android:id="@+id/action_fragmentHome_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
@@ -82,11 +82,11 @@
         tools:layout="@layout/fragment_edit_profile"/>
 
     <navigation android:id="@+id/meeting_nav_graph"
-        app:startDestination="@id/fragmentMeetingMenu">
+        app:startDestination="@id/fragmentViewMeeting">
         <fragment
-            android:id="@+id/fragmentMeetingMenu"
+            android:id="@+id/fragmentViewMeeting"
             android:name="com.example.time2meet.ui.FragmentViewMeeting"
-            android:label="fragment_meeting_menu"
+            android:label="fragment_view_meeting"
             tools:layout="@layout/fragment_view_meeting">
             <argument
                 android:name="meetingID"

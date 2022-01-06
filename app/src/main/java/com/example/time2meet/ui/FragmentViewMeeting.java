@@ -16,7 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.time2meet.R;
 import com.example.time2meet.data.Meeting;
@@ -43,6 +46,7 @@ public class FragmentViewMeeting extends Fragment {
 
         if (getArguments() != null) {
             meetingID = getArguments().getInt("meetingID");
+            //Log.d("ViewMeeting mID", meetingID.toString());
         }
 
         navController = NavHostFragment.findNavController(this);
@@ -73,6 +77,9 @@ public class FragmentViewMeeting extends Fragment {
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
         userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
+        //Log.d("ViewMeeting current meeting", meetingViewModel.getMeeting().getHostID().toString());
+        //Log.d("ViewMeeting current user", userViewModel.getCurrentUser().getUserID().toString());
+
         setDataToView();
 
         binding.meetingBtnViewAttendees.setOnClickListener(new View.OnClickListener() {
@@ -90,10 +97,7 @@ public class FragmentViewMeeting extends Fragment {
             }
         });
 
-        if (userViewModel.getCurrentUser().getUserID().equals(meeting.getHostID())) {
-            //set visibility of edit button to false
-        }
-
+        setupAppBar();
         setupObserver();
     }
 
@@ -122,6 +126,34 @@ public class FragmentViewMeeting extends Fragment {
             }
         };
         meetingViewModel.getMeetingLiveDate().observe(getViewLifecycleOwner(), meetingObserver);
+    }
+
+    private void setupAppBar(){
+        TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
+        appbar_title.setText(getResources().getString(R.string.meeting));
+
+        ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
+        ImageButton edit_button =getView().findViewById(R.id.btn_action_bar_rightmost);
+        back_button.setImageResource(R.drawable.ic_back);
+        edit_button.setImageResource(R.drawable.ic_edit);
+
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigateUp();
+            }
+        });
+
+        if (! userViewModel.getCurrentUser().getUserID().equals(meeting.getHostID())) {
+            edit_button.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
