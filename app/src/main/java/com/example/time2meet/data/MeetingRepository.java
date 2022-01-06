@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.loader.content.AsyncTaskLoader;
 
 import com.example.time2meet.ApiService;
 
@@ -176,6 +177,28 @@ public class MeetingRepository {
         return REQUEST_ERROR;
     }
 
+    public Integer deleteMeeting() {
+        Integer meetingID = meeting.getValue().getMeetingID();
+        for (User u: attendees.getValue()) {
+            ArrayList<Integer> meeting_list = u.getMeetingList();
+            meeting_list.remove(meetingID);
+            u.setMeetingList(meeting_list);
+            UserRepository.getInstance().updateUser(u);
+        }
+        try {
+            new deleteMeetingAsyncTask().execute(meetingID).get();
+            if (request_state == REQUEST_SUCCESS) {
+
+            }
+            return request_state;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return REQUEST_ERROR;
+    }
+
     //================================================================================
     //=================================AsyncTask======================================
 
@@ -210,6 +233,21 @@ public class MeetingRepository {
             } catch (IOException e) {
                 e.printStackTrace();
                 request_state = REQUEST_ERROR;
+            }
+            return null;
+        }
+    }
+
+    private class deleteMeetingAsyncTask extends AsyncTask<Integer, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            try {
+                ApiService.apiService.deleteMeeting(integers[0]).execute();
+                request_state = REQUEST_SUCCESS;
+            } catch (IOException e) {
+                request_state = REQUEST_ERROR;
+                e.printStackTrace();
             }
             return null;
         }
