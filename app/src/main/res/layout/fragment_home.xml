@@ -16,7 +16,7 @@
             android:id="@+id/tab_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/button_background"
             app:tabTextColor="@color/actionBarTitle"
             app:tabIndicatorColor="@color/actionBarTitle"
             >
@@ -56,10 +56,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/button_background"
         android:contentDescription="@string/create_meeting"
-        android:tint="@color/white"
-        app:backgroundTint="@color/white"
+        android:background="@color/button_background"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -71,7 +70,7 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_create_meeting"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/button_background"
         android:contentDescription="@string/join_meeting"
         android:tint="@color/white"
         app:backgroundTint="@color/white"/>

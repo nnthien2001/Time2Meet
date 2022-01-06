@@ -260,7 +260,7 @@
                     android:id="@+id/btn_to_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/button_background"
                     android:textSize="@dimen/sign_up_hyperlink"
                     android:textStyle="bold"
                     android:clickable="true"

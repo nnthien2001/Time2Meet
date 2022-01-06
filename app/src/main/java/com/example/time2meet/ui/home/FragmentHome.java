@@ -1,5 +1,6 @@
 package com.example.time2meet.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
@@ -95,6 +97,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                 .getIdentifier(userViewModel.getCurrentUser().getImage(), "drawable", this.getContext().getPackageName()));
         view.findViewById(R.id.btn_create_meeting).setOnClickListener(this);
         view.findViewById(R.id.btn_join_meeting).setOnClickListener(this);
+        FloatingActionButton fab_create=view.findViewById(R.id.btn_create_meeting);
+        fab_create.setColorFilter(Color.argb(255,255,255,255));
+        FloatingActionButton fab_join=view.findViewById(R.id.btn_join_meeting);
+        fab_create.setColorFilter(Color.argb(255,255,255,255));
         ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
