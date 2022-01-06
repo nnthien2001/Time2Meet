@@ -64,4 +64,8 @@ public class MeetingViewModel extends ViewModel {
     public Integer removeAttendee(Integer userID) {
         return meetingRepository.removeAttendee(userID);
     }
+
+    public Integer deleteMeeting() {
+        return meetingRepository.deleteMeeting();
+    }
 }

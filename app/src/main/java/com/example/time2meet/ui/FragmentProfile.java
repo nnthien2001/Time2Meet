@@ -1,6 +1,7 @@
 package com.example.time2meet.ui;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,10 +74,15 @@ public class FragmentProfile extends Fragment {
     private void initAppBar(){
         TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
         appbar_title.setText(getResources().getString(R.string.my_profile));
+        appbar_title.setGravity(Gravity.LEFT);
+        appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
+        Log.d("Title textSize", String.valueOf(appbar_title.getTextSize()));
         back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
         edit_button =getView().findViewById(R.id.btn_action_bar_rightmost);
         back_button.setImageResource(R.drawable.ic_back);
         edit_button.setImageResource(R.drawable.ic_edit);
+        back_button.setColorFilter(Color.argb(255,255,255,255));
+        edit_button.setColorFilter(Color.argb(255,255,255,255));
         //FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override

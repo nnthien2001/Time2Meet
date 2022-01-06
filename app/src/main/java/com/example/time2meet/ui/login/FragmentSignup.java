@@ -15,6 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +80,9 @@ public class FragmentSignup extends Fragment {
         btn_leftmost.setImageResource(R.drawable.back_icon);
         btn_leftmost.setOnClickListener(v -> navController.navigate(R.id.action_fragmentSignup_to_fragmentLogin));
 
-        tv_center.setText("Sign up");
+        tv_center.setText(getResources().getString(R.string.sign_up));
         tv_center.setGravity(Gravity.LEFT);
+        tv_center.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
 
         btn_rightmost.setImageDrawable(null);
     }

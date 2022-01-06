@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryVariant"
+    android:background="@color/background"
     tools:context=".ui.login.FragmentSignup">
 
     <include layout="@layout/action_bar" />
@@ -30,22 +30,26 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/content_margin"
+                android:layout_marginEnd="@dimen/content_margin"
                 >
 
                 <TextView
-                    android:text="Username"
+                    android:text="@string/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/default_text_size"
+                    android:textColor="@color/descriptive_text"
                     />
 
                 <EditText
                     android:id="@+id/edt_username_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="@dimen/input_padding"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -55,23 +59,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/content_margin"
+                android:layout_marginEnd="@dimen/content_margin"
                 >
 
                 <TextView
-                    android:text="Password"
+                    android:text="@string/password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/default_text_size"
+                    android:textColor="@color/descriptive_text"
                     />
 
                 <EditText
                     android:id="@+id/edt_password_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="@dimen/input_padding"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -81,23 +89,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/content_margin"
+                android:layout_marginEnd="@dimen/content_margin"
                 >
 
                 <TextView
-                    android:text="Confirm Password"
+                    android:text="@string/confirm_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/default_text_size"
+                    android:textColor="@color/descriptive_text"
                     />
 
                 <EditText
                     android:id="@+id/edt_confirm_password_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="@dimen/input_padding"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -107,22 +119,26 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/content_margin"
+                android:layout_marginEnd="@dimen/content_margin"
                 >
 
                 <TextView
-                    android:text="Name"
+                    android:text="@string/fullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/default_text_size"
+                    android:textColor="@color/descriptive_text"
                     />
 
                 <EditText
                     android:id="@+id/edt_name_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="@dimen/input_padding"
                     android:textSize="@dimen/default_text_size"
                     android:background="@drawable/input_textbox"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -131,6 +147,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/content_margin"
+                android:layout_marginEnd="@dimen/content_margin"
                 >
 
                 <LinearLayout
@@ -142,20 +160,22 @@
                     >
 
                     <TextView
-                        android:text="DoB"
+                        android:text="@string/dob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/default_text_size"
+                        android:textColor="@color/descriptive_text"
                         />
 
                     <TextView
                         android:id="@+id/edt_dob_signup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
+                        android:padding="@dimen/input_padding"
                         android:textSize="@dimen/default_text_size"
                         android:background="@drawable/input_textbox"
                         android:clickable="true"
+                        android:singleLine="true"
                         />
 
                 </LinearLayout>
@@ -168,20 +188,22 @@
                     >
 
                     <TextView
-                        android:text="Phone Number"
+                        android:text="@string/phone_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/default_text_size"
+                        android:textColor="@color/descriptive_text"
                         />
 
                     <EditText
                         android:id="@+id/edt_phone_number_signup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
+                        android:padding="@dimen/input_padding"
                         android:textSize="@dimen/default_text_size"
                         android:background="@drawable/input_textbox"
-                        android:inputType="number"
+                        android:inputType="phone"
+                        android:singleLine="true"
                         />
 
                 </LinearLayout>
@@ -205,11 +227,12 @@
                 />
 
             <Button
-                android:text="CREATE ACCOUNT"
+                android:text="@string/create_account"
                 android:id="@+id/btn_create_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/default_text_size"
+                android:backgroundTint="@color/button_background"
                 />
 
             <LinearLayout
@@ -226,21 +249,22 @@
                 >
 
                 <TextView
-                    android:text="Already have an account?"
+                    android:text="@string/prompt_alr_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/default_text_size"
                     />
 
                 <TextView
-                    android:text="LOG IN"
+                    android:text="@string/login"
                     android:id="@+id/btn_to_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/button_background"
                     android:textSize="@dimen/sign_up_hyperlink"
                     android:textStyle="bold"
                     android:clickable="true"
+                    android:textAllCaps="true"
                     />
 
             </LinearLayout>

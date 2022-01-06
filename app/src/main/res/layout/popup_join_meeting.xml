@@ -9,20 +9,22 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="20dp"
-        android:text="Enter Meeting Code"
+        android:text="@string/enter_meeting"
         android:textColor="@color/descriptive_text"
         android:textSize="@dimen/display_info_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textFontWeight="700"/>
+        android:textFontWeight="700"
+        android:singleLine="true"/>
 
     <EditText
         android:id="@+id/edit_meeting_ID"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/content_margin"
+        android:layout_marginEnd="@dimen/content_margin"
         android:layout_marginTop="10dp"
         android:background="@color/background"
         android:padding="5dp"
@@ -34,24 +36,26 @@
 
     <Button
         android:id="@+id/btn_cancel_join"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="20dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_meeting_ID"
         android:textColor="@color/button_background"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        android:shadowColor="@color/white"/>
 
     <Button
         android:id="@+id/btn_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="JOIN MEETING"
+        android:layout_marginEnd="@dimen/content_margin"
+
+        android:text="@string/join_meeting"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_meeting_ID"

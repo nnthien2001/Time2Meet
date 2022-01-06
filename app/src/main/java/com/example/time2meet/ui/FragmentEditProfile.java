@@ -15,6 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,10 +60,14 @@ public class FragmentEditProfile extends Fragment {
     private void initAppBar() {
         TextView appbar_title = (TextView) getView().findViewById(R.id.tv_action_bar_center);
         appbar_title.setText(getResources().getString(R.string.my_profile));
+        appbar_title.setGravity(Gravity.LEFT);
+        appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
         ImageButton back_button = (ImageButton) getView().findViewById(R.id.btn_action_bar_leftmost);
         ImageButton save_button = (ImageButton) getView().findViewById(R.id.btn_action_bar_rightmost);
         back_button.setImageResource(R.drawable.ic_back);
         save_button.setImageResource(R.drawable.ic_save);
+        back_button.setColorFilter(Color.argb(255,255,255,255));
+        save_button.setColorFilter(Color.argb(255,255,255,255));
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

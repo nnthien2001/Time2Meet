@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.FragmentHome">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -16,21 +16,21 @@
             android:id="@+id/tab_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/button_background"
             app:tabTextColor="@color/actionBarTitle"
             app:tabIndicatorColor="@color/actionBarTitle"
             >
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab_left"
-                android:text="All Meetings"
+                android:text="@string/all_meetings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab_right"
-                android:text="Upcoming Meetings"
+                android:text="@string/upcoming_meetings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -41,8 +41,7 @@
             android:id="@+id/rv_meetings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
     </LinearLayout>
@@ -57,7 +56,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"
-        android:backgroundTint="@color/colorPrimary"/>
+        android:backgroundTint="@color/button_background"
+        android:contentDescription="@string/create_meeting"
+        android:background="@color/button_background"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_join_meeting"
@@ -68,6 +70,9 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_create_meeting"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/colorPrimary"/>
+        android:backgroundTint="@color/button_background"
+        android:contentDescription="@string/join_meeting"
+        android:tint="@color/white"
+        app:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
