@@ -35,9 +35,11 @@
             android:hint="@string/meeting_name"
             app:layout_constraintTop_toBottomOf="@+id/meeting_edit_desc_name"
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_name"
-            android:layout_marginTop="@dimen/fragment_vertical_margin"
+            android:layout_marginTop="@dimen/vertical_within_items"
             android:layout_marginStart="@dimen/content_margin"
             android:layout_marginEnd="@dimen/content_margin"
+            android:background="@drawable/input_textbox"
+            android:padding="@dimen/input_padding"
             />
 
         <TextView
@@ -51,7 +53,7 @@
             app:layout_constraintTop_toBottomOf="@id/meeting_edit_name"
             android:layout_marginStart="@dimen/content_margin"
             android:layout_marginEnd="@dimen/content_margin"
-            android:layout_marginTop="@dimen/action_bar_text_size" />
+            android:layout_marginTop="@dimen/vertical_between_items" />
         <TextView
             android:id="@+id/meeting_edit_time"
             android:layout_width="match_parent"
@@ -60,9 +62,11 @@
             android:hint="@string/official_time"
             app:layout_constraintTop_toBottomOf="@+id/meeting_edit_desc_time"
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_time"
-            android:layout_marginTop="@dimen/fragment_vertical_margin"
+            android:layout_marginTop="@dimen/vertical_within_items"
             android:layout_marginStart="@dimen/content_margin"
-            android:layout_marginEnd="@dimen/content_margin"/>
+            android:layout_marginEnd="@dimen/content_margin"
+            android:background="@drawable/input_textbox"
+            android:padding="@dimen/input_padding"/>
 
         <TextView
             android:id="@+id/meeting_edit_desc_location"
@@ -75,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@id/meeting_edit_time"
             android:layout_marginStart="@dimen/content_margin"
             android:layout_marginEnd="@dimen/content_margin"
-            android:layout_marginTop="@dimen/action_bar_text_size" />
+            android:layout_marginTop="@dimen/vertical_between_items" />
         <TextView
             android:id="@+id/meeting_edit_location"
             android:layout_width="match_parent"
@@ -84,9 +88,11 @@
             android:hint="@string/location"
             app:layout_constraintTop_toBottomOf="@+id/meeting_edit_desc_location"
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_location"
-            android:layout_marginTop="@dimen/fragment_vertical_margin"
+            android:layout_marginTop="@dimen/vertical_within_items"
             android:layout_marginStart="@dimen/content_margin"
-            android:layout_marginEnd="@dimen/content_margin"/>
+            android:layout_marginEnd="@dimen/content_margin"
+            android:background="@drawable/input_textbox"
+            android:padding="@dimen/input_padding"/>
 
         <TextView
             android:id="@+id/meeting_edit_desc_description"
@@ -99,7 +105,7 @@
             app:layout_constraintTop_toBottomOf="@id/meeting_edit_location"
             android:layout_marginStart="@dimen/content_margin"
             android:layout_marginEnd="@dimen/content_margin"
-            android:layout_marginTop="@dimen/action_bar_text_size" />
+            android:layout_marginTop="@dimen/vertical_between_items" />
         <TextView
             android:id="@+id/meeting_edit_description"
             android:layout_width="match_parent"
@@ -108,9 +114,11 @@
             android:hint="@string/description"
             app:layout_constraintTop_toBottomOf="@+id/meeting_edit_desc_description"
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_description"
-            android:layout_marginTop="@dimen/fragment_vertical_margin"
+            android:layout_marginTop="@dimen/vertical_within_items"
             android:layout_marginStart="@dimen/content_margin"
-            android:layout_marginEnd="@dimen/content_margin"/>
+            android:layout_marginEnd="@dimen/content_margin"
+            android:padding="@dimen/input_padding"
+            android:background="@drawable/input_textbox"/>
 
         <Button
             android:id="@+id/meeting_btn_save"
@@ -121,7 +129,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="@dimen/login_title_text_size"
-            android:backgroundTint="@color/button_background"/>
+            android:backgroundTint="@color/button_background"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

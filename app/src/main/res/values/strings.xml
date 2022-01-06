@@ -60,4 +60,5 @@
     <string name="meeting_proposed_time">Proposed time</string>
     <string name="meeting_location">Location</string>
     <string name="meeting_time_undecided">Undecided</string>
+    <string name="official_time_optional">Official time (Optional)</string>
 </resources>

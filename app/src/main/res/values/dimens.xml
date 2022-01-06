@@ -33,4 +33,11 @@
     <dimen name="content_margin">29dp</dimen>
     <!-- Left right spacing for icons-->
     <dimen name="icon_margin">15dp</dimen>
+    <dimen name="vertical_between_items">15sp</dimen>
+    <dimen name="vertical_within_items">10sp</dimen>
+    <dimen name="topmost_margin">70sp</dimen>
+
+
+    <!--Paddings -->
+    <dimen name="input_padding">10dp</dimen>
 </resources>

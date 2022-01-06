@@ -41,8 +41,7 @@
             android:id="@+id/rv_meetings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
     </LinearLayout>
@@ -58,7 +57,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"
         android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/create_meeting" />
+        android:contentDescription="@string/create_meeting"
+        android:tint="@color/white"
+        app:backgroundTint="@color/white"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_join_meeting"
@@ -70,6 +72,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_create_meeting"
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/join_meeting" />
+        android:contentDescription="@string/join_meeting"
+        android:tint="@color/white"
+        app:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
