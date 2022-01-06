@@ -36,16 +36,17 @@
 
     <Button
         android:id="@+id/btn_cancel_join"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="20dp"
         android:text="@string/cancel"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_meeting_ID"
         android:textColor="@color/button_background"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        android:shadowColor="@color/white"/>
 
     <Button
         android:id="@+id/btn_join"

@@ -100,7 +100,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         FloatingActionButton fab_create=view.findViewById(R.id.btn_create_meeting);
         fab_create.setColorFilter(Color.argb(255,255,255,255));
         FloatingActionButton fab_join=view.findViewById(R.id.btn_join_meeting);
-        fab_create.setColorFilter(Color.argb(255,255,255,255));
+        fab_join.setColorFilter(Color.argb(255,255,255,255));
         ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
