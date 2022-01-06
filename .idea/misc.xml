@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/Time2Meet/app/src/main/res/layout/fragment_signup.xml" value="0.14375" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/layout/attendee_list_item.xml" value="0.328125" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.34427083333333336" />
+        <entry key="..\:/KHTN APCS/Introduction to Software Engineeering/Time2Meet/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.34427083333333336" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.1796875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />
