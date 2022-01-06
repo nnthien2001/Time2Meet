@@ -26,8 +26,9 @@ import java.util.concurrent.TimeUnit;
 public class FragmentLanding extends Fragment {
 
     private NavController navController;
-    private UserViewModel userViewModel;
-    CountDownTimer timer = null;
+
+    private final int display_time = 1500; // ms
+    private CountDownTimer timer = null;
 
     public FragmentLanding() {
         // Required empty public constructor
@@ -50,7 +51,7 @@ public class FragmentLanding extends Fragment {
         navController = Navigation.findNavController(view);
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.nav_graph); //for debug
 
-        timer = new CountDownTimer(1000, 500) {
+        timer = new CountDownTimer(display_time, display_time) {
             @Override
             public void onTick(long millisUntilFinished) {
             }

@@ -14,6 +14,8 @@ public class User {
     private String about = "default";
     private String image;
 
+    public User() {}
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;

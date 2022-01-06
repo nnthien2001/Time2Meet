@@ -3,12 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FragmentViewAttendee">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view_attendee.FragmentViewAttendee">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <include layout="@layout/action_bar"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/action_bar_height"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/attendee_recycler_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_add"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:tint="@color/white"
+        android:visibility="gone"/>
+
 
 </FrameLayout>

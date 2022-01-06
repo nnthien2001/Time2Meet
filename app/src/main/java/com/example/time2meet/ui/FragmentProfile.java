@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.util.TypedValue;
@@ -23,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
 
@@ -39,6 +41,7 @@ public class FragmentProfile extends Fragment {
     private ImageButton back_button;
     private ImageButton edit_button;
     private CircularImageView user_avatar;
+    private Integer userID = null;
 
     public FragmentProfile() {
         // Required empty public constructor
@@ -47,6 +50,19 @@ public class FragmentProfile extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        navController = NavHostFragment.findNavController(this);
+        userViewModel = new UserViewModel();
+
+        // Get the userID from view attendance list fragment
+        if(getArguments()!=null) {
+            current_user = userViewModel.getUser(getArguments().getInt("userID"));
+            userID = getArguments().getInt("userID");
+        }
+        else {
+            current_user = userViewModel.getCurrentUser();
+        }
+
     }
 
     @Override
@@ -82,17 +98,15 @@ public class FragmentProfile extends Fragment {
                 navController.navigateUp();
             }
         });
+        if(isDifferentUserView()) {
+            edit_button.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initAppBar();
-        navController= Navigation.findNavController(view);
-
-        NavBackStackEntry backStackEntry=navController.getBackStackEntry(R.id.nav_graph);
-        userViewModel=new ViewModelProvider(backStackEntry).get(UserViewModel.class);
-        current_user=userViewModel.getCurrentUser();
 
         initialize_elements();
         setUserInfo();
@@ -132,12 +146,24 @@ public class FragmentProfile extends Fragment {
                 navController.navigate(R.id.action_fragmentProfile_to_fragmentEditPassword);
             }
         });
+        if(isDifferentUserView()) {
+            edit_password_button.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        current_user=userViewModel.getCurrentUser();
+        if(isDifferentUserView()) {
+            current_user = userViewModel.getUser(userID);
+        }
+        else {
+            current_user=userViewModel.getCurrentUser();
+        }
         setUserInfo();
+    }
+
+    private boolean isDifferentUserView() {
+        return userID != null && !userID.equals(userViewModel.getCurrentUser().getUserID());
     }
 }

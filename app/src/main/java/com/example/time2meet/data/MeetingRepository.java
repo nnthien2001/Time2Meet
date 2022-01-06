@@ -18,9 +18,9 @@ public class MeetingRepository {
     //private static MeetingRepository instance;
     private MutableLiveData<Meeting> meeting = new MutableLiveData<Meeting>();
     private MutableLiveData<ArrayList<User>> attendees = new MutableLiveData<>();
-    public final Integer REQUEST_SUCCESS = 1;
-    public final Integer REQUEST_ERROR = 2;
-    public final Integer RESPONSE_ERROR = 3;
+    static public final Integer REQUEST_SUCCESS = 1;
+    static public final Integer REQUEST_ERROR = 2;
+    static public final Integer RESPONSE_ERROR = 3;
     protected final Integer RESPONSE_SUCCESS = 4;
 
     public Integer request_state;
@@ -72,6 +72,9 @@ public class MeetingRepository {
     public Integer inviteAttendee(String username) {
         UserRepository userRepository = UserRepository.getInstance();
         User _user = userRepository.getUser(username);
+        if (null == _user || !_user.getUsername().equals(username)) {
+            return REQUEST_ERROR;
+        }
         ArrayList<Integer> meetingList = _user.getMeetingList();
         if (meetingList.contains(meeting.getValue().getMeetingID()))
             return REQUEST_SUCCESS;

@@ -10,19 +10,25 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 
-public class FragmentViewAttendee extends Fragment {
+public class FragmentMeetingMenu extends Fragment implements View.OnClickListener {
 
     private NavController navController;
     private MeetingViewModel meetingViewModel;
 
-    public FragmentViewAttendee() {
+    private EditText meeting_tv;
+
+    public FragmentMeetingMenu() {
         // Required empty public constructor
     }
 
@@ -35,7 +41,7 @@ public class FragmentViewAttendee extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_attendee, container, false);
+        return inflater.inflate(R.layout.fragment_meeting_menu, container, false);
     }
 
     @Override
@@ -45,5 +51,28 @@ public class FragmentViewAttendee extends Fragment {
 
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+
+        meeting_tv = (EditText) view.findViewById(R.id.meeting_edittext);
+        view.findViewById(R.id.edit_meeting_btn).setOnClickListener(this);
+        view.findViewById(R.id.st_edit_meeting_btn).setOnClickListener(this);
+        view.findViewById(R.id.view_attendee_btn).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.edit_meeting_btn) {
+//            Meeting meeting = new Meeting(meeting_tv.getText().toString());
+//
+//            meetingViewModel.setMeeting(meeting);
+//            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentEditMeeting);
+        }
+
+        if (v.getId() == R.id.st_edit_meeting_btn) {
+            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentAvailabilityBoard);
+        }
+
+        if(v.getId() == R.id.view_attendee_btn) { ;
+            navController.navigate(R.id.action_fragmentMeetingMenu_to_fragmentViewAttendee);
+        }
     }
 }
