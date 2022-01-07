@@ -105,6 +105,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         fab_create.setColorFilter(Color.argb(255,255,255,255));
         FloatingActionButton fab_join=view.findViewById(R.id.btn_join_meeting);
         fab_join.setColorFilter(Color.argb(255,255,255,255));
+        ImageButton logout_btn = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
+        logout_btn.setImageResource(R.drawable.ic_logout);
+        logout_btn.setOnClickListener(this);
 
         ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -160,6 +163,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                 openCreateNewMeeting(v);
                 break;
             case R.id.btn_action_bar_leftmost:
+                logout();
                 break;
             case R.id.btn_action_bar_rightmost:
                 navController.navigate(R.id.action_fragmentHome_to_fragmentProfile);
@@ -176,17 +180,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             case R.id.btn_join:
                 joinMeeting();
                 break;
-            case R.id.tab_left:
-                meetings.clear();
-                meetings.addAll(userViewModel.getUserMeetingList());
-                adapter.notifyDataSetChanged();
-                break;
-            case R.id.tab_right:
-                meetings.clear();
-                meetings.addAll(userViewModel.getUserUpComingMeeting());
-                adapter.notifyDataSetChanged();
-                break;
         }
+    }
+
+    private void logout() {
+        navController.navigate(R.id.action_fragmentHome_to_fragmentLogin);
     }
 
     private void joinMeeting() {

@@ -48,7 +48,8 @@ public class UserViewModel extends ViewModel {
     public ArrayList<Meeting> getUserUpComingMeeting() {
         ArrayList<Meeting> meetingList = new ArrayList<>();
         for (Meeting m: userRepository.getUserAllMeetings().getValue()) {
-            if (!m.getDate().equals("Undecided")) {
+            String date = m.getDate().toString();
+            if (date.length()>0 && !date.equals("Undecided")) {
                 meetingList.add(m);
             }
         }

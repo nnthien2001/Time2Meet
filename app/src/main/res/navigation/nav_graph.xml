@@ -62,6 +62,11 @@
         <action
             android:id="@+id/action_fragmentHome_to_meeting_nav_graph"
             app:destination="@id/meeting_nav_graph" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentLogin"
+            app:destination="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentHome"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -135,7 +135,7 @@ public class FragmentAvailabilityBoard extends Fragment {
 
         for (int i = 0; i < n_column; ++i) {
             // first row
-            Date date = new Date(availabilityBoard.getStartDate().getTime() + 3600 * 24 * 1000 * i);
+            Date date = new Date(availabilityBoard.getStartDate().getTime() + (long)3600 * 24 * 1000 * i);
             TableRow time_label_row = (TableRow) view.findViewById(R.id.time_label);
             TextView time_label_txt = new TextView(this.getContext());
             time_label_txt.setWidth((int) (85 * this.getContext().getResources().getDisplayMetrics().density));

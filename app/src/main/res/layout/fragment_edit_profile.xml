@@ -138,6 +138,7 @@
         android:id="@+id/edit_profile_about_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="350dp"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/vertical_within_items"
         android:paddingStart="0dp"
