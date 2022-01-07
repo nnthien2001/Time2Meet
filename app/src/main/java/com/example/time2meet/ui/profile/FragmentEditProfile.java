@@ -135,52 +135,6 @@ public class FragmentEditProfile extends Fragment {
 
     }
 
-//    private void dobPickerSetup(Context context, View view) {
-//        TextView tv_dob = (TextView) view.findViewById(R.id.edit_profile_dob);
-//
-//        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-//                month = month + 1;
-//                //String date = day + "/" + month + "/" + year;
-//                String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
-//                tv_dob.setText(date);
-//            }
-//        };
-//
-//        tv_dob.setInputType(InputType.TYPE_NULL);
-//        tv_dob.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDatePicker(context, onDateSetListener);
-//            }
-//        });
-//        tv_dob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) {
-//                    showDatePicker(context, onDateSetListener);
-//                }
-//            }
-//        });
-//    }
-//
-//    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
-//        Calendar calendar = Calendar.getInstance();
-//        int year = calendar.get(Calendar.YEAR);
-//        int month = calendar.get(Calendar.MONTH);
-//        int day = calendar.get(Calendar.DAY_OF_MONTH);
-//
-//        DatePickerDialog dialog = new DatePickerDialog(
-//                context,
-//                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                onDateSetListener,
-//                year, month, day);
-//
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        dialog.show();
-//    }
-
     public void initialize_elements() {
         username = (EditText) getView().findViewById(R.id.edit_profile_username);
         fullname = (EditText) getView().findViewById(R.id.edit_profile_fullname);
