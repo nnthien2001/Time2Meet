@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.DatePickerHelper;
 import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
@@ -212,17 +213,25 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         createMeetingPopup = popupWindow;
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         createMeetingPopupView = popupWindow.getContentView();
+
         ImageButton btn_left = (ImageButton) createMeetingPopupView.findViewById(R.id.btn_action_bar_leftmost);
         btn_left.setImageResource(0);
         btn_left.setColorFilter(Color.argb(255,255,255,255));
+
         TextView tv_mid = (TextView) createMeetingPopupView.findViewById(R.id.tv_action_bar_center);
         tv_mid.setText(getResources().getString(R.string.create_meeting));
         tv_mid.setGravity(Gravity.LEFT);
         tv_mid.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
+
         ImageButton btn_right = (ImageButton) createMeetingPopupView.findViewById(R.id.btn_action_bar_rightmost);
         btn_right.setImageResource(0);
         btn_right.setColorFilter(Color.argb(255,255,255,255));
         createMeetingPopupView.findViewById(R.id.btn_save_meeting).setOnClickListener(this);
+
+        // set up date picker
+        DatePickerHelper datePickerHelper = new DatePickerHelper(getContext(), createMeetingPopupView);
+        datePickerHelper.datePickerSetup((TextView) createMeetingPopupView.findViewById(R.id.edit_meeting_startdate));
+        datePickerHelper.datePickerSetup((TextView) createMeetingPopupView.findViewById(R.id.edit_meeting_enddate));
     }
 
     void createMeeting() {

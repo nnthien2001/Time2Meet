@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.DatePickerHelper;
 import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.UserRepository;
@@ -70,7 +71,9 @@ public class FragmentSignup extends Fragment {
 
         actionBarSetup(view);
         typeinInfoSetup(view);
-        dobPickerSetup(getContext(), view);
+        //dobPickerSetup(getContext(), view);
+        DatePickerHelper datePickerHelper = new DatePickerHelper(getContext(), view);
+        datePickerHelper.datePickerSetup((TextView) view.findViewById(R.id.edt_dob_signup));
         buttonsSetup(view);
     }
 
@@ -98,48 +101,48 @@ public class FragmentSignup extends Fragment {
         edt_phone_number = view.findViewById(R.id.edt_phone_number_signup);
     }
 
-    private void dobPickerSetup(Context context, View view) {
-        TextView tv_dob = view.findViewById(R.id.edt_dob_signup);
-
-        DatePickerDialog.OnDateSetListener onDateSetListener = (datePicker, year, month, day) -> {
-            month = month + 1;
-            //String date = day + "/" + month + "/" + year;
-            String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
-            tv_dob.setText(date);
-        };
-
-        tv_dob.setInputType(InputType.TYPE_NULL);
-        tv_dob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker(context, onDateSetListener);
-            }
-        });
-        tv_dob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    showDatePicker(context, onDateSetListener);
-                }
-            }
-        });
-    }
-
-    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(
-                context,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                onDateSetListener,
-                year, month, day);
-
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-    }
+//    private void dobPickerSetup(Context context, View view) {
+//        TextView tv_dob = view.findViewById(R.id.edt_dob_signup);
+//
+//        DatePickerDialog.OnDateSetListener onDateSetListener = (datePicker, year, month, day) -> {
+//            month = month + 1;
+//            //String date = day + "/" + month + "/" + year;
+//            String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
+//            tv_dob.setText(date);
+//        };
+//
+//        tv_dob.setInputType(InputType.TYPE_NULL);
+//        tv_dob.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDatePicker(context, onDateSetListener);
+//            }
+//        });
+//        tv_dob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    showDatePicker(context, onDateSetListener);
+//                }
+//            }
+//        });
+//    }
+//
+//    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
+//        Calendar calendar = Calendar.getInstance();
+//        int year = calendar.get(Calendar.YEAR);
+//        int month = calendar.get(Calendar.MONTH);
+//        int day = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//        DatePickerDialog dialog = new DatePickerDialog(
+//                context,
+//                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                onDateSetListener,
+//                year, month, day);
+//
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.show();
+//    }
 
     private void buttonsSetup(View view) {
         view.findViewById(R.id.btn_create_account).setOnClickListener(v -> {

@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.DatePickerHelper;
 import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
@@ -81,7 +82,8 @@ public class FragmentEditMeeting extends Fragment {
         if (meeting.getDate() != null && !meeting.getDate().equals("")) {
             binding.meetingEditTime.setText(meeting.getDate());
         }
-        datePickerSetup(getContext(), view);
+        DatePickerHelper datePickerHelper = new DatePickerHelper(getContext(), view);
+        datePickerHelper.datePickerSetup(binding.meetingEditTime);
         binding.meetingEditLocation.setText(meeting.getLocation());
         binding.meetingEditDescription.setText(meeting.getDescription());
 
@@ -128,48 +130,48 @@ public class FragmentEditMeeting extends Fragment {
         });
     }
 
-    private void datePickerSetup(Context context, View view) {
-        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
-                binding.meetingEditTime.setText(date);
-            }
-        };
-
-        binding.meetingEditTime.setInputType(InputType.TYPE_NULL);
-        binding.meetingEditTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker(context, onDateSetListener);
-            }
-        });
-        binding.meetingEditTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    showDatePicker(context, onDateSetListener);
-                }
-            }
-        });
-    }
-
-    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(
-                context,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                onDateSetListener,
-                year, month, day);
-
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-    }
+//    private void datePickerSetup(Context context, View view) {
+//        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                month = month + 1;
+//                String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
+//                binding.meetingEditTime.setText(date);
+//            }
+//        };
+//
+//        binding.meetingEditTime.setInputType(InputType.TYPE_NULL);
+//        binding.meetingEditTime.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDatePicker(context, onDateSetListener);
+//            }
+//        });
+//        binding.meetingEditTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    showDatePicker(context, onDateSetListener);
+//                }
+//            }
+//        });
+//    }
+//
+//    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
+//        Calendar calendar = Calendar.getInstance();
+//        int year = calendar.get(Calendar.YEAR);
+//        int month = calendar.get(Calendar.MONTH);
+//        int day = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//        DatePickerDialog dialog = new DatePickerDialog(
+//                context,
+//                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                onDateSetListener,
+//                year, month, day);
+//
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.show();
+//    }
 
     void openConfirmDelete(View view) {
         LayoutInflater inflater = getLayoutInflater();
