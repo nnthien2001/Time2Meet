@@ -14,7 +14,7 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/drawable/ic_save.xml" value="0.146875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/drawable/ic_show_unhide.xml" value="0.146875" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.2928821470245041" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_meeting.xml" value="0.2722419928825623" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_edit_profile.xml" value="0.15353260869565216" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_meeting_menu.xml" value="0.1796875" />
@@ -23,7 +23,7 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/fragment_view_meeting.xml" value="0.22" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/popup_comfirm_action.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/popup_confirm_action.xml" value="0.22" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/popup_create_meeting.xml" value="0.12916666666666668" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/popup_create_meeting.xml" value="0.22" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/layout/popup_invite_attendee.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/menu/menu_edit_meeting.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/Time2Meet/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.13541666666666666" />

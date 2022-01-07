@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/meeting_desc_proposed_time"
-            android:text="@string/meeting_proposed_time"
+            android:text="@string/meeting_proposed_date"
             android:textSize="@dimen/default_text_size"
             android:textColor="@color/descriptive_text"
             app:layout_constraintTop_toBottomOf="@id/meeting_startDate"

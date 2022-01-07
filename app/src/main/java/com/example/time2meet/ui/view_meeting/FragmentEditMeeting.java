@@ -1,6 +1,9 @@
 package com.example.time2meet.ui.view_meeting;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,20 +15,27 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.time2meet.R;
+import com.example.time2meet.data.Helper;
 import com.example.time2meet.data.Meeting;
 import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.databinding.FragmentEditMeetingBinding;
 import com.example.time2meet.databinding.PopupConfirmActionBinding;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class FragmentEditMeeting extends Fragment {
 
@@ -68,7 +78,10 @@ public class FragmentEditMeeting extends Fragment {
 
         // set up binding view
         binding.meetingEditName.setText(meeting.getMeetingName());
-        binding.meetingEditTime.setText(meeting.getDate());
+        if (meeting.getDate() != null && !meeting.getDate().equals("")) {
+            binding.meetingEditTime.setText(meeting.getDate());
+        }
+        datePickerSetup(getContext(), view);
         binding.meetingEditLocation.setText(meeting.getLocation());
         binding.meetingEditDescription.setText(meeting.getDescription());
 
@@ -86,6 +99,76 @@ public class FragmentEditMeeting extends Fragment {
         });
 
         setupAppBar();
+    }
+
+    private void setupAppBar(){
+        TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
+        appbar_title.setText(getResources().getString(R.string.edit_meeting));
+        appbar_title.setGravity(Gravity.START);
+        appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
+
+        ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
+        ImageButton save_button =getView().findViewById(R.id.btn_action_bar_rightmost);
+        back_button.setImageResource(R.drawable.ic_back);
+        save_button.setImageResource(R.drawable.ic_save);
+        back_button.setColorFilter(Color.argb(255,255,255,255));
+        save_button.setColorFilter(Color.argb(255,255,255,255));
+
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveEdit();
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigateUp();
+            }
+        });
+    }
+
+    private void datePickerSetup(Context context, View view) {
+        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
+                binding.meetingEditTime.setText(date);
+            }
+        };
+
+        binding.meetingEditTime.setInputType(InputType.TYPE_NULL);
+        binding.meetingEditTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(context, onDateSetListener);
+            }
+        });
+        binding.meetingEditTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    showDatePicker(context, onDateSetListener);
+                }
+            }
+        });
+    }
+
+    private void showDatePicker(Context context, DatePickerDialog.OnDateSetListener onDateSetListener) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                context,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                onDateSetListener,
+                year, month, day);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     void openConfirmDelete(View view) {
@@ -128,36 +211,15 @@ public class FragmentEditMeeting extends Fragment {
         String time = binding.meetingEditTime.getText().toString();
         String location = binding.meetingEditLocation.getText().toString();
         String description = binding.meetingEditDescription.getText().toString();
-
-        meetingViewModel.updateMeeting(name, time, location, description);
-        navController.navigateUp();
-    }
-
-    private void setupAppBar(){
-        TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
-        appbar_title.setText(getResources().getString(R.string.edit_meeting));
-        appbar_title.setGravity(Gravity.START);
-        appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
-
-        ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
-        ImageButton save_button =getView().findViewById(R.id.btn_action_bar_rightmost);
-        back_button.setImageResource(R.drawable.ic_back);
-        save_button.setImageResource(R.drawable.ic_save);
-        back_button.setColorFilter(Color.argb(255,255,255,255));
-        save_button.setColorFilter(Color.argb(255,255,255,255));
-
-        save_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveEdit();
-            }
-        });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigateUp();
-            }
-        });
+        Helper helper = Helper.getInstance();
+        if (helper.compareDate(time, meetingViewModel.getMeeting().getStartDate()) >= 0 &&
+            helper.compareDate(time, meetingViewModel.getMeeting().getEndDate()) <= 0) {
+            meetingViewModel.updateMeeting(name, time, location, description);
+            navController.navigateUp();
+        }
+        else {
+            Toast.makeText(getContext(), "The official date is out of available date range", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

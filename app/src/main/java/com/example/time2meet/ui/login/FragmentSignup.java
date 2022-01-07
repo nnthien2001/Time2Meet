@@ -32,6 +32,7 @@ import com.example.time2meet.data.UserViewModel;
 import com.example.time2meet.data.UserRepository;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class FragmentSignup extends Fragment {
 
@@ -102,7 +103,8 @@ public class FragmentSignup extends Fragment {
 
         DatePickerDialog.OnDateSetListener onDateSetListener = (datePicker, year, month, day) -> {
             month = month + 1;
-            String date = day + "/" + month + "/" + year;
+            //String date = day + "/" + month + "/" + year;
+            String date = String.format(Locale.ENGLISH,"%02d/%02d/%04d", day, month, year);
             tv_dob.setText(date);
         };
 

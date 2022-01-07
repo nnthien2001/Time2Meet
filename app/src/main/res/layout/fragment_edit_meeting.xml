@@ -59,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/display_info_text_size"
+            android:text="@string/meeting_time_undecided"
             android:hint="@string/official_time"
             app:layout_constraintTop_toBottomOf="@+id/meeting_edit_desc_time"
             app:layout_constraintStart_toStartOf="@+id/meeting_edit_desc_time"
