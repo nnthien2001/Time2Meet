@@ -1,5 +1,6 @@
 package com.example.time2meet.ui.view_attendee;
 
+import android.graphics.Color;
 import android.nfc.Tag;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,9 +151,12 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
 
     private void initAppBar() {
         TextView tv_appbar = (TextView) view.findViewById(R.id.tv_action_bar_center);
-        tv_appbar.setText("Attendance List");
+        tv_appbar.setText(getResources().getString(R.string.attendance_list));
+        tv_appbar.setGravity(Gravity.LEFT);
+        tv_appbar.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
         back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
         back_button.setImageResource(R.drawable.ic_back);
+        back_button.setColorFilter(Color.argb(255,255,255,255));
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

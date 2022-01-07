@@ -3,6 +3,7 @@ package com.example.time2meet.ui.view_meeting;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -103,8 +104,10 @@ public class FragmentAvailabilityBoard extends Fragment {
                 navController.navigateUp();
             }
         });
+        imgBtn_back.setColorFilter(Color.argb(255,255,255,255));
         ImageButton imgBtn_edit = (ImageButton) view.findViewById(R.id.btn_action_bar_rightmost);
         imgBtn_edit.setImageResource(R.drawable.ic_edit);
+        imgBtn_edit.setColorFilter(Color.argb(255,255,255,255));
         imgBtn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
