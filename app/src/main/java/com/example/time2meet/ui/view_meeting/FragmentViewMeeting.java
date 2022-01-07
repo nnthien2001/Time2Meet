@@ -1,5 +1,6 @@
 package com.example.time2meet.ui.view_meeting;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -139,7 +140,9 @@ public class FragmentViewMeeting extends Fragment {
         ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
         ImageButton edit_button =getView().findViewById(R.id.btn_action_bar_rightmost);
         back_button.setImageResource(R.drawable.ic_back);
+        back_button.setColorFilter(Color.argb(255,255,255,255));
         edit_button.setImageResource(R.drawable.ic_edit);
+        edit_button.setColorFilter(Color.argb(255,255,255,255));
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
