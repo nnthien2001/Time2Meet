@@ -1,5 +1,6 @@
 package com.example.time2meet.ui.login;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,7 +11,10 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -27,6 +31,7 @@ public class FragmentLogin extends Fragment {
 
     private EditText edtUsername;
     private EditText edtPassword;
+    private boolean hidePassword = true;
 
     public FragmentLogin() {
         // Required empty public constructor
@@ -80,6 +85,31 @@ public class FragmentLogin extends Fragment {
 
         view.findViewById(R.id.btn_to_signup).setOnClickListener(v -> {
             navController.navigate(R.id.action_fragmentLogin_to_fragmentSignup);
+        });
+
+        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    int unhideBtnBound = edtPassword.getRight() - edtPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width() - edtPassword.getCompoundPaddingRight();
+                    if(event.getRawX() >= unhideBtnBound) {
+                        if (hidePassword) {
+                            edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_key_pass, 0, R.drawable.ic_password_hide, 0);
+                        }
+                        else {
+                            edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_key_pass, 0, R.drawable.ic_password_unhide, 0);
+                        }
+                        hidePassword = !hidePassword;
+                        return true;
+                    }
+                }
+                return false;
+            }
         });
     }
 
