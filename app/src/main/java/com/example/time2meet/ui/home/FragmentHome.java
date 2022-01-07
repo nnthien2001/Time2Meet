@@ -101,16 +101,19 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         fab_create.setColorFilter(Color.argb(255,255,255,255));
         FloatingActionButton fab_join=view.findViewById(R.id.btn_join_meeting);
         fab_join.setColorFilter(Color.argb(255,255,255,255));
+
         ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
                 switch (tab.getText().toString()){
-                    case "All Meetings":
+                    case "All meetings":
                         meetings.clear();
                         meetings.addAll(userViewModel.getUserMeetingList());
                         adapter.notifyDataSetChanged();
+
                         break;
-                    case "Upcoming Meetings":
+                    case "Upcoming meetings":
                         meetings.clear();
                         meetings.addAll(userViewModel.getUserUpComingMeeting());
                         adapter.notifyDataSetChanged();
@@ -179,6 +182,8 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             case R.id.tab_right:
                 meetings.clear();
                 meetings.addAll(userViewModel.getUserUpComingMeeting());
+                adapter.notifyDataSetChanged();
+                Log.i("debug", String.valueOf(meetings.size()));
                 break;
         }
     }
