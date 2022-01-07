@@ -13,6 +13,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,6 +133,8 @@ public class FragmentViewMeeting extends Fragment {
     private void setupAppBar(){
         TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
         appbar_title.setText(getResources().getString(R.string.meeting));
+        appbar_title.setGravity(Gravity.START);
+        appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
 
         ImageButton back_button =getView().findViewById(R.id.btn_action_bar_leftmost);
         ImageButton edit_button =getView().findViewById(R.id.btn_action_bar_rightmost);
