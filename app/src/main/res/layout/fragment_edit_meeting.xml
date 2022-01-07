@@ -139,7 +139,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/meeting_btn_save"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="@dimen/login_title_text_size"
+            android:layout_marginBottom="@dimen/content_margin"
             android:backgroundTint="@color/button_background"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

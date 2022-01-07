@@ -73,11 +73,11 @@ public class FragmentViewMeeting extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
+        //navController = Navigation.findNavController(view);
 
-        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
-        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
+//        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
+//        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+//        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
         //Log.d("ViewMeeting current meeting", meetingViewModel.getMeeting().getHostID().toString());
         //Log.d("ViewMeeting current user", userViewModel.getCurrentUser().getUserID().toString());
@@ -107,7 +107,7 @@ public class FragmentViewMeeting extends Fragment {
         binding.meetingName.setText(meeting.getMeetingName());
         binding.meetingStartDate.setText(meeting.getStartDate());
         binding.meetingEndDate.setText(meeting.getEndDate());
-        if (meeting.getDate() != null) {
+        if (meeting.getDate() != null && !meeting.getDate().equals("")) {
             binding.meetingProposedTime.setText(meeting.getDate());
         }
         else {

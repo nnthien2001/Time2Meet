@@ -173,14 +173,17 @@
             android:layout_marginStart="@dimen/content_margin"
             android:layout_marginTop="@dimen/vertical_between_items"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/meeting_description"
             android:textSize="@dimen/display_info_text_size"
             android:text="@string/description"
             app:layout_constraintTop_toBottomOf="@+id/meeting_desc_description"
             app:layout_constraintStart_toStartOf="@+id/meeting_desc_description"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/vertical_within_items"
+            android:layout_marginEnd="@dimen/content_margin"
+            android:layout_marginStart="@dimen/content_margin"
             android:textColor="@color/black"/>
 
         <Button

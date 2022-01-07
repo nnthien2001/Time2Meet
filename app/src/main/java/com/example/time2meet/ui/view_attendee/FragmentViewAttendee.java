@@ -67,7 +67,7 @@ public class FragmentViewAttendee extends Fragment implements View.OnClickListen
         navController = NavHostFragment.findNavController(this);
         NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
-        userViewModel = new ViewModelProvider(backStackEntry).get(UserViewModel.class);
+        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
     }
 
     @Override

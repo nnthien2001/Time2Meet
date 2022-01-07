@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.util.TypedValue;
@@ -39,6 +42,7 @@ import java.util.Map;
  * create an instance of this fragment.
  **/
 public class FragmentAvailabilityBoard extends Fragment {
+    private NavController navController;
     private MeetingViewModel meetingViewModel;
     private UserViewModel userViewModel;
     private AvailabilityBoard availabilityBoard;
@@ -67,15 +71,11 @@ public class FragmentAvailabilityBoard extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Pls đừng gọi ViewModel ntn
-        // sai lắm luôn á vì nó tạo new instance của VM ko phải cái chung
-        // xem onViewCreated() trong FragmentHome
-        // NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-        // meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+        navController = NavHostFragment.findNavController(this);
+        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
+        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
+        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
-        // oke bro. sorry =(((((( didn't mean to
-        userViewModel = new UserViewModel();
-        meetingViewModel = new MeetingViewModel();
         if (getArguments() != null) {
             meetingViewModel.goMeeting(getArguments().getInt("meetingID"));
         }
@@ -97,6 +97,12 @@ public class FragmentAvailabilityBoard extends Fragment {
         tv_appbar.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
         ImageButton imgBtn_back = (ImageButton) view.findViewById(R.id.btn_action_bar_leftmost);
         imgBtn_back.setImageResource(R.drawable.ic_back);
+        imgBtn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigateUp();
+            }
+        });
         ImageButton imgBtn_edit = (ImageButton) view.findViewById(R.id.btn_action_bar_rightmost);
         imgBtn_edit.setImageResource(R.drawable.ic_edit);
         imgBtn_edit.setOnClickListener(new View.OnClickListener() {
