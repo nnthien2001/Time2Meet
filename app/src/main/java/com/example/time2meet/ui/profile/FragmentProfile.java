@@ -1,16 +1,12 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.profile;
 
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -24,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.time2meet.R;
-import com.example.time2meet.data.MeetingViewModel;
 import com.example.time2meet.data.User;
 import com.example.time2meet.data.UserViewModel;
 

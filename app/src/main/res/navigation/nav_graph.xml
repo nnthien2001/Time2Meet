@@ -65,7 +65,7 @@
 
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name="com.example.time2meet.ui.FragmentProfile"
+        android:name="com.example.time2meet.ui.profile.FragmentProfile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentEditProfile"
-        android:name="com.example.time2meet.ui.FragmentEditProfile"
+        android:name="com.example.time2meet.ui.profile.FragmentEditProfile"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile"/>
 
@@ -85,7 +85,7 @@
         app:startDestination="@id/fragmentViewMeeting">
         <fragment
             android:id="@+id/fragmentViewMeeting"
-            android:name="com.example.time2meet.ui.FragmentViewMeeting"
+            android:name="com.example.time2meet.ui.view_meeting.FragmentViewMeeting"
             android:label="fragment_view_meeting"
             tools:layout="@layout/fragment_view_meeting">
             <argument
@@ -114,19 +114,19 @@
 
         <fragment
             android:id="@+id/fragmentEditMeeting"
-            android:name="com.example.time2meet.ui.FragmentEditMeeting"
+            android:name="com.example.time2meet.ui.view_meeting.FragmentEditMeeting"
             android:label="fragment_edit_meeting"
             tools:layout="@layout/fragment_edit_meeting" />
 
         <fragment
             android:id="@+id/fragmentAvailabilityBoard"
-            android:name="com.example.time2meet.ui.FragmentAvailabilityBoard"
+            android:name="com.example.time2meet.ui.view_meeting.FragmentAvailabilityBoard"
             android:label="fragment_availability_board"
             tools:layout="@layout/fragment_availability_board" />
     </navigation>
     <fragment
         android:id="@+id/fragmentEditPassword"
-        android:name="com.example.time2meet.ui.FragmentEditPassword"
+        android:name="com.example.time2meet.ui.profile.FragmentEditPassword"
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
 </navigation>

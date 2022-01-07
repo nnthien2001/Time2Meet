@@ -1,4 +1,4 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.view_meeting;
 
 
 import android.annotation.SuppressLint;

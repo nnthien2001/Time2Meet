@@ -1,4 +1,4 @@
-package com.example.time2meet.ui;
+package com.example.time2meet.ui.profile;
 
 import android.graphics.Color;
 import android.os.Bundle;

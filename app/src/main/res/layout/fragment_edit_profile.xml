@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.FragmentEditProfile">
+    tools:context=".ui.profile.FragmentEditProfile">
 
     <include layout="@layout/action_bar" />
 
@@ -19,7 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.time2meet.ui.CircularImageView
+    <com.example.time2meet.ui.profile.CircularImageView
         android:id="@+id/edit_user_avatar"
         android:layout_width="108dp"
         android:layout_height="108dp"
