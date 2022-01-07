@@ -171,8 +171,8 @@ public class FragmentEditMeeting extends Fragment {
         String location = binding.meetingEditLocation.getText().toString();
         String description = binding.meetingEditDescription.getText().toString();
         Helper helper = Helper.getInstance();
-        if (helper.compareDate(time, meetingViewModel.getMeeting().getStartDate()) >= 0 &&
-            helper.compareDate(time, meetingViewModel.getMeeting().getEndDate()) <= 0) {
+        if (time.equals("Undecided") || (helper.compareDate(time, meetingViewModel.getMeeting().getStartDate()) >= 0 &&
+            helper.compareDate(time, meetingViewModel.getMeeting().getEndDate()) <= 0)) {
             meetingViewModel.updateMeeting(name, time, location, description);
             navController.navigateUp();
         }

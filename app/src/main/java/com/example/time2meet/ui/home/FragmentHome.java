@@ -1,5 +1,7 @@
 package com.example.time2meet.ui.home;
 
+import static com.example.time2meet.R.string.all_meetings;
+
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -107,13 +109,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         ((TabLayout) view.findViewById(R.id.tab_home)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
                 switch (tab.getText().toString()){
                     case "All meetings":
                         meetings.clear();
                         meetings.addAll(userViewModel.getUserMeetingList());
                         adapter.notifyDataSetChanged();
-
                         break;
                     case "Upcoming meetings":
                         meetings.clear();
@@ -185,7 +185,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                 meetings.clear();
                 meetings.addAll(userViewModel.getUserUpComingMeeting());
                 adapter.notifyDataSetChanged();
-                Log.i("debug", String.valueOf(meetings.size()));
                 break;
         }
     }
@@ -232,6 +231,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         DatePickerHelper datePickerHelper = new DatePickerHelper(getContext(), createMeetingPopupView);
         datePickerHelper.datePickerSetup((TextView) createMeetingPopupView.findViewById(R.id.edit_meeting_startdate));
         datePickerHelper.datePickerSetup((TextView) createMeetingPopupView.findViewById(R.id.edit_meeting_enddate));
+        datePickerHelper.datePickerSetup((TextView) createMeetingPopupView.findViewById(R.id.edit_meeting_date));
     }
 
     void createMeeting() {

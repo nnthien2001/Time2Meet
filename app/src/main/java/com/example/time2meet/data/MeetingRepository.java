@@ -148,8 +148,10 @@ public class MeetingRepository {
         _meeting.setLocation(location);
         try {
             new updateMeetingAsyncTask().execute(_meeting).get();
-            if (request_state == REQUEST_SUCCESS)
+            if (request_state == REQUEST_SUCCESS) {
                 meeting.setValue(_meeting);
+                UserRepository.getInstance().getAllMeetings();
+            }
             return request_state;
         } catch (ExecutionException e) {
             e.printStackTrace();
