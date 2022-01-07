@@ -67,7 +67,7 @@ public class FragmentEditPassword extends Fragment {
     private void initAppBar() {
         TextView appbar_title = getView().findViewById(R.id.tv_action_bar_center);
         appbar_title.setText(getResources().getString(R.string.edit_password));
-        appbar_title.setGravity(Gravity.LEFT);
+        appbar_title.setGravity(Gravity.START);
         appbar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.action_bar_text_size));
         ImageButton back_button = getView().findViewById(R.id.btn_action_bar_leftmost);
         ImageButton save_button = getView().findViewById(R.id.btn_action_bar_rightmost);
