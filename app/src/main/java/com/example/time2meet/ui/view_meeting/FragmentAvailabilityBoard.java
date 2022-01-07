@@ -77,9 +77,9 @@ public class FragmentAvailabilityBoard extends Fragment {
         meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
         userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
-        if (getArguments() != null) {
-            meetingViewModel.goMeeting(getArguments().getInt("meetingID"));
-        }
+//        if (getArguments() != null) {
+//            meetingViewModel.goMeeting(getArguments().getInt("meetingID"));
+//        }
         availabilityBoard = new AvailabilityBoard(meetingViewModel.getMeeting());
         isEdit = false;
         this.view = view;
@@ -104,6 +104,7 @@ public class FragmentAvailabilityBoard extends Fragment {
                 navController.navigateUp();
             }
         });
+
         imgBtn_back.setColorFilter(Color.argb(255,255,255,255));
         ImageButton imgBtn_edit = (ImageButton) view.findViewById(R.id.btn_action_bar_rightmost);
         imgBtn_edit.setImageResource(R.drawable.ic_edit);

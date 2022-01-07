@@ -74,11 +74,6 @@ public class FragmentViewMeeting extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //navController = Navigation.findNavController(view);
-
-//        NavBackStackEntry backStackEntry = navController.getBackStackEntry(R.id.meeting_nav_graph);
-//        meetingViewModel = new ViewModelProvider(backStackEntry).get(MeetingViewModel.class);
-//        userViewModel = new ViewModelProvider(navController.getBackStackEntry(R.id.nav_graph)).get(UserViewModel.class);
 
         //Log.d("ViewMeeting current meeting", meetingViewModel.getMeeting().getHostID().toString());
         //Log.d("ViewMeeting current user", userViewModel.getCurrentUser().getUserID().toString());

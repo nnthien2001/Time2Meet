@@ -78,7 +78,7 @@ public class FragmentSignup extends Fragment {
         ImageButton btn_rightmost = view.findViewById(R.id.btn_action_bar_rightmost);
 
         btn_leftmost.setImageResource(R.drawable.back_icon);
-        btn_leftmost.setOnClickListener(v -> navController.navigate(R.id.action_fragmentSignup_to_fragmentLogin));
+        btn_leftmost.setOnClickListener(v -> navController.navigateUp());
 
         tv_center.setText(getResources().getString(R.string.sign_up));
         tv_center.setGravity(Gravity.LEFT);
@@ -166,7 +166,7 @@ public class FragmentSignup extends Fragment {
                                 Toast.LENGTH_LONG
                         ).show();
 
-                        navController.navigate(R.id.action_fragmentSignup_to_fragmentLogin);
+                        navController.navigateUp();
                     }
 
                     navController.navigate(R.id.action_fragmentSignup_to_fragmentHome);
@@ -193,7 +193,7 @@ public class FragmentSignup extends Fragment {
         });
 
         view.findViewById(R.id.btn_to_login).setOnClickListener(
-                v -> navController.navigate(R.id.action_fragmentSignup_to_fragmentLogin));
+                v -> navController.navigateUp());
     }
 
 }
