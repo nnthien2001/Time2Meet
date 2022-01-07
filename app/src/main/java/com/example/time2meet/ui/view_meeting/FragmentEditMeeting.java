@@ -118,9 +118,8 @@ public class FragmentEditMeeting extends Fragment {
     }
 
     private void deleteMeeting() {
-        //TODO: call delete meeting method
         meetingViewModel.deleteMeeting();
-        
+
         navController.popBackStack(R.id.fragmentHome, false);
     }
 
