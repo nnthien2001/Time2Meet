@@ -1,4 +1,4 @@
-# Time2Meet
+# Introduction
 Time2Meet is a meeting planning app in which users can host a meeting and get participants to pick their free time, then based on a visual chart created by everyone’s free time, the host can set an official time to meet.
 
 This app is inspired by When2Meet and Google Calendar. As users, we found that When2Meet is a convenient meeting hosting website. However, its interface makes users lose interest easily due to the oversimplicity, unattractiveness, and sometimes counter-intuitive design elements. About Google Calendar, it is a wonderful calendar to manage individuals’ schedules, as well as hosting events. However, because of its professionalism, the adjustment of each meeting can affect other ones or other participants’ schedules unintentionally if the host is not familiar with the app. With all of that said, we try to create an app that meets both criteria: interesting user interface and friendly to basic users.
