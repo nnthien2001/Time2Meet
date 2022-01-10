@@ -37,6 +37,7 @@ And other basic features:
 
 # Documentation
 - [Project Proposal](https://docs.google.com/document/d/1jtJqxVk_DyXqu9sjB-HdjWxKWBYcjdvBlPZ0mDTu7qI/edit?usp=sharing)
+- [Project Presentation](https://www.canva.com/design/DAE0fLKj3vo/dUrSxu79KWisIvVEPz4txw/view)
 - [Vision Document](https://docs.google.com/document/d/1H1SgQfO8Bp-b4WxMo12CxWkI9CfZL98FfBwvM2lSJkQ/edit?usp=sharing)
 - [Project Plan](https://docs.google.com/document/d/1CpndEnMBW0kqSvIU_VidsKTk6RcD7K5QuJl8wmTPwd4/edit?usp=sharing)
 - [Use-Case Specification](https://docs.google.com/document/d/15gPCQqDd47ym1G-OVcrC_WncveVIAOiXXDpFjF8Zghk/edit?usp=sharing)
